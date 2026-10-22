@@ -1,0 +1,9 @@
+{
+  "method": "Mutual Information",
+  "selection_criterion": "minimum final training-only inner CV RMSE",
+  "selection_score": 96.02855699657471,
+  "params": {
+    "selector__k": 10
+  },
+  "model_path": "best_model.joblib"
+}

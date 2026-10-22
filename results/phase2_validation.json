@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "datasets": 2,
+  "models": 12,
+  "training_predictions": 96624,
+  "heldout_predictions": 24156,
+  "repeated_fast_reproducible": true,
+  "frontend_unchanged": true
+}

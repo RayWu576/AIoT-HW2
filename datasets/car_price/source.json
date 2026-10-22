@@ -1,0 +1,38 @@
+{
+  "source": "https://www.kaggle.com/api/v1/datasets/download/hellbuoy/car-price-prediction",
+  "files": [
+    {
+      "file": "CarPrice_Assignment.csv",
+      "rows": 205,
+      "columns": [
+        "car_ID",
+        "symboling",
+        "CarName",
+        "fueltype",
+        "aspiration",
+        "doornumber",
+        "carbody",
+        "drivewheel",
+        "enginelocation",
+        "wheelbase",
+        "carlength",
+        "carwidth",
+        "carheight",
+        "curbweight",
+        "enginetype",
+        "cylindernumber",
+        "enginesize",
+        "fuelsystem",
+        "boreratio",
+        "stroke",
+        "compressionratio",
+        "horsepower",
+        "peakrpm",
+        "citympg",
+        "highwaympg",
+        "price"
+      ],
+      "sha256": "2c78d99359a34cb6c64a97f276c1b6ea0532197b9b950b4521f65c0d9efcbc2b"
+    }
+  ]
+}

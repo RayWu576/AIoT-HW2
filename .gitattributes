@@ -1,0 +1,15 @@
+# Preserve exact bytes for dataset/artifact SHA-256 provenance.
+/datasets/student_performance/*.csv -text
+/datasets/appliances_energy/*.csv -text
+/datasets/car_price/*.csv -text
+/historical/**/*.csv -text
+/dashboard/dist/** -text
+/historical/dashboard/dist/** -text
+/results/appliances_energy/** -text
+/results/car_price/** -text
+/results/student_performance/** -text
+/results/phase2* -text
+/results/official_validation.json -text
+/reports/** -text
+# CRLF is intentional in byte-preserved Windows artifacts.
+* whitespace=cr-at-eol

@@ -1,0 +1,7 @@
+method,estimable_rows,rows_with_pi,empirical_heldout_individual_pi_coverage,median_individual_pi_width,note
+Correlation,79,79,0.9493670886075949,16.812932381412182,Descriptive coverage on this test set; no interval tuning or future coverage guarantee. Mean CI coverage is not assessed using individual outcomes.
+RFE,79,79,0.9493670886075949,16.812932381412182,Descriptive coverage on this test set; no interval tuning or future coverage guarantee. Mean CI coverage is not assessed using individual outcomes.
+RFECV,79,79,0.9493670886075949,16.812932381412182,Descriptive coverage on this test set; no interval tuning or future coverage guarantee. Mean CI coverage is not assessed using individual outcomes.
+Mutual Information,79,79,0.9493670886075949,16.83048951199759,Descriptive coverage on this test set; no interval tuning or future coverage guarantee. Mean CI coverage is not assessed using individual outcomes.
+LASSO,79,79,0.9493670886075949,16.65876937440553,Descriptive coverage on this test set; no interval tuning or future coverage guarantee. Mean CI coverage is not assessed using individual outcomes.
+Baseline,79,79,0.9367088607594937,17.32937115030198,Descriptive coverage on this test set; no interval tuning or future coverage guarantee. Mean CI coverage is not assessed using individual outcomes.

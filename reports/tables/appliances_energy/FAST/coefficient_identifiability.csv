@@ -1,0 +1,71 @@
+method,feature,coefficient,identifiable,original_feature
+Mutual Information,Intercept,98.0244489485686,True,
+Mutual Information,numeric__T3,42.31262338515825,True,T3
+Mutual Information,numeric__T5,-11.554523865179824,True,T5
+Mutual Information,numeric__T8,11.466210587130231,True,T8
+Mutual Information,numeric__T9,-42.32509976782406,True,T9
+Mutual Information,numeric__RH_6,-5.532711336693664,True,RH_6
+Mutual Information,numeric__T4,6.224071361538283,True,T4
+Mutual Information,numeric__RH_8,-34.543805018009564,True,RH_8
+Mutual Information,numeric__T7,-7.839049031627414,True,T7
+Mutual Information,numeric__Press_mm_hg,-5.272440638456819,True,Press_mm_hg
+Mutual Information,numeric__RH_7,17.87993996796939,True,RH_7
+RFE,Intercept,98.02444894856865,True,
+RFE,numeric__RH_8,-32.90740413291975,True,RH_8
+RFE,numeric__RH_1,48.35620328075757,True,RH_1
+RFE,numeric__RH_2,-46.59932183579789,True,RH_2
+RFE,numeric__RH_3,21.76332141657261,True,RH_3
+RFE,numeric__T3,39.033596528719436,True,T3
+RFE,numeric__T2,-27.138826743756336,True,T2
+RFE,numeric__T6,28.13904816220548,True,T6
+RFE,numeric__T_out,-20.54735750796376,True,T_out
+RFE,numeric__lights,18.331534843179526,True,lights
+RFE,numeric__T9,-16.217768021371874,True,T9
+RFECV,Intercept,98.02444894856865,True,
+RFECV,numeric__RH_8,-32.90740413291975,True,RH_8
+RFECV,numeric__RH_1,48.35620328075757,True,RH_1
+RFECV,numeric__RH_2,-46.59932183579789,True,RH_2
+RFECV,numeric__RH_3,21.76332141657261,True,RH_3
+RFECV,numeric__T3,39.033596528719436,True,T3
+RFECV,numeric__T2,-27.138826743756336,True,T2
+RFECV,numeric__T6,28.13904816220548,True,T6
+RFECV,numeric__T_out,-20.54735750796376,True,T_out
+RFECV,numeric__lights,18.331534843179526,True,lights
+RFECV,numeric__T9,-16.217768021371874,True,T9
+Correlation,Intercept,98.02444894856852,True,
+Correlation,numeric__lights,23.432757602665763,True,lights
+Correlation,numeric__T2,3.2039881948211524,True,T2
+Correlation,numeric__RH_out,-14.03365362571941,True,RH_out
+Correlation,numeric__T6,0.3407404804090111,True,T6
+Correlation,numeric__T3,8.401449625124533,True,T3
+LASSO,Intercept,98.02444894856852,True,
+LASSO,numeric__lights,23.41918357167851,True,lights
+LASSO,numeric__T2,3.324954662472305,True,T2
+LASSO,numeric__T3,8.47852393422865,True,T3
+LASSO,numeric__RH_out,-14.139078180634701,True,RH_out
+Baseline,Intercept,98.02444894856862,True,
+Baseline,numeric__lights,17.892507645141034,True,lights
+Baseline,numeric__T1,-7.73936928454712,True,T1
+Baseline,numeric__RH_1,46.186903689779605,True,RH_1
+Baseline,numeric__T2,-20.026615777376474,True,T2
+Baseline,numeric__RH_2,-42.15597613788986,True,RH_2
+Baseline,numeric__T3,41.51234141546284,True,T3
+Baseline,numeric__RH_3,27.673214436210827,True,RH_3
+Baseline,numeric__T4,-5.724279982334662,True,T4
+Baseline,numeric__RH_4,-10.455758890748973,True,RH_4
+Baseline,numeric__T5,-2.1656209720417383,True,T5
+Baseline,numeric__RH_5,0.9540379032449349,True,RH_5
+Baseline,numeric__T6,35.704894360320075,True,T6
+Baseline,numeric__RH_6,9.459244988350957,True,RH_6
+Baseline,numeric__T7,1.6945222008114873,True,T7
+Baseline,numeric__RH_7,-2.463558517830539,True,RH_7
+Baseline,numeric__T8,15.359281216980992,True,T8
+Baseline,numeric__RH_8,-31.165474788192817,True,RH_8
+Baseline,numeric__T9,-20.457403819354806,True,T9
+Baseline,numeric__RH_9,-4.060149690484849,True,RH_9
+Baseline,numeric__T_out,-35.61894198922977,True,T_out
+Baseline,numeric__Press_mm_hg,1.7374793518525913,True,Press_mm_hg
+Baseline,numeric__RH_out,-6.730046290637423,True,RH_out
+Baseline,numeric__Windspeed,3.254295983370416,True,Windspeed
+Baseline,numeric__Visibility,2.3525195851878538,True,Visibility
+Baseline,numeric__Tdewpoint,13.033879958998005,True,Tdewpoint

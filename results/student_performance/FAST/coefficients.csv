@@ -1,0 +1,79 @@
+method,position,encoded_name,original_name,coefficient
+Correlation,-1,Intercept,,10.325949367088608
+Correlation,0,numeric__failures,failures,-1.7130075403875484
+RFE,-1,Intercept,,10.325949367088608
+RFE,0,numeric__failures,failures,-1.7130075403875484
+RFECV,-1,Intercept,,10.325949367088608
+RFECV,0,numeric__failures,failures,-1.7130075403875484
+Mutual Information,-1,Intercept,,10.670262462055193
+Mutual Information,0,numeric__absences,absences,0.3131281022608701
+Mutual Information,1,numeric__failures,failures,-1.4740594698297136
+Mutual Information,2,numeric__Medu,Medu,0.5915397944817126
+Mutual Information,3,numeric__goout,goout,-0.34070633672011474
+Mutual Information,4,numeric__Fedu,Fedu,-0.24893714153496377
+Mutual Information,5,numeric__age,age,-0.27163823999595715
+Mutual Information,6,categorical__Mjob_at_home,Mjob,-0.6540841233002821
+Mutual Information,7,categorical__guardian_mother,guardian,-0.3015720174433403
+Mutual Information,8,categorical__paid_no,paid,-0.3615529192705806
+Mutual Information,9,categorical__paid_yes,paid,0.36155291927058075
+LASSO,-1,Intercept,,10.432604239841359
+LASSO,0,numeric__Medu,Medu,0.5622437941584304
+LASSO,1,numeric__failures,failures,-1.4373065241668115
+LASSO,2,categorical__higher_no,higher,-1.872385543881625
+Baseline,-1,Intercept,,10.325433207625952
+Baseline,0,numeric__age,age,-0.4766155813433974
+Baseline,1,numeric__Medu,Medu,0.50375296915121
+Baseline,2,numeric__Fedu,Fedu,-0.16126706350882125
+Baseline,3,numeric__traveltime,traveltime,-0.1808300848124244
+Baseline,4,numeric__studytime,studytime,0.632581136629517
+Baseline,5,numeric__failures,failures,-1.3616977196743096
+Baseline,6,numeric__famrel,famrel,0.2593460590902586
+Baseline,7,numeric__freetime,freetime,0.25387445196837943
+Baseline,8,numeric__goout,goout,-0.46731398277900477
+Baseline,9,numeric__Dalc,Dalc,-0.13084388708045136
+Baseline,10,numeric__Walc,Walc,0.0544284630798202
+Baseline,11,numeric__health,health,-0.2064421188476145
+Baseline,12,numeric__absences,absences,0.5575901263821073
+Baseline,13,categorical__school_GP,school,-0.3631960162641065
+Baseline,14,categorical__school_MS,school,0.363196016264108
+Baseline,15,categorical__sex_F,sex,-0.7479553090376068
+Baseline,16,categorical__sex_M,sex,0.7479553090376068
+Baseline,17,categorical__address_R,address,-0.17185752307634175
+Baseline,18,categorical__address_U,address,0.1718575230763424
+Baseline,19,categorical__famsize_GT3,famsize,-0.3481865050182208
+Baseline,20,categorical__famsize_LE3,famsize,0.3481865050182208
+Baseline,21,categorical__Pstatus_A,Pstatus,0.322556747524829
+Baseline,22,categorical__Pstatus_T,Pstatus,-0.3225567475248289
+Baseline,23,categorical__Mjob_at_home,Mjob,-0.08399294214758302
+Baseline,24,categorical__Mjob_health,Mjob,1.0383286287507554
+Baseline,25,categorical__Mjob_other,Mjob,-0.3517108019318447
+Baseline,26,categorical__Mjob_services,Mjob,0.589838427977058
+Baseline,27,categorical__Mjob_teacher,Mjob,-1.1924633126483852
+Baseline,28,categorical__Fjob_at_home,Fjob,-0.04803955921675618
+Baseline,29,categorical__Fjob_health,Fjob,0.09719035987868763
+Baseline,30,categorical__Fjob_other,Fjob,-0.4784701495161594
+Baseline,31,categorical__Fjob_services,Fjob,-0.46262582587419965
+Baseline,32,categorical__Fjob_teacher,Fjob,0.8919451747284279
+Baseline,33,categorical__reason_course,reason,-0.09399113978035592
+Baseline,34,categorical__reason_home,reason,-0.48790822877502316
+Baseline,35,categorical__reason_other,reason,0.3082327162442021
+Baseline,36,categorical__reason_reputation,reason,0.27366665231117626
+Baseline,37,categorical__guardian_father,guardian,-0.40092863947519997
+Baseline,38,categorical__guardian_mother,guardian,-0.16339342823151404
+Baseline,39,categorical__guardian_other,guardian,0.5643220677067142
+Baseline,40,categorical__schoolsup_no,schoolsup,0.45773498736956
+Baseline,41,categorical__schoolsup_yes,schoolsup,-0.4577349873695608
+Baseline,42,categorical__famsup_no,famsup,0.6282161366023706
+Baseline,43,categorical__famsup_yes,famsup,-0.6282161366023715
+Baseline,44,categorical__paid_no,paid,-0.3851531804763149
+Baseline,45,categorical__paid_yes,paid,0.38515318047631475
+Baseline,46,categorical__activities_no,activities,0.31818062774420947
+Baseline,47,categorical__activities_yes,activities,-0.3181806277442091
+Baseline,48,categorical__nursery_no,nursery,0.1548609191993891
+Baseline,49,categorical__nursery_yes,nursery,-0.1548609191993885
+Baseline,50,categorical__higher_no,higher,-0.8754400813539238
+Baseline,51,categorical__higher_yes,higher,0.8754400813539237
+Baseline,52,categorical__internet_no,internet,-0.36091805428534396
+Baseline,53,categorical__internet_yes,internet,0.36091805428534374
+Baseline,54,categorical__romantic_no,romantic,0.5080834234255314
+Baseline,55,categorical__romantic_yes,romantic,-0.5080834234255318

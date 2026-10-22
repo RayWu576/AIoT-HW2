@@ -22,3 +22,5 @@ env/
 # OS temporary files
 .DS_Store
 Thumbs.db
+# Fold-local Phase 2 joblib cache (rebuildable)
+/.cache/phase2/

@@ -97,10 +97,128 @@ def refresh_asset_versions(output=None):
     if not index.exists():
         return
     versions = {name: hashlib.sha256((output / name).read_bytes()).hexdigest()[:12]
-                for name in ("app.js", "data.js", "styles.css")}
+                for name in ("app.js", "prediction.js", "data.js", "styles.css")}
     text = index.read_text(encoding="utf-8")
     text = re.sub(
-        r'((?:src|href)=")(app\.js|data\.js|styles\.css)(?:\?v=[^"]*)?(")',
+        r'((?:src|href)=")(app\.js|prediction\.js|data\.js|styles\.css)(?:\?v=[^"]*)?(")',
         lambda match: f'{match[1]}{match[2]}?v={versions[match[2]]}{match[3]}', text
     )
     index.write_text(text, encoding="utf-8")
+
+
+
+def export_official_dashboard(data, X_train, X_test, y_train, y_test, comparison,
+                              curve_models, fitted_models, run_metadata):
+    """Export existing fitted pipelines, never refit against evaluation data."""
+    from datasets.preprocessing import MANUFACTURER_ALIASES
+    config = data.config
+    pre = fitted_models["Baseline"]["preprocessor"]
+    numeric = pre.named_transformers_["numeric"]
+    descriptor = {
+        "numericColumns": list(config.numeric_columns),
+        "numericMedian": numeric["imputer"].statistics_.tolist(),
+        "numericMean": numeric["scaler"].mean_.tolist(),
+        "numericScale": numeric["scaler"].scale_.tolist(),
+        "categoricalColumns": list(config.categorical_columns),
+        "manufacturerColumn": "CarName" if config.dataset_id == "car_price" else None,
+        "manufacturerAliases": MANUFACTURER_ALIASES if config.dataset_id == "car_price" else {},
+        "featureNames": pre.get_feature_names_out().tolist(),
+    }
+    cat = pre.named_transformers_["categorical"]
+    descriptor["categoricalFill"] = cat["imputer"].statistics_.tolist()
+    descriptor["categories"] = [c.tolist() for c in cat["encoder"].categories_]
+    transformed_train = pre.transform(X_train)
+    ranges = {n: {"min": float(transformed_train[:,i].min()), "max": float(transformed_train[:,i].max())}
+              for i,n in enumerate(descriptor["featureNames"])}
+    inputs = []
+    for name in config.feature_names:
+        if name in config.numeric_columns:
+            col = X_train[name]
+            i = list(config.numeric_columns).index(name)
+            inputs.append({"name": name, "label": name, "kind": "numeric", "default": float(descriptor["numericMedian"][i]),
+                           "min": float(col.min()), "max": float(col.max()), "step": 1 if np.allclose(col.dropna(), col.dropna().round()) else 0.01,
+                           "binary": False})
+        else:
+            i = list(config.categorical_columns).index(name)
+            inputs.append({"name": name, "label": "Manufacturer (from CarName)" if name == "CarName" else name,
+                           "kind": "categorical", "default": str(descriptor["categoricalFill"][i]),
+                           "options": descriptor["categories"][i]})
+    models = []
+    from regression_experiment import selected_features
+    for method, k, fitted, cv_rmse in sorted(curve_models, key=lambda item: (item[0], item[1])):
+        features = selected_features(fitted).tolist()
+        transformed = fitted["preprocessor"].transform(X_train)
+        selected = fitted["selector"].transform(transformed)
+        design = sm.add_constant(selected, has_constant="add")
+        # Full dummy sets can be rank-deficient. Their individual OLS tests
+        # are not identifiable; retain predictions but report diagnostics as null.
+        identifiable = bool(np.linalg.matrix_rank(design) == design.shape[1] and np.linalg.cond(design) < 1e10)
+        ols = sm.OLS(y_train.to_numpy(), design).fit() if identifiable else None
+        interval = np.asarray(ols.conf_int()) if ols is not None else None
+        reg = fitted["regressor"]
+        coefficients = []
+        for i, name in enumerate(["Intercept", *features]):
+            vif = None
+            if i and identifiable:
+                other = np.delete(design, i, axis=1)
+                residual_i = design[:,i] - other @ np.linalg.lstsq(other, design[:,i], rcond=None)[0]
+                total_i = np.sum((design[:,i] - design[:,i].mean())**2)
+                error_i = np.sum(residual_i**2)
+                vif = float(total_i/error_i) if error_i > 1e-12 else None
+            coefficients.append(dict(name=name, estimate=float(reg.intercept_ if i == 0 else reg.coef_[i-1]),
+                                     se=float(ols.bse[i]) if ols is not None else None,
+                                     t=float(ols.tvalues[i]) if ols is not None else None,
+                                     p=float(ols.pvalues[i]) if ols is not None else None,
+                                     low=float(interval[i,0]) if interval is not None else None,
+                                     high=float(interval[i,1]) if interval is not None else None, vif=vif))
+        pred = fitted.predict(X_test)
+        residual = y_test.to_numpy() - pred
+        from regression_experiment import metrics
+        score = metrics(y_test, pred, k)
+        models.append(dict(method=method, k=k, features=features, cvRmse=cv_rmse,
+                           rmse=score["Test RMSE"], r2=score["Test R2"], adjustedR2=score["Test Adjusted R2"], mae=score["Test MAE"],
+                           f=float(ols.fvalue) if ols is not None else None, fP=float(ols.f_pvalue) if ols is not None else None,
+                           diagnosticsAvailable=identifiable, intercept=float(reg.intercept_), weights=reg.coef_.tolist(), coefficients=coefficients,
+                           residuals=[dict(id=int(index)+1, actual=float(actual), predicted=float(p), residual=float(r),
+                                           percent=float(abs(r/actual)*100) if actual else None)
+                                      for index,actual,p,r in zip(X_test.index,y_test,pred,residual)]))
+    candidates = comparison[comparison.Model != "Baseline"]
+    recommended = candidates.iloc[0]
+    car = config.dataset_id == "car_price"
+    metadata = dict(id=config.dataset_id, title=config.display_name, problem=config.display_name,
+                    target=config.target, targetLabel="Car price" if car else "Final mathematics grade", unit=config.target_unit,
+                    unitPrefix="$" if car else "", rawSize=config.expected_rows, cleanSize=len(data.y),
+                    originalFeatureCount=config.original_feature_count, encodedFeatureCount=len(descriptor["featureNames"]),
+                    maxFeatures=max(m["k"] for m in models), sampleLabel="Car" if car else "Student",
+                    source="https://www.kaggle.com/datasets/hellbuoy/car-price-prediction" if car else "https://archive.ics.uci.edu/dataset/320/student+performance",
+                    description="Predict historical car prices from vehicle specifications and manufacturer." if car else "Predict Mathematics G3 using 30 background and study inputs; G1/G2 are excluded.",
+                    missingPolicy="Per-fold median/mode imputation, numeric scaling and OneHotEncoder; seeded 80%/20% split.",
+                    targetNote="Only 205 historical observations; generalization is uncertain. Price unit: USD." if car else "G3 is a 0-20 grade. Historical G1/G2 grades are excluded from the official early prediction model.",
+                    fieldLabels={f["name"]: f["label"] for f in inputs})
+    payload = dict(generatedAt=datetime.now(timezone.utc).isoformat(), seed=0,
+                   trainSize=len(y_train), testSize=len(y_test), metadata=metadata, preprocessing=descriptor,
+                   models=models, comparison=comparison.to_dict(orient="records"), ranges=ranges, inputs=inputs,
+                   baseline=dict(rmse=float(comparison[comparison.Model == "Baseline"].iloc[0]["Test RMSE"])),
+                   defaultMethod=str(recommended.Model), defaultK=int(recommended.Features), runMetadata=run_metadata)
+    # json forbids NaN/Infinity; undefined diagnostics are explicitly null.
+    def clean(value):
+        if isinstance(value, np.generic): return clean(value.item())
+        if isinstance(value, dict): return {k:clean(v) for k,v in value.items()}
+        if isinstance(value, (list, tuple)): return [clean(v) for v in value]
+        if isinstance(value, (float, np.floating)) and not np.isfinite(value): return None
+        return value
+    return clean(payload)
+
+
+def write_official_bundle(payloads):
+    """Publish only official dataset IDs, retaining the two-problem bundle format."""
+    from datasets import OFFICIAL_DATASETS
+    if set(payloads) - set(OFFICIAL_DATASETS):
+        raise ValueError("Unexpected official dashboard dataset")
+    output = Path(__file__).resolve().parent / "dashboard" / "dist"
+    output.mkdir(parents=True, exist_ok=True)
+    bundle = {"schemaVersion": 4, "datasets": {k:payloads[k] for k in OFFICIAL_DATASETS if k in payloads}}
+    encoded = json.dumps(bundle, ensure_ascii=False, allow_nan=False)
+    (output / "data.json").write_text(encoded, encoding="utf-8")
+    (output / "data.js").write_text("window.DASHBOARD_DATA = " + encoded + ";\n", encoding="utf-8")
+    refresh_asset_versions(output)

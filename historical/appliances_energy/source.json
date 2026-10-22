@@ -1,0 +1,42 @@
+{
+  "source": "https://www.kaggle.com/api/v1/datasets/download/loveall/appliances-energy-prediction",
+  "files": [
+    {
+      "file": "energydata_complete.csv",
+      "rows": 19735,
+      "columns": [
+        "date",
+        "Appliances",
+        "lights",
+        "T1",
+        "RH_1",
+        "T2",
+        "RH_2",
+        "T3",
+        "RH_3",
+        "T4",
+        "RH_4",
+        "T5",
+        "RH_5",
+        "T6",
+        "RH_6",
+        "T7",
+        "RH_7",
+        "T8",
+        "RH_8",
+        "T9",
+        "RH_9",
+        "T_out",
+        "Press_mm_hg",
+        "RH_out",
+        "Windspeed",
+        "Visibility",
+        "Tdewpoint",
+        "rv1",
+        "rv2"
+      ],
+      "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+      "original_archive_filename": "KAG_energydata_complete.csv"
+    }
+  ]
+}

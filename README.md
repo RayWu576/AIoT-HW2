@@ -1,58 +1,100 @@
-# AIOT Do-in-class-2
+# Phase 3: evaluation and diagnostics
 
-50 Startups - Multiple Linear Regression with CRISP-DM and 5 Feature Selection Methods.
+Saved Student Performance and Appliances Energy FAST models now have rank-aware evaluation, five-assumption diagnostics, 95% mean/individual intervals, and 13 report-ready PNGs each. No Phase 2 selection or frontend files are changed.
 
-## Models
-- **M0**: Baseline
-- **M1**: Correlation (absolute Pearson correlation)
-- **M2**: Mutual Information
-- **M3**: RFE
-- **M4**: RFECV
-- **M5**: LASSO
+```powershell
+python phase3_evaluation.py --mode FAST
+python -m unittest discover -s tests -p "test_*.py" -v
+python tests/verify_phase3_results.py
+```
 
-Correlation, Mutual Information, and RFE choose their feature count using training-only cross-validation. All five methods select features before fitting LinearRegression. Baseline retains all features; nested CV RMSE determines the best model.
+See [Phase 3 methodology, actual findings and statistical limitations](PHASE3.md). Figures are in `reports/figures/<dataset>/FAST/`; CSV/JSON tables and interval rows are in `reports/tables/<dataset>/FAST/`. FULL reports require existing real FULL model artifacts.
 
-The two-panel `results/model_comparison.png` shows test RMSE and R-squared for 1 through 5 features. `results/feature_count_metrics.csv` contains each plotted score and selected subset. RFECV's fixed-count curve uses its RFE elimination path; LASSO's fixed-count curve ranks absolute standardized LassoCV coefficients, breaking zero-coefficient ties by input column order. These curves describe fixed-count subsets, while the model comparison reports RFECV's and LASSO's automatically selected subsets.
+---
 
-## Structure
-- `main.py`: Main modeling and evaluation script
-- `50_Startups.csv`: Dataset
-- `results/`: Output plots, metrics, and best model artifacts
+# Current task: Phase 2 backend
 
-## Interactive dashboard
+The latest Phase 2 request specifies **Student Performance (30 original inputs)** and **Appliances Energy (25 original inputs)**. The separate backend runner below implements leakage-safe nested CV, FAST/FULL modes and saved model/metric artifacts. The previously completed Car Price implementation, prior results and frontend remain preserved. The student/car dashboard described later is unchanged by Phase 2.
 
-執行 `python main.py` 會同步更新分析結果及 `dashboard/dist/data.js`、`data.json`。
+```powershell
+python phase2_experiment.py --mode FAST --jobs 2
+python phase2_experiment.py --mode FULL --jobs 2
+python -m unittest discover -s tests -p "test_*.py" -v
+python tests/verify_phase2_results.py
+```
 
-直接用瀏覽器開啟 `dashboard/dist/index.html` 即可操作，不需要 Node.js 或後端伺服器。
-也可以在專案根目錄執行 `python -m http.server 8000 --directory dashboard/dist`，再開啟 `http://localhost:8000`。
+See [Phase 2 methods, actual timings, all six-method performance tables and artifact schema](PHASE2.md). Results are under `results/student_performance/FAST/` and `results/appliances_energy/FAST/`; FULL uses separate `FULL/` directories. Phase 2 does not use `python main.py`, which remains the earlier student/car/dashboard workflow.
 
-功能：五種方法與固定特徵數切換、雙互動折線圖、即時預測、最多五個情境比較、OLS 係數與統計、殘差排序、CSV 匯出、深色模式及手機版面。
+---
 
-網站數值來自 Python 實際擬合的 25 組模型。訓練集統計與測試集評分分開標示，固定 k 曲線與依 nested CV 選擇的正式模型排名分開呈現。情境保留於本次頁面，重新整理會清除。線上網站是發布時的資料快照；本機重新執行後需重新發布才能更新線上版本。
+# AIoT HW2 - Student Performance and Car Price
 
+The two official regression problems use the same five feature selection methods and LinearRegression, with separate datasets, results and interactive dashboard state.
 
-## 實驗版本與驗證
+| Problem | Observations | Raw CSV columns | Original candidate inputs | Encoded inputs in this training split | Target |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Student Performance (Mathematics) | 395 | 33 | 30 | 56 | G3, grade 0-20 |
+| Car Price Prediction | 205 | 26 | 24 | 71 | price, USD |
 
-目前採用 Correlation、Mutual Information、RFE、RFECV、LASSO 五種特徵選擇方法，選完特徵後皆用 LinearRegression 評估。它們不是五種不同的預測器；相同特徵組合的曲線重疊是正常現象。
+Counts of encoded columns depend on the training fold. Student excludes G1/G2 for early prediction. Car excludes car_ID and derives a manufacturer category from CarName inside its Pipeline. Both original counts meet the assignment range of 14-39. See [complete schemas, acquisition and preprocessing decisions](datasets/README.md).
 
-前一次五個預測模型的實驗結果保留於 `results/previous_predictive_models/`，不與目前結果混用。
+## Run
 
-安裝 `requirements.txt` 後執行 `python main.py` 更新結果。安裝 Playwright 與 Microsoft Edge 後，可執行 `python tests/verify_dashboard.py` 檢查 25 組特徵子集、Python／網站數值及互動功能。
+```powershell
+pip install -r requirements.txt
+python -m datasets
+python main.py
+# Optional: regenerate one problem, retaining the other official payload
+python main.py --dataset car_price
+# Rebuild presentation from the recorded CV choices, without repeating CV
+python main.py --export-only
+```
 
+Open `dashboard/dist/index.html` directly, or serve it locally:
 
-## 問題下拉選單：Boston Housing
+```powershell
+python -m http.server 8000 --directory dashboard/dist
+```
 
-首頁可切換「50 Startups：公司利潤預測」與「Boston Housing：房價預測」，五種特徵選擇方法保持不變。模型、圖表、係數、預測輸入、單位與殘差會同步切換。切換資料集會清除情境比較，避免混合不同單位。
+The dashboard switches only between Student Performance and Car Price. It keeps the existing five-method comparison, charts, scenarios, coefficient table, residual pagination, CSV export, theme and mobile layout. Inputs are original numeric fields and categorical dropdowns; the browser applies exported training-fitted imputation, scaling, manufacturer normalization and one-hot encoding before evaluating the model equation. No upload interface is implemented.
 
-Boston 原始資料來自使用者指定的 [Kaggle / altavish / Boston Housing Dataset](https://www.kaggle.com/datasets/altavish/boston-housing-dataset)，保存於 `datasets/boston_housing/HousingData.csv`。506 筆、13 個輸入欄位、MEDV 目標；此版本 CRIM、ZN、INDUS、CHAS、AGE、LSTAT 各有 20 筆缺值。採完整資料列分析，清理後 394 筆，固定 seed=0 分割為 315 筆訓練、79 筆測試。未使用其他版本替代或人工填入數據。
+## Evaluation and feature selection
 
-MEDV 的單位為千美元，例如 30 代表 30,000 美元。這是歷史區域房價中位數，不能當作當前單一物件估價。
+Both problems use 80% training / 20% held-out testing with random_state=0: student 316/79, car 164/41. Four-fold shuffled training CV chooses the feature count, LASSO alpha and recommended method. Each candidate is a complete raw-input Pipeline, so every fold independently fits missing-value handling, scaling, categories and feature selection. Test observations never enter any selection step. Model comparison is ordered by training CV RMSE; test curves are descriptive and do not choose the recommendation.
 
-- `python main.py`：依序更新兩個資料集。
-- `python housing_experiment.py`：只重跑 Boston Housing。
-- Boston 的結果在 `results/boston_housing/`；50 Startups 的結果仍在 `results/`。
-- 兩個問題各自做相同的外層 5 折、內層 4 折交叉驗證。Boston 產生 65 組固定 k 結果（5 方法 × 13 特徵數）。
-- 網站使用 `data.json` 的 `datasets.startups` 與 `datasets.boston`，保留頂層 startups 欄位相容舊驗證流程。重新執行任何一個問題會保留另一問題的已匯出資料。
-- 未選用的預測欄位會淡化；Boston 的 CHAS 限制為 0 或 1。測試殘差每頁 20 筆，可排序與換頁。
+- Correlation: absolute Pearson ranking.
+- Mutual Information: regression MI, with binary encoded features marked discrete.
+- RFE: scaled LinearRegression elimination, with k chosen using full-Pipeline CV.
+- RFECV: full-Pipeline CV over the RFE elimination path, refitting preprocessing in every fold. This replaces calling RFECV on a globally encoded matrix; its bounded search can match tuned RFE.
+- LASSO: alpha chosen by training CV, nonzero coefficient support selected, followed by LinearRegression. Fixed-k dashboard curves retain the historical standardized coefficient-ranking interpretation; the automatic support model is also included.
 
-執行 `python tests/verify_housing.py` 檢查來源缺失值與清理筆數、65 組 Python／網站一致性、資料集切換、單位、預測輸入、CSV、分頁及手機版面。
+The predeclared fixed-k search is 1-20 encoded features, with LASSO alpha fractions 0.001/0.01/0.1 of the training-fold target standard deviation. Automatic LASSO support can exceed 20 (35 in the current car run). Baseline keeps all encoded inputs. CV scores are tuning scores, not unbiased nested-CV performance estimates. The held-out test set provides final assessment. Only 205 car observations and 41 test cases are available: do not interpret one split as robust proof of generalization or tune repeatedly against its test scores.
+
+Full one-hot sets can be rank-deficient. Predictions remain defined, but unidentifiable OLS diagnostics are shown as -. OLS p-values are exploratory after selection. Adjusted R- is absent when there are insufficient test degrees of freedom; percentage error is absent for G3=0.
+
+## Validation
+
+```powershell
+python -m unittest discover -s tests -p test_datasets.py -v
+pip install -r requirements-dev.txt
+python tests/verify_official_dashboard.py
+```
+
+Browser validation uses headless Microsoft Edge via Playwright. It checks every exported model on every held-out row, compares all ten official Python pipelines on missing/unseen-category cases, and exercises switching, controls, units, CSV, scenarios, pagination and mobile overflow. Screenshots are written to `dashboard/qa/`; the report is `results/official_validation.json`.
+
+## Files and artifacts
+
+- `datasets/config.py`: sole feature definitions and official registry.
+- `datasets/loading.py`, `preprocessing.py`, `splitting.py`: validated local data and reusable sklearn components.
+- `feature_selection.py`: original implementations plus fold-local official adapters.
+- `regression_experiment.py`, `main.py`: repeatable real model execution.
+- `dashboard_export.py`: fitted equations and preprocessing descriptors.
+- `dashboard/dist/prediction.js`, `app.js`: browser preprocessing/prediction and existing UI.
+- `results/student_performance/`, `results/car_price/`: CV search records, comparison, selected features, actual test predictions, fitted pipelines and split metadata.
+- `datasets/*/source.json`: downloaded-file SHA-256, schema and source. Mathematics provenance is `student-mat.source.json`.
+
+## Historical work
+
+Previous startup/Boston code and results remain preserved. The old main script is `historical/startup_main.py`; `housing_experiment.py`, original selectors and historical verification scripts are retained. The earlier dashboard snapshot is `historical/dashboard/dist/`. Superseded dataset artifacts and prior documentation are under `historical/` and are not part of the official registry or current dashboard. Historical browser scripts target their old snapshot/data contract; use the official validation command above for this application. Running historical exporters can overwrite dashboard data, so regenerate the official dashboard afterward if needed.
+
+No commits or pushes are performed by these commands.

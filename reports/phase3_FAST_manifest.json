@@ -1,0 +1,2004 @@
+{
+  "phase": 3,
+  "mode": "FAST",
+  "datasets": [
+    {
+      "phase": 3,
+      "dataset_id": "student_performance",
+      "mode": "FAST",
+      "target": "G3",
+      "target_unit": "grade (0-20)",
+      "source_run": "results/student_performance/FAST",
+      "configuration": {
+        "name": "FAST",
+        "outer_folds": 2,
+        "inner_folds": 2,
+        "all_k": false,
+        "alpha_fractions": [
+          0.01,
+          0.1
+        ],
+        "seed": 42,
+        "gap": 0
+      },
+      "source_run_sha256": "10bfd291f94b3f8cbc4b2a7e34bd76bfb3aa5174cd68a6b979c49e162d67aff6",
+      "selected_method": "Correlation",
+      "selection_unchanged": true,
+      "adjusted_r2_convention": "Training effective affine design rank (including intercept) defines model complexity. Held-out adjusted R2 uses n_test-rank_train as a descriptive penalty, not refitted-test inference; null for n<=rank or constant target.",
+      "supersedes": "Only Phase 2 nominal-count adjusted R2 is superseded. Predictions and other metrics are unchanged.",
+      "interval_note": "Classical mean CI and individual PI are pointwise working-model intervals. HC3/HAC mean intervals are asymptotic approximations. None correct selection uncertainty or ensure temporal/heteroscedastic PI coverage.",
+      "models": {
+        "Correlation": {
+          "rank": {
+            "rank": 2,
+            "feature_rank": 1,
+            "columns_with_intercept": 2,
+            "df_resid": 314,
+            "singular": false,
+            "condition_number": 1.0000000000000007,
+            "effective_centered_condition": 1.0,
+            "rank_tolerance": 1.2472997905062957e-12
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 4,
+                "minimum_bin_mean": -0.6203449271774554,
+                "maximum_bin_mean": 0.9659316175840529,
+                "bin_mean_span_residual_sd": 0.37316281817171826
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.373 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson (source row order; descriptive only)",
+              "statistic": {
+                "durbin_watson": 2.0609976507858803,
+                "ljung_box": [],
+                "acf": [
+                  1.0,
+                  -0.03317304641593798,
+                  0.09943699310318997,
+                  0.040711832200441465,
+                  0.03834037996382661,
+                  -0.018626996889129815,
+                  -0.011453374019408437,
+                  -0.01376826241010809,
+                  0.000337159950508455,
+                  -0.04478323565788367,
+                  0.13806528504827748,
+                  0.02694474066752129,
+                  0.06692477683704401,
+                  -0.04577440195001156,
+                  0.016010710341280474,
+                  -0.07552951977614393,
+                  -0.0586955942311896,
+                  0.028521388926540606,
+                  -0.05318841059347129,
+                  0.008496802112928215,
+                  -0.12297561364419582,
+                  0.04859998961001764,
+                  0.016813860129001434,
+                  -0.016226091460569934,
+                  0.04242259514333774,
+                  -0.058343933104388034,
+                  -0.049444456597701664,
+                  0.03855454718067217,
+                  -0.02786701654400665,
+                  0.035856120660640284,
+                  -0.10411152120240053,
+                  -0.002444596401547679,
+                  -0.055459215967823765,
+                  0.023125622281074773,
+                  0.01859397617844038,
+                  0.047717065406820386,
+                  -0.02581494758156902,
+                  0.048169907469387235,
+                  -0.007443233841439827,
+                  -0.012795487021412418,
+                  0.0016421414156652075
+                ]
+              },
+              "possible_violation": null,
+              "interpretation": "DW=2.0610; lag-1 ACF=-0.0332.",
+              "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 1.4912342149644262,
+                "lm_pvalue": 0.22202506313944598,
+                "f_statistic": 1.4888219167120704,
+                "f_pvalue": 0.22331492369010295,
+                "auxiliary_df": 1
+              },
+              "possible_violation": false,
+              "interpretation": "LM=1.4912, p=0.222; constant variance not rejected.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Shapiro-Wilk",
+              "statistic": {
+                "test": "Shapiro-Wilk",
+                "statistic": 0.9490413186313874,
+                "pvalue": 5.315358045554703e-09,
+                "pvalue_underflow": false,
+                "n": 316,
+                "skewness": -0.7246179542913617,
+                "pearson_kurtosis": 3.637398712329716
+              },
+              "possible_violation": true,
+              "interpretation": "p=5.32e-09, skew=-0.725, kurtosis=3.637; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 2,
+                "columns_with_intercept": 2,
+                "condition_number": 1.0000000000000007,
+                "effective_centered_condition": 1.0,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 2/2; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 2,
+            "residual_df": 314,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HC3",
+            "hac_maxlags": null,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 9.769962616701378e-15,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "94d64c4aee99ab299ec49b9c9327394d60402234a0971f7b69c28ee4a1bb9a6c"
+        },
+        "RFE": {
+          "rank": {
+            "rank": 2,
+            "feature_rank": 1,
+            "columns_with_intercept": 2,
+            "df_resid": 314,
+            "singular": false,
+            "condition_number": 1.0000000000000007,
+            "effective_centered_condition": 1.0,
+            "rank_tolerance": 1.2472997905062957e-12
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 4,
+                "minimum_bin_mean": -0.6203449271774554,
+                "maximum_bin_mean": 0.9659316175840529,
+                "bin_mean_span_residual_sd": 0.37316281817171826
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.373 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson (source row order; descriptive only)",
+              "statistic": {
+                "durbin_watson": 2.0609976507858803,
+                "ljung_box": [],
+                "acf": [
+                  1.0,
+                  -0.03317304641593798,
+                  0.09943699310318997,
+                  0.040711832200441465,
+                  0.03834037996382661,
+                  -0.018626996889129815,
+                  -0.011453374019408437,
+                  -0.01376826241010809,
+                  0.000337159950508455,
+                  -0.04478323565788367,
+                  0.13806528504827748,
+                  0.02694474066752129,
+                  0.06692477683704401,
+                  -0.04577440195001156,
+                  0.016010710341280474,
+                  -0.07552951977614393,
+                  -0.0586955942311896,
+                  0.028521388926540606,
+                  -0.05318841059347129,
+                  0.008496802112928215,
+                  -0.12297561364419582,
+                  0.04859998961001764,
+                  0.016813860129001434,
+                  -0.016226091460569934,
+                  0.04242259514333774,
+                  -0.058343933104388034,
+                  -0.049444456597701664,
+                  0.03855454718067217,
+                  -0.02786701654400665,
+                  0.035856120660640284,
+                  -0.10411152120240053,
+                  -0.002444596401547679,
+                  -0.055459215967823765,
+                  0.023125622281074773,
+                  0.01859397617844038,
+                  0.047717065406820386,
+                  -0.02581494758156902,
+                  0.048169907469387235,
+                  -0.007443233841439827,
+                  -0.012795487021412418,
+                  0.0016421414156652075
+                ]
+              },
+              "possible_violation": null,
+              "interpretation": "DW=2.0610; lag-1 ACF=-0.0332.",
+              "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 1.4912342149644262,
+                "lm_pvalue": 0.22202506313944598,
+                "f_statistic": 1.4888219167120704,
+                "f_pvalue": 0.22331492369010295,
+                "auxiliary_df": 1
+              },
+              "possible_violation": false,
+              "interpretation": "LM=1.4912, p=0.222; constant variance not rejected.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Shapiro-Wilk",
+              "statistic": {
+                "test": "Shapiro-Wilk",
+                "statistic": 0.9490413186313874,
+                "pvalue": 5.315358045554703e-09,
+                "pvalue_underflow": false,
+                "n": 316,
+                "skewness": -0.7246179542913617,
+                "pearson_kurtosis": 3.637398712329716
+              },
+              "possible_violation": true,
+              "interpretation": "p=5.32e-09, skew=-0.725, kurtosis=3.637; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 2,
+                "columns_with_intercept": 2,
+                "condition_number": 1.0000000000000007,
+                "effective_centered_condition": 1.0,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 2/2; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 2,
+            "residual_df": 314,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HC3",
+            "hac_maxlags": null,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 9.769962616701378e-15,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "9d361e5a803852625fd620cffa2d07e0cc9c458ef39f06bbfdfc4be9f834f7fa"
+        },
+        "RFECV": {
+          "rank": {
+            "rank": 2,
+            "feature_rank": 1,
+            "columns_with_intercept": 2,
+            "df_resid": 314,
+            "singular": false,
+            "condition_number": 1.0000000000000007,
+            "effective_centered_condition": 1.0,
+            "rank_tolerance": 1.2472997905062957e-12
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 4,
+                "minimum_bin_mean": -0.6203449271774554,
+                "maximum_bin_mean": 0.9659316175840529,
+                "bin_mean_span_residual_sd": 0.37316281817171826
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.373 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson (source row order; descriptive only)",
+              "statistic": {
+                "durbin_watson": 2.0609976507858803,
+                "ljung_box": [],
+                "acf": [
+                  1.0,
+                  -0.03317304641593798,
+                  0.09943699310318997,
+                  0.040711832200441465,
+                  0.03834037996382661,
+                  -0.018626996889129815,
+                  -0.011453374019408437,
+                  -0.01376826241010809,
+                  0.000337159950508455,
+                  -0.04478323565788367,
+                  0.13806528504827748,
+                  0.02694474066752129,
+                  0.06692477683704401,
+                  -0.04577440195001156,
+                  0.016010710341280474,
+                  -0.07552951977614393,
+                  -0.0586955942311896,
+                  0.028521388926540606,
+                  -0.05318841059347129,
+                  0.008496802112928215,
+                  -0.12297561364419582,
+                  0.04859998961001764,
+                  0.016813860129001434,
+                  -0.016226091460569934,
+                  0.04242259514333774,
+                  -0.058343933104388034,
+                  -0.049444456597701664,
+                  0.03855454718067217,
+                  -0.02786701654400665,
+                  0.035856120660640284,
+                  -0.10411152120240053,
+                  -0.002444596401547679,
+                  -0.055459215967823765,
+                  0.023125622281074773,
+                  0.01859397617844038,
+                  0.047717065406820386,
+                  -0.02581494758156902,
+                  0.048169907469387235,
+                  -0.007443233841439827,
+                  -0.012795487021412418,
+                  0.0016421414156652075
+                ]
+              },
+              "possible_violation": null,
+              "interpretation": "DW=2.0610; lag-1 ACF=-0.0332.",
+              "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 1.4912342149644262,
+                "lm_pvalue": 0.22202506313944598,
+                "f_statistic": 1.4888219167120704,
+                "f_pvalue": 0.22331492369010295,
+                "auxiliary_df": 1
+              },
+              "possible_violation": false,
+              "interpretation": "LM=1.4912, p=0.222; constant variance not rejected.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Shapiro-Wilk",
+              "statistic": {
+                "test": "Shapiro-Wilk",
+                "statistic": 0.9490413186313874,
+                "pvalue": 5.315358045554703e-09,
+                "pvalue_underflow": false,
+                "n": 316,
+                "skewness": -0.7246179542913617,
+                "pearson_kurtosis": 3.637398712329716
+              },
+              "possible_violation": true,
+              "interpretation": "p=5.32e-09, skew=-0.725, kurtosis=3.637; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 2,
+                "columns_with_intercept": 2,
+                "condition_number": 1.0000000000000007,
+                "effective_centered_condition": 1.0,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 2/2; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 2,
+            "residual_df": 314,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HC3",
+            "hac_maxlags": null,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 9.769962616701378e-15,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "ca45581c211af6587562adb0add13ebb8c8383339125dfc8a5930fd7e911156f"
+        },
+        "Mutual Information": {
+          "rank": {
+            "rank": 10,
+            "feature_rank": 9,
+            "columns_with_intercept": 11,
+            "df_resid": 306,
+            "singular": true,
+            "condition_number": null,
+            "effective_centered_condition": 4.368356561386023,
+            "rank_tolerance": 1.7358382789780045e-12
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -0.7688777065846812,
+                "maximum_bin_mean": 1.1574657795909506,
+                "bin_mean_span_residual_sd": 0.46406807292860724
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.464 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson (source row order; descriptive only)",
+              "statistic": {
+                "durbin_watson": 2.0937690247356446,
+                "ljung_box": [],
+                "acf": [
+                  1.0,
+                  -0.04819051978128124,
+                  0.1156804069260438,
+                  0.02915578654313324,
+                  0.04039054081568883,
+                  -0.03167869443920782,
+                  -0.01724417223585402,
+                  -0.006217992863626272,
+                  -0.017803495974681175,
+                  -0.07797767203344695,
+                  0.11307654418481598,
+                  0.025564680661235326,
+                  0.050090532577763996,
+                  -0.04641418042459255,
+                  7.173683267001428e-05,
+                  -0.09606896831821553,
+                  -0.05657506663237262,
+                  0.03373692867672284,
+                  -0.06255466378011129,
+                  0.0017590394542201207,
+                  -0.12560093971756,
+                  0.02573677864732118,
+                  0.005461858011013678,
+                  -0.02097676596738247,
+                  0.01719470697743852,
+                  -0.07601486381734293,
+                  -0.0575060999384631,
+                  -0.003848437539430467,
+                  -0.050228951778439355,
+                  0.035314181557225786,
+                  -0.09108512012892565,
+                  0.011504609275518872,
+                  -0.029352445745598244,
+                  0.04209797672414545,
+                  0.039110803492817696,
+                  0.057100604919876,
+                  -0.011330304851562632,
+                  0.03934220149580737,
+                  0.0010750215440847048,
+                  -0.020278359108215894,
+                  -0.00524769546008901
+                ]
+              },
+              "possible_violation": null,
+              "interpretation": "DW=2.0938; lag-1 ACF=-0.0482.",
+              "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 19.338145156024147,
+                "lm_pvalue": 0.022466396373086905,
+                "f_statistic": 2.216317752245635,
+                "f_pvalue": 0.020952826497556476,
+                "auxiliary_df": 9
+              },
+              "possible_violation": true,
+              "interpretation": "LM=19.3381, p=0.0225; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Shapiro-Wilk",
+              "statistic": {
+                "test": "Shapiro-Wilk",
+                "statistic": 0.9680377984513358,
+                "pvalue": 1.8941555101343223e-06,
+                "pvalue_underflow": false,
+                "n": 316,
+                "skewness": -0.6170727988374923,
+                "pearson_kurtosis": 3.4441420288462528
+              },
+              "possible_violation": true,
+              "interpretation": "p=1.89e-06, skew=-0.617, kurtosis=3.444; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 10,
+                "columns_with_intercept": 11,
+                "condition_number": null,
+                "effective_centered_condition": 4.368356561386023,
+                "perfectly_collinear_columns": 2,
+                "vif_above_10": 0
+              },
+              "possible_violation": true,
+              "interpretation": "Design rank 10/11; 2 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 10,
+            "residual_df": 306,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HC3",
+            "hac_maxlags": null,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 7.105427357601002e-15,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "5053e92fb6370eb36316ce05dce70145d526e7bbcb139b836995d87d4f11b6e1"
+        },
+        "LASSO": {
+          "rank": {
+            "rank": 4,
+            "feature_rank": 3,
+            "columns_with_intercept": 4,
+            "df_resid": 312,
+            "singular": false,
+            "condition_number": 5.134245301857151,
+            "effective_centered_condition": 5.125425376997877,
+            "rank_tolerance": 1.3957428265049064e-12
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 6,
+                "minimum_bin_mean": -0.725365767019988,
+                "maximum_bin_mean": 0.6725831602551976,
+                "bin_mean_span_residual_sd": 0.3336017327650521
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.334 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson (source row order; descriptive only)",
+              "statistic": {
+                "durbin_watson": 2.042167096668313,
+                "ljung_box": [],
+                "acf": [
+                  1.0,
+                  -0.022788382370068947,
+                  0.11825220583862082,
+                  0.03184607742431548,
+                  0.046187396753826826,
+                  -0.03377830081669474,
+                  -0.007720166434091745,
+                  -0.027769628827231472,
+                  -0.010461777060260379,
+                  -0.06572454822532671,
+                  0.12153203166685175,
+                  0.0275229695177114,
+                  0.02605977948011881,
+                  -0.056080489204301164,
+                  0.0024568500906075896,
+                  -0.09450175154842735,
+                  -0.07563161956415985,
+                  0.016396217427218893,
+                  -0.0646968126578782,
+                  0.014383927289720507,
+                  -0.12752333094082205,
+                  0.02892880249258909,
+                  -0.020428881010653974,
+                  -0.02258630636778078,
+                  0.01843100422656638,
+                  -0.04939219151224414,
+                  -0.05700652972037843,
+                  0.017581978206197956,
+                  -0.04538111459067791,
+                  0.057098368074343334,
+                  -0.09120738866698287,
+                  -0.0015180374983438788,
+                  -0.026721894300344433,
+                  0.03754510268170689,
+                  0.04762128053719151,
+                  0.07392897013451798,
+                  -0.017879577935279164,
+                  0.04328802645603956,
+                  0.004957266387958857,
+                  -0.007701513837591006,
+                  -0.007452198598940556
+                ]
+              },
+              "possible_violation": null,
+              "interpretation": "DW=2.0422; lag-1 ACF=-0.0228.",
+              "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 2.747868212754996,
+                "lm_pvalue": 0.43215378860536413,
+                "f_statistic": 0.9122948102412803,
+                "f_pvalue": 0.43526965915277216,
+                "auxiliary_df": 3
+              },
+              "possible_violation": false,
+              "interpretation": "LM=2.7479, p=0.432; constant variance not rejected.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Shapiro-Wilk",
+              "statistic": {
+                "test": "Shapiro-Wilk",
+                "statistic": 0.9574583004015097,
+                "pvalue": 5.9338305178725076e-08,
+                "pvalue_underflow": false,
+                "n": 316,
+                "skewness": -0.721697561136311,
+                "pearson_kurtosis": 3.567967401847567
+              },
+              "possible_violation": true,
+              "interpretation": "p=5.93e-08, skew=-0.722, kurtosis=3.568; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 4,
+                "columns_with_intercept": 4,
+                "condition_number": 5.134245301857151,
+                "effective_centered_condition": 5.125425376997877,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 4/4; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 4,
+            "residual_df": 312,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HC3",
+            "hac_maxlags": null,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 1.0658141036401503e-14,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "e7e5ca688b3695c70d8c3de386dcfcc96f9d28bba57ddaca4bb9b01fcd65c088"
+        },
+        "Baseline": {
+          "rank": {
+            "rank": 40,
+            "feature_rank": 39,
+            "columns_with_intercept": 57,
+            "df_resid": 276,
+            "singular": true,
+            "condition_number": null,
+            "effective_centered_condition": 8.141928291516606,
+            "rank_tolerance": 1.983393042559868e-12
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -1.0795287168661012,
+                "maximum_bin_mean": 1.1866926549051562,
+                "bin_mean_span_residual_sd": 0.586329829686864
+              },
+              "possible_violation": true,
+              "interpretation": "Bin-mean residual span is 0.586 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson (source row order; descriptive only)",
+              "statistic": {
+                "durbin_watson": 1.977142809174026,
+                "ljung_box": [],
+                "acf": [
+                  1.0,
+                  0.009655180062751994,
+                  0.13044607286137522,
+                  0.046053021381589086,
+                  0.017907736823418393,
+                  -0.029642070737510153,
+                  -0.029015386314882048,
+                  -0.029089993884828382,
+                  -0.04614122466821815,
+                  -0.08777678574520041,
+                  0.11972242404097498,
+                  0.035561730068403755,
+                  0.019784786487614076,
+                  -0.010402347168498178,
+                  -0.0019996958551368725,
+                  -0.14950144467449433,
+                  -0.06431667388470383,
+                  0.0054694962322992665,
+                  -0.12320703431008041,
+                  -0.005928860166099224,
+                  -0.13760553436763376,
+                  0.07103090330308633,
+                  -0.014050804856975565,
+                  -0.03672388564019472,
+                  0.03632761676231047,
+                  -0.0914173617182768,
+                  -0.03188552571652698,
+                  -0.028282923064134963,
+                  -0.07481441146115468,
+                  0.0011557210508696231,
+                  -0.08505300036062378,
+                  -0.023599949720584087,
+                  -0.010778033301741279,
+                  0.06475521103564645,
+                  0.02137333866981264,
+                  0.12073912686217468,
+                  -0.01209415897280854,
+                  0.08666938718697811,
+                  -0.0067658099832282196,
+                  -0.04264577472766163,
+                  0.0266288678129074
+                ]
+              },
+              "possible_violation": null,
+              "interpretation": "DW=1.9771; lag-1 ACF=0.0097.",
+              "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 42.51659473971722,
+                "lm_pvalue": 0.3221023479939601,
+                "f_statistic": 1.1002008336824962,
+                "f_pvalue": 0.3230295955552349,
+                "auxiliary_df": 39
+              },
+              "possible_violation": false,
+              "interpretation": "LM=42.5166, p=0.322; constant variance not rejected.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Shapiro-Wilk",
+              "statistic": {
+                "test": "Shapiro-Wilk",
+                "statistic": 0.9674870974753352,
+                "pvalue": 1.5591466809963127e-06,
+                "pvalue_underflow": false,
+                "n": 316,
+                "skewness": -0.6855130301550845,
+                "pearson_kurtosis": 3.579663739828598
+              },
+              "possible_violation": true,
+              "interpretation": "p=1.56e-06, skew=-0.686, kurtosis=3.580; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 40,
+                "columns_with_intercept": 57,
+                "condition_number": null,
+                "effective_centered_condition": 8.141928291516606,
+                "perfectly_collinear_columns": 43,
+                "vif_above_10": 0
+              },
+              "possible_violation": true,
+              "interpretation": "Design rank 40/57; 43 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 40,
+            "residual_df": 276,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HC3",
+            "hac_maxlags": null,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 1.9539925233402755e-14,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "cb7d6cb07cbcc2b426340dda610086fed5c8484cbc25f6b4c42dca1b06d26562"
+        }
+      },
+      "figures": [
+        {
+          "name": "target_distribution_train_test",
+          "path": "reports/figures/student_performance/FAST/target_distribution_train_test.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_original_numeric_correlation_heatmap",
+          "path": "reports/figures/student_performance/FAST/training_original_numeric_correlation_heatmap.png",
+          "dpi": 300
+        },
+        {
+          "name": "feature_count_vs_inner_cv_rmse",
+          "path": "reports/figures/student_performance/FAST/feature_count_vs_inner_cv_rmse.png",
+          "dpi": 300
+        },
+        {
+          "name": "feature_count_vs_inner_validation_r2",
+          "path": "reports/figures/student_performance/FAST/feature_count_vs_inner_validation_r2.png",
+          "dpi": 300
+        },
+        {
+          "name": "baseline_vs_feature_selection_rmse",
+          "path": "reports/figures/student_performance/FAST/baseline_vs_feature_selection_rmse.png",
+          "dpi": 300
+        },
+        {
+          "name": "heldout_actual_vs_predicted",
+          "path": "reports/figures/student_performance/FAST/heldout_actual_vs_predicted.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_residuals_vs_fitted",
+          "path": "reports/figures/student_performance/FAST/training_residuals_vs_fitted.png",
+          "dpi": 300
+        },
+        {
+          "name": "residual_histogram_train_test",
+          "path": "reports/figures/student_performance/FAST/residual_histogram_train_test.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_residual_normal_qq",
+          "path": "reports/figures/student_performance/FAST/training_residual_normal_qq.png",
+          "dpi": 300
+        },
+        {
+          "name": "selected_feature_coefficients",
+          "path": "reports/figures/student_performance/FAST/selected_feature_coefficients.png",
+          "dpi": 300
+        },
+        {
+          "name": "selected_encoded_correlation_heatmap",
+          "path": "reports/figures/student_performance/FAST/selected_encoded_correlation_heatmap.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_residual_autocorrelation",
+          "path": "reports/figures/student_performance/FAST/training_residual_autocorrelation.png",
+          "dpi": 300
+        },
+        {
+          "name": "heldout_mean_confidence_and_individual_prediction_intervals",
+          "path": "reports/figures/student_performance/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png",
+          "dpi": 300
+        }
+      ],
+      "runtime_seconds": 8.035496199969202
+    },
+    {
+      "phase": 3,
+      "dataset_id": "appliances_energy",
+      "mode": "FAST",
+      "target": "Appliances",
+      "target_unit": "Wh",
+      "source_run": "results/appliances_energy/FAST",
+      "configuration": {
+        "name": "FAST",
+        "outer_folds": 2,
+        "inner_folds": 2,
+        "all_k": false,
+        "alpha_fractions": [
+          0.01,
+          0.1
+        ],
+        "seed": 42,
+        "gap": 0
+      },
+      "source_run_sha256": "fe68083fcf038e30cb0b2300ecd7e6eb29ae3273fbb77d035ccf53cd0022449f",
+      "selected_method": "Mutual Information",
+      "selection_unchanged": true,
+      "adjusted_r2_convention": "Training effective affine design rank (including intercept) defines model complexity. Held-out adjusted R2 uses n_test-rank_train as a descriptive penalty, not refitted-test inference; null for n<=rank or constant target.",
+      "supersedes": "Only Phase 2 nominal-count adjusted R2 is superseded. Predictions and other metrics are unchanged.",
+      "interval_note": "Classical mean CI and individual PI are pointwise working-model intervals. HC3/HAC mean intervals are asymptotic approximations. None correct selection uncertainty or ensure temporal/heteroscedastic PI coverage.",
+      "models": {
+        "Mutual Information": {
+          "rank": {
+            "rank": 11,
+            "feature_rank": 10,
+            "columns_with_intercept": 11,
+            "df_resid": 15777,
+            "singular": false,
+            "condition_number": 9.4764569800211,
+            "effective_centered_condition": 9.476456980021096,
+            "rank_tolerance": 1.0546854238525818e-09
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -15.028643433999045,
+                "maximum_bin_mean": 21.0414023101207,
+                "bin_mean_span_residual_sd": 0.356846979175533
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.357 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson and Ljung-Box",
+              "statistic": {
+                "durbin_watson": 0.5318112553387963,
+                "ljung_box": [
+                  {
+                    "lag": 1,
+                    "statistic": 8506.624101437408,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 6,
+                    "statistic": 18254.71906189033,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 12,
+                    "statistic": 23677.116947061302,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 24,
+                    "statistic": 26593.339806248307,
+                    "pvalue": 0.0
+                  }
+                ],
+                "acf": [
+                  1.0,
+                  0.7339623824595486,
+                  0.49283212762126755,
+                  0.3765899738587312,
+                  0.3165286021294577,
+                  0.2757461786193054,
+                  0.2372769172411049,
+                  0.20262330568756023,
+                  0.21131867227719442,
+                  0.2482450186725512,
+                  0.26975086058533543,
+                  0.25495394855695175,
+                  0.2410208348303892,
+                  0.22508856095628163,
+                  0.19571688218945865,
+                  0.16257644591553538,
+                  0.13285849237189865,
+                  0.10693947252722676,
+                  0.09437985057182643,
+                  0.09146894817689533,
+                  0.08497808450106349,
+                  0.07245076582678305,
+                  0.06563416514934078,
+                  0.059958338746248036,
+                  0.048679859803456495,
+                  0.03760692755991994,
+                  0.03397138058634001,
+                  0.03535430416528824,
+                  0.03752964739502233,
+                  0.032172636881586,
+                  0.027361285097922745,
+                  0.021694363486283213,
+                  0.01959557522246746,
+                  0.01735322836230981,
+                  0.008865009879680853,
+                  0.002601714232585941,
+                  0.0008711206508173842,
+                  0.0005173422344912971,
+                  0.005899935989631078,
+                  0.009428909724743221,
+                  0.012646631638696273
+                ]
+              },
+              "possible_violation": true,
+              "interpretation": "DW=0.5318; lag-1 ACF=0.7340.",
+              "limitations": "Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 179.34747480167664,
+                "lm_pvalue": 3.2005678397010025e-33,
+                "f_statistic": 18.128183104711095,
+                "f_pvalue": 2.035876140963681e-33,
+                "auxiliary_df": 10
+              },
+              "possible_violation": true,
+              "interpretation": "LM=179.3475, p=3.2e-33; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Jarque-Bera (large-sample)",
+              "statistic": {
+                "test": "Jarque-Bera (large-sample)",
+                "statistic": 156862.81833433363,
+                "pvalue": 0.0,
+                "pvalue_underflow": true,
+                "n": 15788,
+                "skewness": 3.354749971227189,
+                "pearson_kurtosis": 16.913233106326114
+              },
+              "possible_violation": true,
+              "interpretation": "p=below floating-point resolution, skew=3.355, kurtosis=16.913; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 11,
+                "columns_with_intercept": 11,
+                "condition_number": 9.4764569800211,
+                "effective_centered_condition": 9.476456980021096,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 11/11; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 11,
+            "residual_df": 15777,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HAC",
+            "hac_maxlags": 24,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 3.694822225952521e-13,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "3b0f18ecce804923393352b9ab6752b088932db47eb2d3ec5614fc1bf672b093"
+        },
+        "RFE": {
+          "rank": {
+            "rank": 11,
+            "feature_rank": 10,
+            "columns_with_intercept": 11,
+            "df_resid": 15777,
+            "singular": false,
+            "condition_number": 11.886564338722692,
+            "effective_centered_condition": 11.886564338722698,
+            "rank_tolerance": 8.401186424647994e-10
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -16.42054983741968,
+                "maximum_bin_mean": 19.75932332184006,
+                "bin_mean_span_residual_sd": 0.37588694798982886
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.376 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson and Ljung-Box",
+              "statistic": {
+                "durbin_watson": 0.615527045603767,
+                "ljung_box": [
+                  {
+                    "lag": 1,
+                    "statistic": 7562.58878461077,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 6,
+                    "statistic": 13606.937095355726,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 12,
+                    "statistic": 16914.024597249063,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 24,
+                    "statistic": 18730.36049420889,
+                    "pvalue": 0.0
+                  }
+                ],
+                "acf": [
+                  1.0,
+                  0.6920387671376981,
+                  0.415239911633305,
+                  0.29265615617936047,
+                  0.2359484512554051,
+                  0.20305509219085455,
+                  0.16656912381077132,
+                  0.13397469745776022,
+                  0.14770952027608897,
+                  0.19302380612228867,
+                  0.22141036708553719,
+                  0.20989986090566104,
+                  0.19799999236190283,
+                  0.1840900614112529,
+                  0.1554695133532415,
+                  0.12416908859713971,
+                  0.09731625078269746,
+                  0.07620027714503494,
+                  0.06901415409978348,
+                  0.0719747921850028,
+                  0.06897272036859552,
+                  0.05977874485224479,
+                  0.05659189077267965,
+                  0.05376719412958175,
+                  0.04236205117370269,
+                  0.03161108008377272,
+                  0.030219902523080384,
+                  0.03349606208673204,
+                  0.03684575689487239,
+                  0.03345373706052215,
+                  0.03020920655872517,
+                  0.025664566051095305,
+                  0.02382730424533448,
+                  0.023995367537802334,
+                  0.015529299951979852,
+                  0.009772746177841848,
+                  0.008875806809746646,
+                  0.009875439642738449,
+                  0.019832554480001676,
+                  0.026338691096465864,
+                  0.03155240234965252
+                ]
+              },
+              "possible_violation": true,
+              "interpretation": "DW=0.6155; lag-1 ACF=0.6920.",
+              "limitations": "Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 527.456641323588,
+                "lm_pvalue": 5.960371926424747e-107,
+                "f_statistic": 54.530715155898676,
+                "f_pvalue": 7.917785187310799e-109,
+                "auxiliary_df": 10
+              },
+              "possible_violation": true,
+              "interpretation": "LM=527.4566, p=5.96e-107; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Jarque-Bera (large-sample)",
+              "statistic": {
+                "test": "Jarque-Bera (large-sample)",
+                "statistic": 156129.89636054338,
+                "pvalue": 0.0,
+                "pvalue_underflow": true,
+                "n": 15788,
+                "skewness": 3.254742546780016,
+                "pearson_kurtosis": 16.968121268200825
+              },
+              "possible_violation": true,
+              "interpretation": "p=below floating-point resolution, skew=3.255, kurtosis=16.968; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 11,
+                "columns_with_intercept": 11,
+                "condition_number": 11.886564338722692,
+                "effective_centered_condition": 11.886564338722698,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 2
+              },
+              "possible_violation": true,
+              "interpretation": "Design rank 11/11; 0 perfectly collinear columns; 2 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 11,
+            "residual_df": 15777,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HAC",
+            "hac_maxlags": 24,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 3.979039320256561e-13,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "16153344feef75b3523fd66db95331805082b8dd3c85063e03d7f0c753e0a288"
+        },
+        "RFECV": {
+          "rank": {
+            "rank": 11,
+            "feature_rank": 10,
+            "columns_with_intercept": 11,
+            "df_resid": 15777,
+            "singular": false,
+            "condition_number": 11.886564338722692,
+            "effective_centered_condition": 11.886564338722698,
+            "rank_tolerance": 8.401186424647994e-10
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -16.42054983741968,
+                "maximum_bin_mean": 19.75932332184006,
+                "bin_mean_span_residual_sd": 0.37588694798982886
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.376 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson and Ljung-Box",
+              "statistic": {
+                "durbin_watson": 0.615527045603767,
+                "ljung_box": [
+                  {
+                    "lag": 1,
+                    "statistic": 7562.58878461077,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 6,
+                    "statistic": 13606.937095355726,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 12,
+                    "statistic": 16914.024597249063,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 24,
+                    "statistic": 18730.36049420889,
+                    "pvalue": 0.0
+                  }
+                ],
+                "acf": [
+                  1.0,
+                  0.6920387671376981,
+                  0.415239911633305,
+                  0.29265615617936047,
+                  0.2359484512554051,
+                  0.20305509219085455,
+                  0.16656912381077132,
+                  0.13397469745776022,
+                  0.14770952027608897,
+                  0.19302380612228867,
+                  0.22141036708553719,
+                  0.20989986090566104,
+                  0.19799999236190283,
+                  0.1840900614112529,
+                  0.1554695133532415,
+                  0.12416908859713971,
+                  0.09731625078269746,
+                  0.07620027714503494,
+                  0.06901415409978348,
+                  0.0719747921850028,
+                  0.06897272036859552,
+                  0.05977874485224479,
+                  0.05659189077267965,
+                  0.05376719412958175,
+                  0.04236205117370269,
+                  0.03161108008377272,
+                  0.030219902523080384,
+                  0.03349606208673204,
+                  0.03684575689487239,
+                  0.03345373706052215,
+                  0.03020920655872517,
+                  0.025664566051095305,
+                  0.02382730424533448,
+                  0.023995367537802334,
+                  0.015529299951979852,
+                  0.009772746177841848,
+                  0.008875806809746646,
+                  0.009875439642738449,
+                  0.019832554480001676,
+                  0.026338691096465864,
+                  0.03155240234965252
+                ]
+              },
+              "possible_violation": true,
+              "interpretation": "DW=0.6155; lag-1 ACF=0.6920.",
+              "limitations": "Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 527.456641323588,
+                "lm_pvalue": 5.960371926424747e-107,
+                "f_statistic": 54.530715155898676,
+                "f_pvalue": 7.917785187310799e-109,
+                "auxiliary_df": 10
+              },
+              "possible_violation": true,
+              "interpretation": "LM=527.4566, p=5.96e-107; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Jarque-Bera (large-sample)",
+              "statistic": {
+                "test": "Jarque-Bera (large-sample)",
+                "statistic": 156129.89636054338,
+                "pvalue": 0.0,
+                "pvalue_underflow": true,
+                "n": 15788,
+                "skewness": 3.254742546780016,
+                "pearson_kurtosis": 16.968121268200825
+              },
+              "possible_violation": true,
+              "interpretation": "p=below floating-point resolution, skew=3.255, kurtosis=16.968; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 11,
+                "columns_with_intercept": 11,
+                "condition_number": 11.886564338722692,
+                "effective_centered_condition": 11.886564338722698,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 2
+              },
+              "possible_violation": true,
+              "interpretation": "Design rank 11/11; 0 perfectly collinear columns; 2 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 11,
+            "residual_df": 15777,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HAC",
+            "hac_maxlags": 24,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 3.979039320256561e-13,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "768e73b1ecf2b488a2bfddba11afe2144631605cf3e4797aa46d131129f2497e"
+        },
+        "Correlation": {
+          "rank": {
+            "rank": 6,
+            "feature_rank": 5,
+            "columns_with_intercept": 6,
+            "df_resid": 15782,
+            "singular": false,
+            "condition_number": 2.549536204269757,
+            "effective_centered_condition": 2.5495362042697347,
+            "rank_tolerance": 6.826376760430554e-10
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -5.3576545224611625,
+                "maximum_bin_mean": 6.312621859226889,
+                "bin_mean_span_residual_sd": 0.11590670994756679
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.116 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson and Ljung-Box",
+              "statistic": {
+                "durbin_watson": 0.545415170946187,
+                "ljung_box": [
+                  {
+                    "lag": 1,
+                    "statistic": 8348.605674952738,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 6,
+                    "statistic": 18611.191480729252,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 12,
+                    "statistic": 24731.76710595687,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 24,
+                    "statistic": 28932.725433849027,
+                    "pvalue": 0.0
+                  }
+                ],
+                "acf": [
+                  1.0,
+                  0.7271134111259202,
+                  0.4917759196464471,
+                  0.38414756706608616,
+                  0.329420839432538,
+                  0.2944777313022666,
+                  0.2552558347346991,
+                  0.2206366039669677,
+                  0.22779828457025078,
+                  0.2627666152140998,
+                  0.282671142950276,
+                  0.2686982154830568,
+                  0.25625134977567,
+                  0.24292184181336154,
+                  0.21641039961658515,
+                  0.18755866816765537,
+                  0.16092765187134425,
+                  0.13828160125761835,
+                  0.12714875377217458,
+                  0.12462029499391816,
+                  0.11650771975196438,
+                  0.10358878639220186,
+                  0.09671441193516382,
+                  0.0908397251461456,
+                  0.07828605059031911,
+                  0.06642328640193025,
+                  0.06235198150508247,
+                  0.06152339914942971,
+                  0.0610671690757373,
+                  0.055077874831541064,
+                  0.04952127905617,
+                  0.04370312220773234,
+                  0.04082346414604755,
+                  0.03976046060653706,
+                  0.030660710044117495,
+                  0.02393665040795035,
+                  0.01974821519653662,
+                  0.016947533014729777,
+                  0.02263192717721975,
+                  0.024588828214021176,
+                  0.026610220265519326
+                ]
+              },
+              "possible_violation": true,
+              "interpretation": "DW=0.5454; lag-1 ACF=0.7271.",
+              "limitations": "Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 257.9132526318254,
+                "lm_pvalue": 1.101336031151676e-53,
+                "f_statistic": 52.419371755605454,
+                "f_pvalue": 3.9871211776424967e-54,
+                "auxiliary_df": 5
+              },
+              "possible_violation": true,
+              "interpretation": "LM=257.9133, p=1.1e-53; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Jarque-Bera (large-sample)",
+              "statistic": {
+                "test": "Jarque-Bera (large-sample)",
+                "statistic": 149794.64176875673,
+                "pvalue": 0.0,
+                "pvalue_underflow": true,
+                "n": 15788,
+                "skewness": 3.3162570134167373,
+                "pearson_kurtosis": 16.559275410727945
+              },
+              "possible_violation": true,
+              "interpretation": "p=below floating-point resolution, skew=3.316, kurtosis=16.559; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 6,
+                "columns_with_intercept": 6,
+                "condition_number": 2.549536204269757,
+                "effective_centered_condition": 2.5495362042697347,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 6/6; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 6,
+            "residual_df": 15782,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HAC",
+            "hac_maxlags": 24,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 5.8264504332328215e-12,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "88eefce73d51db8ffb0b5d492d62f726df3d916c20b00b1c0ba830bb872c49de"
+        },
+        "LASSO": {
+          "rank": {
+            "rank": 5,
+            "feature_rank": 4,
+            "columns_with_intercept": 5,
+            "df_resid": 15783,
+            "singular": false,
+            "condition_number": 2.155427925083045,
+            "effective_centered_condition": 2.1554279250830235,
+            "rank_tolerance": 5.906757928531295e-10
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -4.274927097431432,
+                "maximum_bin_mean": 6.4941264763966755,
+                "bin_mean_span_residual_sd": 0.1069556373598718
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.107 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson and Ljung-Box",
+              "statistic": {
+                "durbin_watson": 0.5454007852308076,
+                "ljung_box": [
+                  {
+                    "lag": 1,
+                    "statistic": 8348.767153946023,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 6,
+                    "statistic": 18609.57342135703,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 12,
+                    "statistic": 24726.94644992046,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 24,
+                    "statistic": 28922.496800146415,
+                    "pvalue": 0.0
+                  }
+                ],
+                "acf": [
+                  1.0,
+                  0.7271204430171396,
+                  0.4917692034850015,
+                  0.38412343781745234,
+                  0.3293817413658024,
+                  0.2944250934860544,
+                  0.2551955586358493,
+                  0.2205705625844919,
+                  0.22772999079502448,
+                  0.26270014215295767,
+                  0.28260688580084453,
+                  0.2686327182070077,
+                  0.25618108321212474,
+                  0.24284614136474003,
+                  0.21632777847157214,
+                  0.18746781894273865,
+                  0.1608284757498982,
+                  0.1381748270901693,
+                  0.12703838116038757,
+                  0.12450821914377576,
+                  0.11639412525831155,
+                  0.10347210481744282,
+                  0.09659228592843917,
+                  0.09071199925206593,
+                  0.0781537966677917,
+                  0.06628820116075694,
+                  0.06221474519477464,
+                  0.06138328421674043,
+                  0.06092316501203642,
+                  0.05493008910285185,
+                  0.049370271773703955,
+                  0.04354828166261379,
+                  0.040664338790444246,
+                  0.03959445382725391,
+                  0.030487246383634262,
+                  0.023754656040425294,
+                  0.01955845990440159,
+                  0.016751202525709896,
+                  0.022428451767310474,
+                  0.02438030503570465,
+                  0.026397062739688174
+                ]
+              },
+              "possible_violation": true,
+              "interpretation": "DW=0.5454; lag-1 ACF=0.7271.",
+              "limitations": "Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 257.66601026296524,
+                "lm_pvalue": 1.4518504844588908e-54,
+                "f_statistic": 65.46450711665042,
+                "f_pvalue": 5.2245349638415996e-55,
+                "auxiliary_df": 4
+              },
+              "possible_violation": true,
+              "interpretation": "LM=257.6660, p=1.45e-54; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Jarque-Bera (large-sample)",
+              "statistic": {
+                "test": "Jarque-Bera (large-sample)",
+                "statistic": 149777.43637687815,
+                "pvalue": 0.0,
+                "pvalue_underflow": true,
+                "n": 15788,
+                "skewness": 3.3163062109377512,
+                "pearson_kurtosis": 16.558262126200265
+              },
+              "possible_violation": true,
+              "interpretation": "p=below floating-point resolution, skew=3.316, kurtosis=16.558; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 5,
+                "columns_with_intercept": 5,
+                "condition_number": 2.155427925083045,
+                "effective_centered_condition": 2.1554279250830235,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 0
+              },
+              "possible_violation": false,
+              "interpretation": "Design rank 5/5; 0 perfectly collinear columns; 0 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 5,
+            "residual_df": 15783,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HAC",
+            "hac_maxlags": 24,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 5.5138116294983774e-12,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "e35e35009056a65df00e1ca2c193aa93817788f91e80bc0b775c48589c05e052"
+        },
+        "Baseline": {
+          "rank": {
+            "rank": 26,
+            "feature_rank": 25,
+            "columns_with_intercept": 26,
+            "df_resid": 15762,
+            "singular": false,
+            "condition_number": 62.23070220350264,
+            "effective_centered_condition": 62.23070220350256,
+            "rank_tolerance": 1.2704039085564238e-09
+          },
+          "assumptions": [
+            {
+              "assumption": "linearity",
+              "method": "Binned residual means vs fitted (descriptive)",
+              "statistic": {
+                "bin_count": 10,
+                "minimum_bin_mean": -12.327275289408204,
+                "maximum_bin_mean": 18.387952589133157,
+                "bin_mean_span_residual_sd": 0.3210549917096
+              },
+              "possible_violation": null,
+              "interpretation": "Bin-mean residual span is 0.321 residual SD; inspect the plotted trend.",
+              "limitations": "A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity."
+            },
+            {
+              "assumption": "independence",
+              "method": "Durbin-Watson and Ljung-Box",
+              "statistic": {
+                "durbin_watson": 0.6223455304016727,
+                "ljung_box": [
+                  {
+                    "lag": 1,
+                    "statistic": 7488.155316944195,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 6,
+                    "statistic": 13130.509148100655,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 12,
+                    "statistic": 16104.37869443064,
+                    "pvalue": 0.0
+                  },
+                  {
+                    "lag": 24,
+                    "statistic": 17636.98696500669,
+                    "pvalue": 0.0
+                  }
+                ],
+                "acf": [
+                  1.0,
+                  0.6886247100660055,
+                  0.40786156180409994,
+                  0.28283453897487376,
+                  0.2248089974350669,
+                  0.19119178536279965,
+                  0.1543619922349733,
+                  0.12174139572409508,
+                  0.13635326366434747,
+                  0.18310011427223832,
+                  0.2124368700209451,
+                  0.20098412819526368,
+                  0.1890947667829141,
+                  0.1752537443146338,
+                  0.14643948889267447,
+                  0.11499374482665674,
+                  0.08816165391059971,
+                  0.0670609655616626,
+                  0.06007161496839035,
+                  0.06327399746151137,
+                  0.06031026827501869,
+                  0.05093680801803785,
+                  0.04778109052658896,
+                  0.04516564234098597,
+                  0.033892737720418176,
+                  0.023099544053804023,
+                  0.02190519831578283,
+                  0.02559682146065139,
+                  0.029339027048112195,
+                  0.02610049040751907,
+                  0.023048033075609636,
+                  0.01866331872463432,
+                  0.01690867499829558,
+                  0.01710330780880836,
+                  0.008623653069702517,
+                  0.0029614730938419967,
+                  0.002127109066677577,
+                  0.0032032220281306666,
+                  0.013279810450458012,
+                  0.020078679961170045,
+                  0.025501395450951075
+                ]
+              },
+              "possible_violation": true,
+              "interpretation": "DW=0.6223; lag-1 ACF=0.6886.",
+              "limitations": "Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests."
+            },
+            {
+              "assumption": "homoscedasticity",
+              "method": "Koenker-Breusch-Pagan on full-rank equivalent design",
+              "statistic": {
+                "lm_statistic": 574.2109378764228,
+                "lm_pvalue": 2.888155674597102e-105,
+                "f_statistic": 23.796078060109142,
+                "f_pvalue": 2.1923047768836765e-107,
+                "auxiliary_df": 25
+              },
+              "possible_violation": true,
+              "interpretation": "LM=574.2109, p=2.89e-105; evidence against constant variance.",
+              "limitations": "Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values."
+            },
+            {
+              "assumption": "normality",
+              "method": "Jarque-Bera (large-sample)",
+              "statistic": {
+                "test": "Jarque-Bera (large-sample)",
+                "statistic": 160783.4384690486,
+                "pvalue": 0.0,
+                "pvalue_underflow": true,
+                "n": 15788,
+                "skewness": 3.2829441281450853,
+                "pearson_kurtosis": 17.19328327349351
+              },
+              "possible_violation": true,
+              "interpretation": "p=below floating-point resolution, skew=3.283, kurtosis=17.193; normality rejected.",
+              "limitations": "Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q."
+            },
+            {
+              "assumption": "multicollinearity",
+              "method": "Design rank, condition number and VIF (intercept excluded)",
+              "statistic": {
+                "rank": 26,
+                "columns_with_intercept": 26,
+                "condition_number": 62.23070220350264,
+                "effective_centered_condition": 62.23070220350256,
+                "perfectly_collinear_columns": 0,
+                "vif_above_10": 13
+              },
+              "possible_violation": true,
+              "interpretation": "Design rank 26/26; 0 perfectly collinear columns; 13 finite VIF values above 10.",
+              "limitations": "VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique."
+            }
+          ],
+          "intervals": {
+            "level": 0.95,
+            "training_rank": 26,
+            "residual_df": 15762,
+            "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model",
+            "robust_mean_covariance": "HAC",
+            "hac_maxlags": 24,
+            "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.",
+            "maximum_mean_prediction_difference": 5.5422333389287814e-12,
+            "robust_mean_status": "asymptotic_approximation",
+            "status": "estimated",
+            "nonestimable_rows": 0
+          },
+          "model_sha256": "40ebbbb11dcd7614194038506f7cf0fe16a1f8bf0c1c26b96d21492a6aba073a"
+        }
+      },
+      "figures": [
+        {
+          "name": "target_distribution_train_test",
+          "path": "reports/figures/appliances_energy/FAST/target_distribution_train_test.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_original_numeric_correlation_heatmap",
+          "path": "reports/figures/appliances_energy/FAST/training_original_numeric_correlation_heatmap.png",
+          "dpi": 300
+        },
+        {
+          "name": "feature_count_vs_inner_cv_rmse",
+          "path": "reports/figures/appliances_energy/FAST/feature_count_vs_inner_cv_rmse.png",
+          "dpi": 300
+        },
+        {
+          "name": "feature_count_vs_inner_validation_r2",
+          "path": "reports/figures/appliances_energy/FAST/feature_count_vs_inner_validation_r2.png",
+          "dpi": 300
+        },
+        {
+          "name": "baseline_vs_feature_selection_rmse",
+          "path": "reports/figures/appliances_energy/FAST/baseline_vs_feature_selection_rmse.png",
+          "dpi": 300
+        },
+        {
+          "name": "heldout_actual_vs_predicted",
+          "path": "reports/figures/appliances_energy/FAST/heldout_actual_vs_predicted.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_residuals_vs_fitted",
+          "path": "reports/figures/appliances_energy/FAST/training_residuals_vs_fitted.png",
+          "dpi": 300
+        },
+        {
+          "name": "residual_histogram_train_test",
+          "path": "reports/figures/appliances_energy/FAST/residual_histogram_train_test.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_residual_normal_qq",
+          "path": "reports/figures/appliances_energy/FAST/training_residual_normal_qq.png",
+          "dpi": 300
+        },
+        {
+          "name": "selected_feature_coefficients",
+          "path": "reports/figures/appliances_energy/FAST/selected_feature_coefficients.png",
+          "dpi": 300
+        },
+        {
+          "name": "selected_encoded_correlation_heatmap",
+          "path": "reports/figures/appliances_energy/FAST/selected_encoded_correlation_heatmap.png",
+          "dpi": 300
+        },
+        {
+          "name": "training_residual_autocorrelation",
+          "path": "reports/figures/appliances_energy/FAST/training_residual_autocorrelation.png",
+          "dpi": 300
+        },
+        {
+          "name": "heldout_mean_confidence_and_individual_prediction_intervals",
+          "path": "reports/figures/appliances_energy/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png",
+          "dpi": 300
+        }
+      ],
+      "runtime_seconds": 11.206878999713808
+    }
+  ]
+}

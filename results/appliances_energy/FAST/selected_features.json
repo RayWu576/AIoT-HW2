@@ -1,0 +1,562 @@
+{
+  "Baseline": {
+    "encoded": [
+      "numeric__lights",
+      "numeric__T1",
+      "numeric__RH_1",
+      "numeric__T2",
+      "numeric__RH_2",
+      "numeric__T3",
+      "numeric__RH_3",
+      "numeric__T4",
+      "numeric__RH_4",
+      "numeric__T5",
+      "numeric__RH_5",
+      "numeric__T6",
+      "numeric__RH_6",
+      "numeric__T7",
+      "numeric__RH_7",
+      "numeric__T8",
+      "numeric__RH_8",
+      "numeric__T9",
+      "numeric__RH_9",
+      "numeric__T_out",
+      "numeric__Press_mm_hg",
+      "numeric__RH_out",
+      "numeric__Windspeed",
+      "numeric__Visibility",
+      "numeric__Tdewpoint"
+    ],
+    "original": [
+      "lights",
+      "T1",
+      "RH_1",
+      "T2",
+      "RH_2",
+      "T3",
+      "RH_3",
+      "T4",
+      "RH_4",
+      "T5",
+      "RH_5",
+      "T6",
+      "RH_6",
+      "T7",
+      "RH_7",
+      "T8",
+      "RH_8",
+      "T9",
+      "RH_9",
+      "T_out",
+      "Press_mm_hg",
+      "RH_out",
+      "Windspeed",
+      "Visibility",
+      "Tdewpoint"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__lights",
+        "original_name": "lights",
+        "coefficient": 17.892507645141034
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__T1",
+        "original_name": "T1",
+        "coefficient": -7.73936928454712
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__RH_1",
+        "original_name": "RH_1",
+        "coefficient": 46.186903689779605
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__T2",
+        "original_name": "T2",
+        "coefficient": -20.026615777376474
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__RH_2",
+        "original_name": "RH_2",
+        "coefficient": -42.15597613788986
+      },
+      {
+        "position": 5,
+        "encoded_name": "numeric__T3",
+        "original_name": "T3",
+        "coefficient": 41.51234141546284
+      },
+      {
+        "position": 6,
+        "encoded_name": "numeric__RH_3",
+        "original_name": "RH_3",
+        "coefficient": 27.673214436210827
+      },
+      {
+        "position": 7,
+        "encoded_name": "numeric__T4",
+        "original_name": "T4",
+        "coefficient": -5.724279982334662
+      },
+      {
+        "position": 8,
+        "encoded_name": "numeric__RH_4",
+        "original_name": "RH_4",
+        "coefficient": -10.455758890748973
+      },
+      {
+        "position": 9,
+        "encoded_name": "numeric__T5",
+        "original_name": "T5",
+        "coefficient": -2.1656209720417383
+      },
+      {
+        "position": 10,
+        "encoded_name": "numeric__RH_5",
+        "original_name": "RH_5",
+        "coefficient": 0.9540379032449349
+      },
+      {
+        "position": 11,
+        "encoded_name": "numeric__T6",
+        "original_name": "T6",
+        "coefficient": 35.704894360320075
+      },
+      {
+        "position": 12,
+        "encoded_name": "numeric__RH_6",
+        "original_name": "RH_6",
+        "coefficient": 9.459244988350957
+      },
+      {
+        "position": 13,
+        "encoded_name": "numeric__T7",
+        "original_name": "T7",
+        "coefficient": 1.6945222008114873
+      },
+      {
+        "position": 14,
+        "encoded_name": "numeric__RH_7",
+        "original_name": "RH_7",
+        "coefficient": -2.463558517830539
+      },
+      {
+        "position": 15,
+        "encoded_name": "numeric__T8",
+        "original_name": "T8",
+        "coefficient": 15.359281216980992
+      },
+      {
+        "position": 16,
+        "encoded_name": "numeric__RH_8",
+        "original_name": "RH_8",
+        "coefficient": -31.165474788192817
+      },
+      {
+        "position": 17,
+        "encoded_name": "numeric__T9",
+        "original_name": "T9",
+        "coefficient": -20.457403819354806
+      },
+      {
+        "position": 18,
+        "encoded_name": "numeric__RH_9",
+        "original_name": "RH_9",
+        "coefficient": -4.060149690484849
+      },
+      {
+        "position": 19,
+        "encoded_name": "numeric__T_out",
+        "original_name": "T_out",
+        "coefficient": -35.61894198922977
+      },
+      {
+        "position": 20,
+        "encoded_name": "numeric__Press_mm_hg",
+        "original_name": "Press_mm_hg",
+        "coefficient": 1.7374793518525913
+      },
+      {
+        "position": 21,
+        "encoded_name": "numeric__RH_out",
+        "original_name": "RH_out",
+        "coefficient": -6.730046290637423
+      },
+      {
+        "position": 22,
+        "encoded_name": "numeric__Windspeed",
+        "original_name": "Windspeed",
+        "coefficient": 3.254295983370416
+      },
+      {
+        "position": 23,
+        "encoded_name": "numeric__Visibility",
+        "original_name": "Visibility",
+        "coefficient": 2.3525195851878538
+      },
+      {
+        "position": 24,
+        "encoded_name": "numeric__Tdewpoint",
+        "original_name": "Tdewpoint",
+        "coefficient": 13.033879958998005
+      }
+    ]
+  },
+  "Correlation": {
+    "encoded": [
+      "numeric__lights",
+      "numeric__T2",
+      "numeric__RH_out",
+      "numeric__T6",
+      "numeric__T3"
+    ],
+    "original": [
+      "lights",
+      "T2",
+      "RH_out",
+      "T6",
+      "T3"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__lights",
+        "original_name": "lights",
+        "coefficient": 23.432757602665763
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__T2",
+        "original_name": "T2",
+        "coefficient": 3.2039881948211524
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__RH_out",
+        "original_name": "RH_out",
+        "coefficient": -14.03365362571941
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__T6",
+        "original_name": "T6",
+        "coefficient": 0.3407404804090111
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__T3",
+        "original_name": "T3",
+        "coefficient": 8.401449625124533
+      }
+    ]
+  },
+  "Mutual Information": {
+    "encoded": [
+      "numeric__T3",
+      "numeric__T5",
+      "numeric__T8",
+      "numeric__T9",
+      "numeric__RH_6",
+      "numeric__T4",
+      "numeric__RH_8",
+      "numeric__T7",
+      "numeric__Press_mm_hg",
+      "numeric__RH_7"
+    ],
+    "original": [
+      "T3",
+      "T5",
+      "T8",
+      "T9",
+      "RH_6",
+      "T4",
+      "RH_8",
+      "T7",
+      "Press_mm_hg",
+      "RH_7"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__T3",
+        "original_name": "T3",
+        "coefficient": 42.31262338515825
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__T5",
+        "original_name": "T5",
+        "coefficient": -11.554523865179824
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__T8",
+        "original_name": "T8",
+        "coefficient": 11.466210587130231
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__T9",
+        "original_name": "T9",
+        "coefficient": -42.32509976782406
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__RH_6",
+        "original_name": "RH_6",
+        "coefficient": -5.532711336693664
+      },
+      {
+        "position": 5,
+        "encoded_name": "numeric__T4",
+        "original_name": "T4",
+        "coefficient": 6.224071361538283
+      },
+      {
+        "position": 6,
+        "encoded_name": "numeric__RH_8",
+        "original_name": "RH_8",
+        "coefficient": -34.543805018009564
+      },
+      {
+        "position": 7,
+        "encoded_name": "numeric__T7",
+        "original_name": "T7",
+        "coefficient": -7.839049031627414
+      },
+      {
+        "position": 8,
+        "encoded_name": "numeric__Press_mm_hg",
+        "original_name": "Press_mm_hg",
+        "coefficient": -5.272440638456819
+      },
+      {
+        "position": 9,
+        "encoded_name": "numeric__RH_7",
+        "original_name": "RH_7",
+        "coefficient": 17.87993996796939
+      }
+    ]
+  },
+  "RFE": {
+    "encoded": [
+      "numeric__RH_8",
+      "numeric__RH_1",
+      "numeric__RH_2",
+      "numeric__RH_3",
+      "numeric__T3",
+      "numeric__T2",
+      "numeric__T6",
+      "numeric__T_out",
+      "numeric__lights",
+      "numeric__T9"
+    ],
+    "original": [
+      "RH_8",
+      "RH_1",
+      "RH_2",
+      "RH_3",
+      "T3",
+      "T2",
+      "T6",
+      "T_out",
+      "lights",
+      "T9"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__RH_8",
+        "original_name": "RH_8",
+        "coefficient": -32.90740413291975
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__RH_1",
+        "original_name": "RH_1",
+        "coefficient": 48.35620328075757
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__RH_2",
+        "original_name": "RH_2",
+        "coefficient": -46.59932183579789
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__RH_3",
+        "original_name": "RH_3",
+        "coefficient": 21.76332141657261
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__T3",
+        "original_name": "T3",
+        "coefficient": 39.033596528719436
+      },
+      {
+        "position": 5,
+        "encoded_name": "numeric__T2",
+        "original_name": "T2",
+        "coefficient": -27.138826743756336
+      },
+      {
+        "position": 6,
+        "encoded_name": "numeric__T6",
+        "original_name": "T6",
+        "coefficient": 28.13904816220548
+      },
+      {
+        "position": 7,
+        "encoded_name": "numeric__T_out",
+        "original_name": "T_out",
+        "coefficient": -20.54735750796376
+      },
+      {
+        "position": 8,
+        "encoded_name": "numeric__lights",
+        "original_name": "lights",
+        "coefficient": 18.331534843179526
+      },
+      {
+        "position": 9,
+        "encoded_name": "numeric__T9",
+        "original_name": "T9",
+        "coefficient": -16.217768021371874
+      }
+    ]
+  },
+  "RFECV": {
+    "encoded": [
+      "numeric__RH_8",
+      "numeric__RH_1",
+      "numeric__RH_2",
+      "numeric__RH_3",
+      "numeric__T3",
+      "numeric__T2",
+      "numeric__T6",
+      "numeric__T_out",
+      "numeric__lights",
+      "numeric__T9"
+    ],
+    "original": [
+      "RH_8",
+      "RH_1",
+      "RH_2",
+      "RH_3",
+      "T3",
+      "T2",
+      "T6",
+      "T_out",
+      "lights",
+      "T9"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__RH_8",
+        "original_name": "RH_8",
+        "coefficient": -32.90740413291975
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__RH_1",
+        "original_name": "RH_1",
+        "coefficient": 48.35620328075757
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__RH_2",
+        "original_name": "RH_2",
+        "coefficient": -46.59932183579789
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__RH_3",
+        "original_name": "RH_3",
+        "coefficient": 21.76332141657261
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__T3",
+        "original_name": "T3",
+        "coefficient": 39.033596528719436
+      },
+      {
+        "position": 5,
+        "encoded_name": "numeric__T2",
+        "original_name": "T2",
+        "coefficient": -27.138826743756336
+      },
+      {
+        "position": 6,
+        "encoded_name": "numeric__T6",
+        "original_name": "T6",
+        "coefficient": 28.13904816220548
+      },
+      {
+        "position": 7,
+        "encoded_name": "numeric__T_out",
+        "original_name": "T_out",
+        "coefficient": -20.54735750796376
+      },
+      {
+        "position": 8,
+        "encoded_name": "numeric__lights",
+        "original_name": "lights",
+        "coefficient": 18.331534843179526
+      },
+      {
+        "position": 9,
+        "encoded_name": "numeric__T9",
+        "original_name": "T9",
+        "coefficient": -16.217768021371874
+      }
+    ]
+  },
+  "LASSO": {
+    "encoded": [
+      "numeric__lights",
+      "numeric__T2",
+      "numeric__T3",
+      "numeric__RH_out"
+    ],
+    "original": [
+      "lights",
+      "T2",
+      "T3",
+      "RH_out"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__lights",
+        "original_name": "lights",
+        "coefficient": 23.41918357167851
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__T2",
+        "original_name": "T2",
+        "coefficient": 3.324954662472305
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__T3",
+        "original_name": "T3",
+        "coefficient": 8.47852393422865
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__RH_out",
+        "original_name": "RH_out",
+        "coefficient": -14.139078180634701
+      }
+    ]
+  }
+}

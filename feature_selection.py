@@ -210,3 +210,113 @@ class LassoSelector(BaseSubsetSelector):
         return self
 
 
+
+
+class OfficialSelector(BaseSubsetSelector):
+    """Fold-local adapters preserving the five historical selection algorithms.
+
+    k=None uses LASSO's nonzero coefficients. Fixed-k LASSO curves use its
+    coefficient ranking as in the historical dashboard. RFECV's k search is
+    performed by GridSearchCV around the *whole raw-input pipeline*, so its
+    inner validation rows never fit imputation, scaling, encoding or RFE.
+    """
+    def __init__(self, method="Correlation", k=10, alpha_fraction=0.01):
+        self.method = method
+        self.k = k
+        self.alpha_fraction = alpha_fraction
+
+    def fit(self, X, y):
+        from sklearn.linear_model import Lasso
+        self.n_features_in_ = X.shape[1]
+        k = min(self.k, self.n_features_in_) if self.k is not None else None
+        if self.method != "LASSO":
+            if k is None:
+                raise ValueError("Only LASSO supports automatic nonzero selection")
+            fitted = FixedCountSelector(self.method, k).fit(X, y)
+            self.selected_indices_ = fitted.selected_indices_
+            return self
+        self.scaler_ = StandardScaler().fit(X)
+        values = self.scaler_.transform(X)
+        self.lasso_ = Lasso(alpha=self.alpha_fraction * max(float(np.std(y)), 1e-12),
+                            max_iter=100000, tol=1e-5, selection="cyclic").fit(values, y)
+        scores = np.abs(self.lasso_.coef_)
+        if k is None:
+            selected = np.flatnonzero(scores > 1e-7)
+            self.selected_indices_ = selected if len(selected) else np.array([np.argmax(scores)])
+        else:
+            self.selected_indices_ = np.argsort(-scores, kind="stable")[:k]
+        return self
+
+
+class CachedRankingSelector(BaseSubsetSelector):
+    """Fold-local ranking independent of k, cached by Pipeline across k values.
+
+    RFE/RFECV compute one complete elimination path per training fold. LASSO
+    returns only nonzero support; the downstream predictor is LinearRegression.
+    There is no internal CV here: raw-input Pipeline search owns every split.
+    """
+    def __init__(self, method="Correlation", alpha_fraction=0.01, random_state=42):
+        self.method = method
+        self.alpha_fraction = alpha_fraction
+        self.random_state = random_state
+
+    def fit(self, X, y):
+        from sklearn.linear_model import Lasso
+        values = np.asarray(X, dtype=float)
+        target = np.asarray(y, dtype=float)
+        self.n_features_in_ = values.shape[1]
+        if self.method == "Correlation":
+            centered = values - values.mean(axis=0)
+            centered_y = target-target.mean()
+            denominator = np.sqrt((centered**2).sum(axis=0)*(centered_y**2).sum())
+            scores = np.divide(np.abs(centered.T @ centered_y), denominator,
+                               out=np.zeros(self.n_features_in_), where=denominator > 0)
+            indices = np.argsort(-scores, kind="stable")
+        elif self.method == "Mutual Information":
+            discrete = np.array([np.unique(values[:,i]).size <= 2 for i in range(values.shape[1])])
+            scores = mutual_info_regression(values, target, discrete_features=discrete,
+                                            random_state=self.random_state)
+            indices = np.argsort(-scores, kind="stable")
+        elif self.method in ("RFE", "RFECV"):
+            self.scaler_ = StandardScaler().fit(values)
+            elimination = RFE(LinearRegression(), n_features_to_select=1, step=1)
+            elimination.fit(self.scaler_.transform(values), target)
+            self.ranking_ = elimination.ranking_
+            indices = np.argsort(self.ranking_, kind="stable")
+        elif self.method == "LASSO":
+            self.scaler_ = StandardScaler().fit(values)
+            self.lasso_ = Lasso(alpha=self.alpha_fraction*max(float(target.std()), 1e-12),
+                                max_iter=100000, tol=1e-5, random_state=self.random_state)
+            self.lasso_.fit(self.scaler_.transform(values), target)
+            scores = np.abs(self.lasso_.coef_)
+            indices = np.flatnonzero(scores > 1e-7)
+            if len(indices) == 0:
+                indices = np.array([int(np.argmax(scores))])
+        else:
+            raise ValueError(f"Unknown feature selection method: {self.method}")
+        self.selected_indices_ = np.asarray(indices, dtype=int)
+        return self
+
+    def get_feature_names_out(self, input_features=None):
+        names = np.asarray(input_features if input_features is not None else
+                           [f"x{i}" for i in range(self.n_features_in_)], dtype=object)
+        return names[self.selected_indices_]
+
+
+class RankedSubset(BaseSubsetSelector):
+    """Cheap prefix selection; k='all' adapts to training-fold encoded width."""
+    def __init__(self, k="all"):
+        self.k = k
+
+    def fit(self, X, y=None):
+        self.n_features_in_ = X.shape[1]
+        if self.k != "all" and (not isinstance(self.k, (int, np.integer)) or self.k < 1):
+            raise ValueError("k must be a positive integer or 'all'")
+        self.effective_k_ = self.n_features_in_ if self.k == "all" else min(int(self.k), self.n_features_in_)
+        self.selected_indices_ = np.arange(self.effective_k_)
+        return self
+
+    def get_feature_names_out(self, input_features=None):
+        names = np.asarray(input_features if input_features is not None else
+                           [f"x{i}" for i in range(self.n_features_in_)], dtype=object)
+        return names[self.selected_indices_]

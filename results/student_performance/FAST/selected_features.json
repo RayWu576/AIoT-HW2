@@ -1,0 +1,599 @@
+{
+  "Baseline": {
+    "encoded": [
+      "numeric__age",
+      "numeric__Medu",
+      "numeric__Fedu",
+      "numeric__traveltime",
+      "numeric__studytime",
+      "numeric__failures",
+      "numeric__famrel",
+      "numeric__freetime",
+      "numeric__goout",
+      "numeric__Dalc",
+      "numeric__Walc",
+      "numeric__health",
+      "numeric__absences",
+      "categorical__school_GP",
+      "categorical__school_MS",
+      "categorical__sex_F",
+      "categorical__sex_M",
+      "categorical__address_R",
+      "categorical__address_U",
+      "categorical__famsize_GT3",
+      "categorical__famsize_LE3",
+      "categorical__Pstatus_A",
+      "categorical__Pstatus_T",
+      "categorical__Mjob_at_home",
+      "categorical__Mjob_health",
+      "categorical__Mjob_other",
+      "categorical__Mjob_services",
+      "categorical__Mjob_teacher",
+      "categorical__Fjob_at_home",
+      "categorical__Fjob_health",
+      "categorical__Fjob_other",
+      "categorical__Fjob_services",
+      "categorical__Fjob_teacher",
+      "categorical__reason_course",
+      "categorical__reason_home",
+      "categorical__reason_other",
+      "categorical__reason_reputation",
+      "categorical__guardian_father",
+      "categorical__guardian_mother",
+      "categorical__guardian_other",
+      "categorical__schoolsup_no",
+      "categorical__schoolsup_yes",
+      "categorical__famsup_no",
+      "categorical__famsup_yes",
+      "categorical__paid_no",
+      "categorical__paid_yes",
+      "categorical__activities_no",
+      "categorical__activities_yes",
+      "categorical__nursery_no",
+      "categorical__nursery_yes",
+      "categorical__higher_no",
+      "categorical__higher_yes",
+      "categorical__internet_no",
+      "categorical__internet_yes",
+      "categorical__romantic_no",
+      "categorical__romantic_yes"
+    ],
+    "original": [
+      "age",
+      "Medu",
+      "Fedu",
+      "traveltime",
+      "studytime",
+      "failures",
+      "famrel",
+      "freetime",
+      "goout",
+      "Dalc",
+      "Walc",
+      "health",
+      "absences",
+      "school",
+      "sex",
+      "address",
+      "famsize",
+      "Pstatus",
+      "Mjob",
+      "Fjob",
+      "reason",
+      "guardian",
+      "schoolsup",
+      "famsup",
+      "paid",
+      "activities",
+      "nursery",
+      "higher",
+      "internet",
+      "romantic"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__age",
+        "original_name": "age",
+        "coefficient": -0.4766155813433974
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__Medu",
+        "original_name": "Medu",
+        "coefficient": 0.50375296915121
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__Fedu",
+        "original_name": "Fedu",
+        "coefficient": -0.16126706350882125
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__traveltime",
+        "original_name": "traveltime",
+        "coefficient": -0.1808300848124244
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__studytime",
+        "original_name": "studytime",
+        "coefficient": 0.632581136629517
+      },
+      {
+        "position": 5,
+        "encoded_name": "numeric__failures",
+        "original_name": "failures",
+        "coefficient": -1.3616977196743096
+      },
+      {
+        "position": 6,
+        "encoded_name": "numeric__famrel",
+        "original_name": "famrel",
+        "coefficient": 0.2593460590902586
+      },
+      {
+        "position": 7,
+        "encoded_name": "numeric__freetime",
+        "original_name": "freetime",
+        "coefficient": 0.25387445196837943
+      },
+      {
+        "position": 8,
+        "encoded_name": "numeric__goout",
+        "original_name": "goout",
+        "coefficient": -0.46731398277900477
+      },
+      {
+        "position": 9,
+        "encoded_name": "numeric__Dalc",
+        "original_name": "Dalc",
+        "coefficient": -0.13084388708045136
+      },
+      {
+        "position": 10,
+        "encoded_name": "numeric__Walc",
+        "original_name": "Walc",
+        "coefficient": 0.0544284630798202
+      },
+      {
+        "position": 11,
+        "encoded_name": "numeric__health",
+        "original_name": "health",
+        "coefficient": -0.2064421188476145
+      },
+      {
+        "position": 12,
+        "encoded_name": "numeric__absences",
+        "original_name": "absences",
+        "coefficient": 0.5575901263821073
+      },
+      {
+        "position": 13,
+        "encoded_name": "categorical__school_GP",
+        "original_name": "school",
+        "coefficient": -0.3631960162641065
+      },
+      {
+        "position": 14,
+        "encoded_name": "categorical__school_MS",
+        "original_name": "school",
+        "coefficient": 0.363196016264108
+      },
+      {
+        "position": 15,
+        "encoded_name": "categorical__sex_F",
+        "original_name": "sex",
+        "coefficient": -0.7479553090376068
+      },
+      {
+        "position": 16,
+        "encoded_name": "categorical__sex_M",
+        "original_name": "sex",
+        "coefficient": 0.7479553090376068
+      },
+      {
+        "position": 17,
+        "encoded_name": "categorical__address_R",
+        "original_name": "address",
+        "coefficient": -0.17185752307634175
+      },
+      {
+        "position": 18,
+        "encoded_name": "categorical__address_U",
+        "original_name": "address",
+        "coefficient": 0.1718575230763424
+      },
+      {
+        "position": 19,
+        "encoded_name": "categorical__famsize_GT3",
+        "original_name": "famsize",
+        "coefficient": -0.3481865050182208
+      },
+      {
+        "position": 20,
+        "encoded_name": "categorical__famsize_LE3",
+        "original_name": "famsize",
+        "coefficient": 0.3481865050182208
+      },
+      {
+        "position": 21,
+        "encoded_name": "categorical__Pstatus_A",
+        "original_name": "Pstatus",
+        "coefficient": 0.322556747524829
+      },
+      {
+        "position": 22,
+        "encoded_name": "categorical__Pstatus_T",
+        "original_name": "Pstatus",
+        "coefficient": -0.3225567475248289
+      },
+      {
+        "position": 23,
+        "encoded_name": "categorical__Mjob_at_home",
+        "original_name": "Mjob",
+        "coefficient": -0.08399294214758302
+      },
+      {
+        "position": 24,
+        "encoded_name": "categorical__Mjob_health",
+        "original_name": "Mjob",
+        "coefficient": 1.0383286287507554
+      },
+      {
+        "position": 25,
+        "encoded_name": "categorical__Mjob_other",
+        "original_name": "Mjob",
+        "coefficient": -0.3517108019318447
+      },
+      {
+        "position": 26,
+        "encoded_name": "categorical__Mjob_services",
+        "original_name": "Mjob",
+        "coefficient": 0.589838427977058
+      },
+      {
+        "position": 27,
+        "encoded_name": "categorical__Mjob_teacher",
+        "original_name": "Mjob",
+        "coefficient": -1.1924633126483852
+      },
+      {
+        "position": 28,
+        "encoded_name": "categorical__Fjob_at_home",
+        "original_name": "Fjob",
+        "coefficient": -0.04803955921675618
+      },
+      {
+        "position": 29,
+        "encoded_name": "categorical__Fjob_health",
+        "original_name": "Fjob",
+        "coefficient": 0.09719035987868763
+      },
+      {
+        "position": 30,
+        "encoded_name": "categorical__Fjob_other",
+        "original_name": "Fjob",
+        "coefficient": -0.4784701495161594
+      },
+      {
+        "position": 31,
+        "encoded_name": "categorical__Fjob_services",
+        "original_name": "Fjob",
+        "coefficient": -0.46262582587419965
+      },
+      {
+        "position": 32,
+        "encoded_name": "categorical__Fjob_teacher",
+        "original_name": "Fjob",
+        "coefficient": 0.8919451747284279
+      },
+      {
+        "position": 33,
+        "encoded_name": "categorical__reason_course",
+        "original_name": "reason",
+        "coefficient": -0.09399113978035592
+      },
+      {
+        "position": 34,
+        "encoded_name": "categorical__reason_home",
+        "original_name": "reason",
+        "coefficient": -0.48790822877502316
+      },
+      {
+        "position": 35,
+        "encoded_name": "categorical__reason_other",
+        "original_name": "reason",
+        "coefficient": 0.3082327162442021
+      },
+      {
+        "position": 36,
+        "encoded_name": "categorical__reason_reputation",
+        "original_name": "reason",
+        "coefficient": 0.27366665231117626
+      },
+      {
+        "position": 37,
+        "encoded_name": "categorical__guardian_father",
+        "original_name": "guardian",
+        "coefficient": -0.40092863947519997
+      },
+      {
+        "position": 38,
+        "encoded_name": "categorical__guardian_mother",
+        "original_name": "guardian",
+        "coefficient": -0.16339342823151404
+      },
+      {
+        "position": 39,
+        "encoded_name": "categorical__guardian_other",
+        "original_name": "guardian",
+        "coefficient": 0.5643220677067142
+      },
+      {
+        "position": 40,
+        "encoded_name": "categorical__schoolsup_no",
+        "original_name": "schoolsup",
+        "coefficient": 0.45773498736956
+      },
+      {
+        "position": 41,
+        "encoded_name": "categorical__schoolsup_yes",
+        "original_name": "schoolsup",
+        "coefficient": -0.4577349873695608
+      },
+      {
+        "position": 42,
+        "encoded_name": "categorical__famsup_no",
+        "original_name": "famsup",
+        "coefficient": 0.6282161366023706
+      },
+      {
+        "position": 43,
+        "encoded_name": "categorical__famsup_yes",
+        "original_name": "famsup",
+        "coefficient": -0.6282161366023715
+      },
+      {
+        "position": 44,
+        "encoded_name": "categorical__paid_no",
+        "original_name": "paid",
+        "coefficient": -0.3851531804763149
+      },
+      {
+        "position": 45,
+        "encoded_name": "categorical__paid_yes",
+        "original_name": "paid",
+        "coefficient": 0.38515318047631475
+      },
+      {
+        "position": 46,
+        "encoded_name": "categorical__activities_no",
+        "original_name": "activities",
+        "coefficient": 0.31818062774420947
+      },
+      {
+        "position": 47,
+        "encoded_name": "categorical__activities_yes",
+        "original_name": "activities",
+        "coefficient": -0.3181806277442091
+      },
+      {
+        "position": 48,
+        "encoded_name": "categorical__nursery_no",
+        "original_name": "nursery",
+        "coefficient": 0.1548609191993891
+      },
+      {
+        "position": 49,
+        "encoded_name": "categorical__nursery_yes",
+        "original_name": "nursery",
+        "coefficient": -0.1548609191993885
+      },
+      {
+        "position": 50,
+        "encoded_name": "categorical__higher_no",
+        "original_name": "higher",
+        "coefficient": -0.8754400813539238
+      },
+      {
+        "position": 51,
+        "encoded_name": "categorical__higher_yes",
+        "original_name": "higher",
+        "coefficient": 0.8754400813539237
+      },
+      {
+        "position": 52,
+        "encoded_name": "categorical__internet_no",
+        "original_name": "internet",
+        "coefficient": -0.36091805428534396
+      },
+      {
+        "position": 53,
+        "encoded_name": "categorical__internet_yes",
+        "original_name": "internet",
+        "coefficient": 0.36091805428534374
+      },
+      {
+        "position": 54,
+        "encoded_name": "categorical__romantic_no",
+        "original_name": "romantic",
+        "coefficient": 0.5080834234255314
+      },
+      {
+        "position": 55,
+        "encoded_name": "categorical__romantic_yes",
+        "original_name": "romantic",
+        "coefficient": -0.5080834234255318
+      }
+    ]
+  },
+  "Correlation": {
+    "encoded": [
+      "numeric__failures"
+    ],
+    "original": [
+      "failures"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__failures",
+        "original_name": "failures",
+        "coefficient": -1.7130075403875484
+      }
+    ]
+  },
+  "Mutual Information": {
+    "encoded": [
+      "numeric__absences",
+      "numeric__failures",
+      "numeric__Medu",
+      "numeric__goout",
+      "numeric__Fedu",
+      "numeric__age",
+      "categorical__Mjob_at_home",
+      "categorical__guardian_mother",
+      "categorical__paid_no",
+      "categorical__paid_yes"
+    ],
+    "original": [
+      "absences",
+      "failures",
+      "Medu",
+      "goout",
+      "Fedu",
+      "age",
+      "Mjob",
+      "guardian",
+      "paid"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__absences",
+        "original_name": "absences",
+        "coefficient": 0.3131281022608701
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__failures",
+        "original_name": "failures",
+        "coefficient": -1.4740594698297136
+      },
+      {
+        "position": 2,
+        "encoded_name": "numeric__Medu",
+        "original_name": "Medu",
+        "coefficient": 0.5915397944817126
+      },
+      {
+        "position": 3,
+        "encoded_name": "numeric__goout",
+        "original_name": "goout",
+        "coefficient": -0.34070633672011474
+      },
+      {
+        "position": 4,
+        "encoded_name": "numeric__Fedu",
+        "original_name": "Fedu",
+        "coefficient": -0.24893714153496377
+      },
+      {
+        "position": 5,
+        "encoded_name": "numeric__age",
+        "original_name": "age",
+        "coefficient": -0.27163823999595715
+      },
+      {
+        "position": 6,
+        "encoded_name": "categorical__Mjob_at_home",
+        "original_name": "Mjob",
+        "coefficient": -0.6540841233002821
+      },
+      {
+        "position": 7,
+        "encoded_name": "categorical__guardian_mother",
+        "original_name": "guardian",
+        "coefficient": -0.3015720174433403
+      },
+      {
+        "position": 8,
+        "encoded_name": "categorical__paid_no",
+        "original_name": "paid",
+        "coefficient": -0.3615529192705806
+      },
+      {
+        "position": 9,
+        "encoded_name": "categorical__paid_yes",
+        "original_name": "paid",
+        "coefficient": 0.36155291927058075
+      }
+    ]
+  },
+  "RFE": {
+    "encoded": [
+      "numeric__failures"
+    ],
+    "original": [
+      "failures"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__failures",
+        "original_name": "failures",
+        "coefficient": -1.7130075403875484
+      }
+    ]
+  },
+  "RFECV": {
+    "encoded": [
+      "numeric__failures"
+    ],
+    "original": [
+      "failures"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__failures",
+        "original_name": "failures",
+        "coefficient": -1.7130075403875484
+      }
+    ]
+  },
+  "LASSO": {
+    "encoded": [
+      "numeric__Medu",
+      "numeric__failures",
+      "categorical__higher_no"
+    ],
+    "original": [
+      "Medu",
+      "failures",
+      "higher"
+    ],
+    "features": [
+      {
+        "position": 0,
+        "encoded_name": "numeric__Medu",
+        "original_name": "Medu",
+        "coefficient": 0.5622437941584304
+      },
+      {
+        "position": 1,
+        "encoded_name": "numeric__failures",
+        "original_name": "failures",
+        "coefficient": -1.4373065241668115
+      },
+      {
+        "position": 2,
+        "encoded_name": "categorical__higher_no",
+        "original_name": "higher",
+        "coefficient": -1.872385543881625
+      }
+    ]
+  }
+}

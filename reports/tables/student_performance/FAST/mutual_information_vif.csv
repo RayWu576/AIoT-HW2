@@ -1,0 +1,11 @@
+feature,vif,status
+numeric__absences,1.0469014414593805,estimable
+numeric__failures,1.2019911097999325,estimable
+numeric__Medu,2.0652777806884597,estimable
+numeric__goout,1.064132552840873,estimable
+numeric__Fedu,1.742711849267467,estimable
+numeric__age,1.1372898058508472,estimable
+categorical__Mjob_at_home,1.2455413594019011,estimable
+categorical__guardian_mother,1.101759823364888,estimable
+categorical__paid_no,,perfect_collinearity
+categorical__paid_yes,,perfect_collinearity

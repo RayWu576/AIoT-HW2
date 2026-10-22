@@ -1,0 +1,118 @@
+{
+  "mode": "FAST",
+  "runtime_seconds": 32.60600350005552,
+  "datasets": [
+    {
+      "id": "student_performance",
+      "runtime_seconds": 13.51781259989366,
+      "best_method": "Correlation",
+      "workflow_nested_cv_rmse": 4.274466720286452,
+      "methods": [
+        {
+          "method": "Correlation",
+          "selected_encoded_count": 1,
+          "best_cv_rmse": 4.279815132274954,
+          "nested_cv_rmse": 4.274466720286452,
+          "test_rmse": 4.3446079181111905,
+          "test_r2": 0.07946479150473329
+        },
+        {
+          "method": "RFE",
+          "selected_encoded_count": 1,
+          "best_cv_rmse": 4.279815132274954,
+          "nested_cv_rmse": 4.279815132274954,
+          "test_rmse": 4.3446079181111905,
+          "test_r2": 0.07946479150473329
+        },
+        {
+          "method": "RFECV",
+          "selected_encoded_count": 1,
+          "best_cv_rmse": 4.279815132274954,
+          "nested_cv_rmse": 4.279815132274954,
+          "test_rmse": 4.3446079181111905,
+          "test_r2": 0.07946479150473329
+        },
+        {
+          "method": "Mutual Information",
+          "selected_encoded_count": 10,
+          "best_cv_rmse": 4.316442187104588,
+          "nested_cv_rmse": 4.402703069567403,
+          "test_rmse": 4.3184857217721895,
+          "test_r2": 0.09050105150480736
+        },
+        {
+          "method": "LASSO",
+          "selected_encoded_count": 3,
+          "best_cv_rmse": 4.610949151177231,
+          "nested_cv_rmse": 4.610949151177231,
+          "test_rmse": 4.3106887604761175,
+          "test_r2": 0.09378226020311253
+        },
+        {
+          "method": "Baseline",
+          "selected_encoded_count": 56,
+          "best_cv_rmse": 4.787602099700388,
+          "nested_cv_rmse": 4.787602099700388,
+          "test_rmse": 4.195680802721379,
+          "test_r2": 0.14149247411195764
+        }
+      ]
+    },
+    {
+      "id": "appliances_energy",
+      "runtime_seconds": 19.0554244001396,
+      "best_method": "Mutual Information",
+      "workflow_nested_cv_rmse": 98.98859214634174,
+      "methods": [
+        {
+          "method": "Mutual Information",
+          "selected_encoded_count": 10,
+          "best_cv_rmse": 96.02855699657471,
+          "nested_cv_rmse": 96.18271409690149,
+          "test_rmse": 93.19654936714498,
+          "test_r2": -0.04797082560072563
+        },
+        {
+          "method": "RFE",
+          "selected_encoded_count": 10,
+          "best_cv_rmse": 98.29362664469768,
+          "nested_cv_rmse": 100.02056945394634,
+          "test_rmse": 87.05563044104639,
+          "test_r2": 0.08558517830204448
+        },
+        {
+          "method": "RFECV",
+          "selected_encoded_count": 10,
+          "best_cv_rmse": 98.29362664469768,
+          "nested_cv_rmse": 100.02056945394634,
+          "test_rmse": 87.05563044104639,
+          "test_r2": 0.08558517830204448
+        },
+        {
+          "method": "Correlation",
+          "selected_encoded_count": 5,
+          "best_cv_rmse": 98.43819271842344,
+          "nested_cv_rmse": 98.98859214634174,
+          "test_rmse": 94.74690794102182,
+          "test_r2": -0.08312758962914768
+        },
+        {
+          "method": "LASSO",
+          "selected_encoded_count": 4,
+          "best_cv_rmse": 99.25775501376799,
+          "nested_cv_rmse": 99.25775501376799,
+          "test_rmse": 94.7311777792986,
+          "test_r2": -0.08276797139587089
+        },
+        {
+          "method": "Baseline",
+          "selected_encoded_count": 25,
+          "best_cv_rmse": 100.47101772856209,
+          "nested_cv_rmse": 100.47101772856209,
+          "test_rmse": 86.73293851865498,
+          "test_r2": 0.09235159638436541
+        }
+      ]
+    }
+  ]
+}

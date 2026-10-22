@@ -1,0 +1,71 @@
+method,position,encoded_name,original_name,coefficient
+Mutual Information,-1,Intercept,,98.0244489485686
+Mutual Information,0,numeric__T3,T3,42.31262338515825
+Mutual Information,1,numeric__T5,T5,-11.554523865179824
+Mutual Information,2,numeric__T8,T8,11.466210587130231
+Mutual Information,3,numeric__T9,T9,-42.32509976782406
+Mutual Information,4,numeric__RH_6,RH_6,-5.532711336693664
+Mutual Information,5,numeric__T4,T4,6.224071361538283
+Mutual Information,6,numeric__RH_8,RH_8,-34.543805018009564
+Mutual Information,7,numeric__T7,T7,-7.839049031627414
+Mutual Information,8,numeric__Press_mm_hg,Press_mm_hg,-5.272440638456819
+Mutual Information,9,numeric__RH_7,RH_7,17.87993996796939
+RFE,-1,Intercept,,98.02444894856865
+RFE,0,numeric__RH_8,RH_8,-32.90740413291975
+RFE,1,numeric__RH_1,RH_1,48.35620328075757
+RFE,2,numeric__RH_2,RH_2,-46.59932183579789
+RFE,3,numeric__RH_3,RH_3,21.76332141657261
+RFE,4,numeric__T3,T3,39.033596528719436
+RFE,5,numeric__T2,T2,-27.138826743756336
+RFE,6,numeric__T6,T6,28.13904816220548
+RFE,7,numeric__T_out,T_out,-20.54735750796376
+RFE,8,numeric__lights,lights,18.331534843179526
+RFE,9,numeric__T9,T9,-16.217768021371874
+RFECV,-1,Intercept,,98.02444894856865
+RFECV,0,numeric__RH_8,RH_8,-32.90740413291975
+RFECV,1,numeric__RH_1,RH_1,48.35620328075757
+RFECV,2,numeric__RH_2,RH_2,-46.59932183579789
+RFECV,3,numeric__RH_3,RH_3,21.76332141657261
+RFECV,4,numeric__T3,T3,39.033596528719436
+RFECV,5,numeric__T2,T2,-27.138826743756336
+RFECV,6,numeric__T6,T6,28.13904816220548
+RFECV,7,numeric__T_out,T_out,-20.54735750796376
+RFECV,8,numeric__lights,lights,18.331534843179526
+RFECV,9,numeric__T9,T9,-16.217768021371874
+Correlation,-1,Intercept,,98.02444894856852
+Correlation,0,numeric__lights,lights,23.432757602665763
+Correlation,1,numeric__T2,T2,3.2039881948211524
+Correlation,2,numeric__RH_out,RH_out,-14.03365362571941
+Correlation,3,numeric__T6,T6,0.3407404804090111
+Correlation,4,numeric__T3,T3,8.401449625124533
+LASSO,-1,Intercept,,98.02444894856852
+LASSO,0,numeric__lights,lights,23.41918357167851
+LASSO,1,numeric__T2,T2,3.324954662472305
+LASSO,2,numeric__T3,T3,8.47852393422865
+LASSO,3,numeric__RH_out,RH_out,-14.139078180634701
+Baseline,-1,Intercept,,98.02444894856862
+Baseline,0,numeric__lights,lights,17.892507645141034
+Baseline,1,numeric__T1,T1,-7.73936928454712
+Baseline,2,numeric__RH_1,RH_1,46.186903689779605
+Baseline,3,numeric__T2,T2,-20.026615777376474
+Baseline,4,numeric__RH_2,RH_2,-42.15597613788986
+Baseline,5,numeric__T3,T3,41.51234141546284
+Baseline,6,numeric__RH_3,RH_3,27.673214436210827
+Baseline,7,numeric__T4,T4,-5.724279982334662
+Baseline,8,numeric__RH_4,RH_4,-10.455758890748973
+Baseline,9,numeric__T5,T5,-2.1656209720417383
+Baseline,10,numeric__RH_5,RH_5,0.9540379032449349
+Baseline,11,numeric__T6,T6,35.704894360320075
+Baseline,12,numeric__RH_6,RH_6,9.459244988350957
+Baseline,13,numeric__T7,T7,1.6945222008114873
+Baseline,14,numeric__RH_7,RH_7,-2.463558517830539
+Baseline,15,numeric__T8,T8,15.359281216980992
+Baseline,16,numeric__RH_8,RH_8,-31.165474788192817
+Baseline,17,numeric__T9,T9,-20.457403819354806
+Baseline,18,numeric__RH_9,RH_9,-4.060149690484849
+Baseline,19,numeric__T_out,T_out,-35.61894198922977
+Baseline,20,numeric__Press_mm_hg,Press_mm_hg,1.7374793518525913
+Baseline,21,numeric__RH_out,RH_out,-6.730046290637423
+Baseline,22,numeric__Windspeed,Windspeed,3.254295983370416
+Baseline,23,numeric__Visibility,Visibility,2.3525195851878538
+Baseline,24,numeric__Tdewpoint,Tdewpoint,13.033879958998005

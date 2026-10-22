@@ -1,0 +1,4 @@
+,numeric__Medu,numeric__failures,categorical__higher_no
+numeric__Medu,1.0,-0.24696153160426637,-0.16727958532671428
+numeric__failures,-0.24696153160426637,1.0,0.31534593029378427
+categorical__higher_no,-0.16727958532671428,0.31534593029378427,1.0

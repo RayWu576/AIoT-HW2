@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "curve_models": 201,
+  "row_predictions": 12041,
+  "official_pipelines": 10
+}

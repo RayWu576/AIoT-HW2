@@ -1,0 +1,45 @@
+{
+  "source": "https://www.kaggle.com/api/v1/datasets/download/larsen0966/student-performance-data-set",
+  "files": [
+    {
+      "file": "student-por.csv",
+      "rows": 649,
+      "columns": [
+        "school",
+        "sex",
+        "age",
+        "address",
+        "famsize",
+        "Pstatus",
+        "Medu",
+        "Fedu",
+        "Mjob",
+        "Fjob",
+        "reason",
+        "guardian",
+        "traveltime",
+        "studytime",
+        "failures",
+        "schoolsup",
+        "famsup",
+        "paid",
+        "activities",
+        "nursery",
+        "higher",
+        "internet",
+        "romantic",
+        "famrel",
+        "freetime",
+        "goout",
+        "Dalc",
+        "Walc",
+        "health",
+        "absences",
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "sha256": "5be7b02f13f5800fddd66e2c8d834cd00ece14c552fb404def2397b31b63236b"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+method,inner_cv_rmse,inner_cv_std,outer_nested_cv_rmse,outer_nested_cv_std,selection_basis
+Mutual Information,96.02855699657471,1.0752448635896883,96.18271409690149,1.2294019639164802,training-only inner CV; test never selects model
+RFE,98.29362664469768,1.6599004467428955,100.02056945394634,0.06704236250575946,training-only inner CV; test never selects model
+RFECV,98.29362664469768,1.6599004467428955,100.02056945394634,0.06704236250575946,training-only inner CV; test never selects model
+Correlation,98.43819271842344,0.04804434163367688,98.98859214634174,0.5984437695519773,training-only inner CV; test never selects model
+LASSO,99.25775501376799,0.6517051403392671,99.25775501376799,0.6517051403392671,training-only inner CV; test never selects model
+Baseline,100.47101772856209,2.8834261941185844,100.47101772856209,2.8834261941185844,training-only inner CV; test never selects model
