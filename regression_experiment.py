@@ -11,7 +11,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import GridSearchCV, cross_val_score
 from sklearn.pipeline import Pipeline
 from threadpoolctl import threadpool_limits
-from datasets import OFFICIAL_DATASETS, load_dataset, make_preprocessor, holdout_indices, make_cv
+from datasets.config import LEGACY_DATASETS as OFFICIAL_DATASETS
+from datasets import load_dataset, make_preprocessor, holdout_indices, make_cv
 from feature_selection import OfficialSelector
 from dashboard_export import export_official_dashboard
 
@@ -167,7 +168,7 @@ def main():
     parser.add_argument("--dataset", choices=["all", *OFFICIAL_DATASETS], default="all")
     parser.add_argument("--export-only", action="store_true", help="Rebuild dashboard from recorded training CV choices")
     args = parser.parse_args()
-    output = ROOT / "dashboard" / "dist"
+    output = ROOT / "results" / "historical_student_car"
     payloads = {}
     if args.dataset != "all" and (output / "data.json").exists():
         payloads = {k:v for k,v in json.loads((output/"data.json").read_text(encoding="utf-8")).get("datasets", {}).items() if k in OFFICIAL_DATASETS}

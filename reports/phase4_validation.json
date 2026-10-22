@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "runtime_seconds": 55.27946300012991,
+  "asset_sha256": {
+    "app.js": "d0b917b77c460c670d1fd4e2204175942c52e7a740c78da9e219d2472888b3ff",
+    "prediction.js": "f752f3f43807d4c704183c50de02ead625dae85bdfcf8ea07b83ef627426f38f",
+    "styles.css": "c182f15de9610eea6de6a71d22479d05921d4a316fd5f146246b1563697d2070",
+    "index.html": "cb9767141f30a873bfde2eeac8a800cc077f76f6610bda89a71639c91d1a05b1",
+    "data.json": "5847f119c34afb848866ec30acc0cf035c00f402e9a12f0505f7c8915278b5a5",
+    "data.js": "0352fe52809daa72dbfd9b15949feaa6180333223efc2bd27a2e2db072a6801c"
+  },
+  "counts": {
+    "models": 46,
+    "predictions": 92598,
+    "interval_rows": 24156,
+    "missing_unknown_cases": 138,
+    "ui_checks": 46
+  },
+  "max_prediction_absolute_error": 3.346244170643331e-09,
+  "max_interval_absolute_error": 3.430159267736599e-09,
+  "javascript_errors": [],
+  "viewports": [
+    1440,
+    768,
+    390,
+    320
+  ],
+  "deployment_verified": false
+}

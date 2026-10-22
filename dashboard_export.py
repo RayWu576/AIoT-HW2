@@ -50,7 +50,7 @@ def export_dashboard(curves, X_train, X_test, y_train, y_test, comparison, datas
         ranges={name: dict(min=float(X_train[name].min()), max=float(X_train[name].max()))
                 for name in X_train.columns}
     )
-    output = Path(__file__).resolve().parent / "dashboard" / "dist"
+    output = Path(__file__).resolve().parent / "results" / "historical_boston_startups"
     output.mkdir(parents=True, exist_ok=True)
     metadata = dict(metadata or {
         "id": "startups", "title": "50 Startups", "problem": "50 Startups：公司利潤預測",
@@ -211,14 +211,32 @@ def export_official_dashboard(data, X_train, X_test, y_train, y_test, comparison
 
 
 def write_official_bundle(payloads):
-    """Publish only official dataset IDs, retaining the two-problem bundle format."""
-    from datasets import OFFICIAL_DATASETS
+    """Historical schema-4 writer; never overwrite the Phase 4 dashboard."""
+    from datasets.config import LEGACY_DATASETS as OFFICIAL_DATASETS
     if set(payloads) - set(OFFICIAL_DATASETS):
         raise ValueError("Unexpected official dashboard dataset")
-    output = Path(__file__).resolve().parent / "dashboard" / "dist"
+    output = Path(__file__).resolve().parent / "results" / "historical_student_car"
     output.mkdir(parents=True, exist_ok=True)
     bundle = {"schemaVersion": 4, "datasets": {k:payloads[k] for k in OFFICIAL_DATASETS if k in payloads}}
     encoded = json.dumps(bundle, ensure_ascii=False, allow_nan=False)
     (output / "data.json").write_text(encoded, encoding="utf-8")
     (output / "data.js").write_text("window.DASHBOARD_DATA = " + encoded + ";\n", encoding="utf-8")
     refresh_asset_versions(output)
+
+
+def export_current_dashboard(mode='FAST'):
+    """Phase 4 entry point; legacy export functions remain historical references."""
+    from dashboard_integration import export_dashboard
+    return export_dashboard(mode)
+
+
+def main():
+    import argparse
+    parser=argparse.ArgumentParser(description='Export the official Student/Energy static dashboard from Phase 2/3 artifacts')
+    parser.add_argument('--mode',choices=['FAST','FULL'],default='FAST',type=str.upper)
+    args=parser.parse_args()
+    export_current_dashboard(args.mode)
+
+
+if __name__=='__main__':
+    main()

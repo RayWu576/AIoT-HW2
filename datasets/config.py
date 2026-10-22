@@ -49,12 +49,15 @@ CAR = DatasetConfig("car_price", "Car Price Prediction", "CarPrice_Assignment.cs
                     tuple(c for c in CAR_COLUMNS if c not in (*CAR_CATEGORICAL, "car_ID", "price")),
                     CAR_CATEGORICAL, CAR_COLUMNS, 205, ",", "random", ("car_ID",))
 STUDENT = student_config(include_prior_grades=False)
-OFFICIAL_DATASETS = {c.dataset_id: c for c in (STUDENT, CAR)}
+LEGACY_DATASETS = {c.dataset_id: c for c in (STUDENT, CAR)}
 
-# Phase 2 backend scope requested separately from the preserved car dashboard.
+# Energy is the official Phase 2-4 problem; Car remains a historical reference.
 ENERGY_COLUMNS = tuple(["date", "Appliances", "lights"] + [c for i in range(1, 10) for c in (f"T{i}", f"RH_{i}")] + ["T_out", "Press_mm_hg", "RH_out", "Windspeed", "Visibility", "Tdewpoint", "rv1", "rv2"])
 ENERGY = DatasetConfig("appliances_energy", "Appliances Energy Prediction", "energydata_complete.csv",
                        "Appliances", "Wh",
                        tuple(c for c in ENERGY_COLUMNS if c not in ("date", "Appliances", "rv1", "rv2")),
                        (), ENERGY_COLUMNS, 19735, ",", "chronological", ("date", "rv1", "rv2"))
 PHASE2_DATASETS = {c.dataset_id: c for c in (STUDENT, ENERGY)}
+
+# Phase 4 official dashboard follows the completed Phase 2/3 scope.
+OFFICIAL_DATASETS = PHASE2_DATASETS
