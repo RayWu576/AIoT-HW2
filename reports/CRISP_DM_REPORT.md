@@ -3,9 +3,9 @@
 ## 摘要
 
 本研究以三個真實資料問題實作 Multiple Linear Regression、Baseline 與五種 Feature Selection，
-採 training-only nested CV、獨立 holdout、五假設診斷、95% 區間與雙題靜態互動儀表板。
+採 training-only nested CV、獨立 holdout、五假設診斷、95% 區間與三題靜態互動儀表板。
 全部表格／圖檔來自實際 FAST 產物，沒有虛構結果。
-三題樣本與切分不同；RMSE 目標單位是 grade 與 Wh，不能直接比較大小判定哪題模型較好。
+三題樣本與切分不同；RMSE 目標單位是 grade、Wh 與 USD，不能直接比較大小判定哪題模型較好。
 
 ## 緒論與問題定義
 
@@ -214,7 +214,7 @@ Koenker-Breusch-Pagan 未拒絕等變異，但不等於證明等變異；選擇�
 
 既有靜態 DataLab 讀取 Python 真實產出的 schema-5 descriptor、係數、covariance、指標與殘差。
 瀏覽器重現訓練補值、縮放、one-hot 和精確欄序，並逐筆與 Python 核對。
-保留雙題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
+保留三題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
 本機與 nested HTTP path 通過不等於公開 GitHub Pages 已更新；公開部署狀態以實際驗證為準。
 
 ### 本題實際圖表
@@ -396,7 +396,7 @@ Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳�
 
 既有靜態 DataLab 讀取 Python 真實產出的 schema-5 descriptor、係數、covariance、指標與殘差。
 瀏覽器重現訓練補值、縮放、one-hot 和精確欄序，並逐筆與 Python 核對。
-保留雙題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
+保留三題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
 本機與 nested HTTP path 通過不等於公開 GitHub Pages 已更新；公開部署狀態以實際驗證為準。
 
 ### 本題實際圖表
@@ -578,7 +578,7 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 
 既有靜態 DataLab 讀取 Python 真實產出的 schema-5 descriptor、係數、covariance、指標與殘差。
 瀏覽器重現訓練補值、縮放、one-hot 和精確欄序，並逐筆與 Python 核對。
-保留雙題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
+保留三題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
 本機與 nested HTTP path 通過不等於公開 GitHub Pages 已更新；公開部署狀態以實際驗證為準。
 
 ### 本題實際圖表
@@ -633,13 +633,26 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 
 ## 結論
 
-完成可追溯的雙題線性迴歸、五種特徵選擇、完整診斷與互動介面。
+完成可追溯的三題線性迴歸、五種特徵選擇、完整診斷與互動介面。
 保留負 R²、常態性違反、自相關等實際限制，不以測試資料重選方法，不宣稱傳統區間已校準或模型具有因果效果。
 
 ## AI 協助紀錄與待補附件
 
-[AI_ASSISTANCE.md](AI_ASSISTANCE.md) 保留使用者真實 ChatGPT 對話 PDF、NotebookLM 至少 100 中文字摘要與最終 PDF 匯出的明確待辦。
-沒有假稱使用 NotebookLM，沒有虛構對話或截圖。請補姓名／學號／課程與最終排版。
+[AI_ASSISTANCE.md](AI_ASSISTANCE.md) 已收錄使用者提供的 NotebookLM 摘要；原始引用與使用日期、真實 ChatGPT 對話 PDF 及最終 PDF 匯出仍待補。
+摘要屬研究對照，不把尚未實作的 RFE＋VIF、Random Forest 或 XGBoost 當作本專案結果。請補姓名／學號／課程與最終排版。
+
+## **NotebookLM** 對同主題的解法進行研究
+
+以下為**使用者提供的 NotebookLM 研究摘要原文**，保留其研究觀點；本環境未操作 NotebookLM 或取得摘要所依據的原始引用。此段不是本專案的實驗結果。
+
+> 本研究基於 Kaggle 汽車價格預測與葡萄牙中學生學業表現數據集，探討多元線性迴歸（MLR）在迴歸預測問題中的應用實作與優化策略。資料前處理階段針對兩數據集中的人口統計、車輛規格及類別變數執行獨熱編碼（One-Hot Encoding）與資料清洗。特徵選擇方面，進階實作採用遞迴特徵消除（RFE）結合變異數膨脹因子（VIF）來消除多重共線性，提升模型係數之可解釋性；學生數據則針對前期成績（G1、G2）與最終成績（G3）的高相關性進行結構分析。模型評估採用 $R^2$、MAE 與 RMSE 等指標衡量預測誤差，並與隨機森林及 XGBoost 等非線性模型比對。相較於傳統直接擬合的線性迴歸，導入 RFE+VIF 機制能顯著改善變數共線問題；未來可進一步引入 Lasso/Ridge 正則化及非線性交互作用項，提升模型泛化能力與預測精準度。
+
+- NotebookLM 實際使用日期：**［待填］**
+- 上傳來源清單與逐項引用位置：**［待填］**
+- 來源引用／人工核對結果：**［待填］**
+
+後續來源核對可包含原始 UCI／Kaggle 資料說明、scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案真實 CSV 指標與圖表。不要把來源中的其他模型結果直接當成本專案結果。
+
 
 ## 圖表索引與驗收
 

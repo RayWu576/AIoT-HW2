@@ -43,10 +43,17 @@ class Phase5Tests(unittest.TestCase):
             for target in re.findall(r'\]\(([^)]+)\)',text):
                 if target.startswith(('http:','https:','#')):continue
                 self.assertTrue((path.parent/target.split('#')[0]).exists(),(path,target))
-    def test_ai_records_are_explicitly_unfinished(self):
+    def test_ai_records_preserve_supplied_summary_and_pending_citations(self):
         text=(ROOT/'reports/AI_ASSISTANCE.md').read_text(encoding='utf-8')
         self.assertIn('100',text)
-        self.assertIn('未宣稱已使用 NotebookLM',text)
+        self.assertIn('使用者提供',text)
+        self.assertIn('來源引用',text)
+        self.assertIn('RFE+VIF',text)
+        supplied=(ROOT/'docs/NOTEBOOKLM_RESEARCH.md').read_text(encoding='utf-8')
+        paragraph=next(line[2:] for line in supplied.splitlines() if line.startswith('> '))
+        self.assertGreaterEqual(len(re.findall(r'[\u4e00-\u9fff]',paragraph)),100)
+        self.assertIn(paragraph,(ROOT/'README.md').read_text(encoding='utf-8'))
+
         self.assertIn('待填',text)
         self.assertIn('真實 ChatGPT',text)
         self.assertIn('PDF',text)

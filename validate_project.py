@@ -114,7 +114,7 @@ def main():
             'browser':json.loads((ROOT/'reports/phase4_validation.json').read_text(encoding='utf-8')),
             'runtime_seconds':perf_counter()-started,
             'deployment_verified':False,'commit_or_push_performed':False,
-            'manual_remaining':['NotebookLM source-grounded >=100 Chinese-character summary',
+            'manual_remaining':['NotebookLM original source citations and usage date (user supplied summary received)',
                                 'Actual ChatGPT conversation PDF','Final report PDF export']}
     (OUT/'validation.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k not in ['browser','steps']},indent=2),flush=True)

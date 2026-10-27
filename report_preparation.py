@@ -182,7 +182,7 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 
 既有靜態 DataLab 讀取 Python 真實產出的 schema-5 descriptor、係數、covariance、指標與殘差。
 瀏覽器重現訓練補值、縮放、one-hot 和精確欄序，並逐筆與 Python 核對。
-保留雙題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
+保留三題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
 本機與 nested HTTP path 通過不等於公開 GitHub Pages 已更新；公開部署狀態以實際驗證為準。
 
 ### 本題實際圖表
@@ -199,9 +199,9 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 ## 摘要
 
 本研究以三個真實資料問題實作 Multiple Linear Regression、Baseline 與五種 Feature Selection，
-採 training-only nested CV、獨立 holdout、五假設診斷、95% 區間與雙題靜態互動儀表板。
+採 training-only nested CV、獨立 holdout、五假設診斷、95% 區間與三題靜態互動儀表板。
 全部表格／圖檔來自實際 {mode} 產物，沒有虛構結果。
-三題樣本與切分不同；RMSE 目標單位是 grade 與 Wh，不能直接比較大小判定哪題模型較好。
+三題樣本與切分不同；RMSE 目標單位是 grade、Wh 與 USD，不能直接比較大小判定哪題模型較好。
 
 ## 緒論與問題定義
 
@@ -257,13 +257,15 @@ Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不�
 
 ## 結論
 
-完成可追溯的雙題線性迴歸、五種特徵選擇、完整診斷與互動介面。
+完成可追溯的三題線性迴歸、五種特徵選擇、完整診斷與互動介面。
 保留負 R²、常態性違反、自相關等實際限制，不以測試資料重選方法，不宣稱傳統區間已校準或模型具有因果效果。
 
 ## AI 協助紀錄與待補附件
 
-[AI_ASSISTANCE.md](AI_ASSISTANCE.md) 保留使用者真實 ChatGPT 對話 PDF、NotebookLM 至少 100 中文字摘要與最終 PDF 匯出的明確待辦。
-沒有假稱使用 NotebookLM，沒有虛構對話或截圖。請補姓名／學號／課程與最終排版。
+[AI_ASSISTANCE.md](AI_ASSISTANCE.md) 已收錄使用者提供的 NotebookLM 摘要；原始引用與使用日期、真實 ChatGPT 對話 PDF 及最終 PDF 匯出仍待補。
+摘要屬研究對照，不把尚未實作的 RFE＋VIF、Random Forest 或 XGBoost 當作本專案結果。請補姓名／學號／課程與最終排版。
+
+{(ROOT/'docs/NOTEBOOKLM_RESEARCH.md').read_text(encoding='utf-8')}
 
 ## 圖表索引與驗收
 
@@ -279,11 +281,11 @@ Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不�
         [[n,k,name,desc,section,f'[開啟]({path})'] for n,k,name,desc,section,path in figures]))
     with (REPORTS/'figure_index.csv').open('w',encoding='utf-8-sig',newline='') as stream:
         writer=csv.writer(stream);writer.writerow(['figure_number','dataset_id','filename','description','section','path']);writer.writerows(figures)
-    write(REPORTS/'AI_ASSISTANCE.md',"""# AI Assistance Documentation — 待使用者完成
+    write(REPORTS/'AI_ASSISTANCE.md',f"""# AI Assistance Documentation — 摘要已提供，引用與附件待補
 
 ## A. ChatGPT Assistance Record
 
-狀態：尚未附使用者真實 ChatGPT 對話 PDF。請匯出本作業實際對話，保留需求、修正、測試與限制；
+尚未附使用者真實 ChatGPT 對話 PDF。請匯出本作業實際對話，保留需求、修正、測試與限制；
 檢查個資／憑證後附上，不將程式執行紀錄冒充對話 PDF。
 
 - 實際 PDF 檔名／位置：**［待填］**
@@ -292,25 +294,59 @@ Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不�
 
 ## B. NotebookLM Research Summary
 
-狀態：**未宣稱已使用 NotebookLM**。請上傳真實的 UCI 原始說明／研究文獻、Kaggle 來源與版本差異、
-scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案 README、CRISP_DM_REPORT、實際 CSV 指標與圖表索引。
-不得上傳憑證或個資。
+狀態：已收到使用者提供的 NotebookLM 研究摘要，超過 100 個中文字。原文及對照如下；來源引用與使用日期仍待補。
 
-請自行完成至少 **100 個中文字**的來源導向摘要，說明三題情境、資料差異、洩漏防治、五假設證據與區間限制；
-確認 NotebookLM 引用真的支持每項敘述，不把生成建議當成本專案已執行的實驗。
-
-- NotebookLM 實際使用日期與來源清單：**［待填］**
-- 至少 100 中文字摘要：**［使用者依實際 NotebookLM 輸出填入］**
-- 引用位置／人工核對：**［待填］**
+{(ROOT/'docs/NOTEBOOKLM_RESEARCH.md').read_text(encoding='utf-8')}
 
 ## C. 最終 PDF 報告
 
-使用 CRISP_DM_REPORT.md 為稿，補姓名／學號／課程、頁碼與附件，再用 Markdown 編輯器或 Pandoc 匯出 PDF。
-人工檢查中文字型、公式、39 張 PNG、跨頁表格與連結。這裡只交付 Markdown／PNG，不宣稱 PDF 已完成。
+使用 README.md 或 CRISP_DM_REPORT.md 為稿，補姓名／學號／課程、頁碼及附件，再用 Markdown 編輯器或 Pandoc 匯出 PDF。
+人工檢查中文字型、公式、39 張 PNG、跨頁表格及連結。此處不宣稱 PDF 已完成。
 """)
+
     write(REPORTS/'phase5/report_manifest.json',json.dumps(
         {'mode':mode,'full_executed_in_phase5':False,'figure_count':len(figures),'datasets':manifests},indent=2))
     return overview_table,comparison_table,timing_table
+
+
+def readme_evidence(mode):
+    """Read report-only evidence; no fitting, inference changes, or external AI calls."""
+    labels={'student_performance':'學生','appliances_energy':'能源','car_price':'汽車'}
+    names={'linearity':'線性','independence':'獨立性','homoscedasticity':'等變異','normality':'常態性','multicollinearity':'共線性'}
+    metric_rows,diagnostic_rows=[],[]
+    def ptext(value):
+        return '不適用' if value is None else '低於浮點精度' if value==0 else format(value,'.2e') if value<.0001 else f(value)
+    for key in OFFICIAL_DATASETS:
+        run=read(ROOT/'results'/key/mode/'run.json')
+        method=run['best_model']['method']
+        with (REPORTS/'tables'/key/mode/'evaluation_metrics.csv').open(encoding='utf-8',newline='') as stream:
+            for row in csv.DictReader(stream):
+                if row['method']!=method:continue
+                metric_rows.append([labels[key],method,row['split'],row['fitted_design_rank'],
+                    *[f(float(row[n])) if row[n] else '不適用' for n in ['mae','mse','rmse','r2','adjusted_r2']]])
+        diag=read(REPORTS/'tables'/key/mode/'diagnostics.json')['models'][method]
+        for a in diag['assumptions']:
+            t=a['statistic'];kind=a['assumption']
+            if kind=='linearity':stat='分箱殘差均值跨度 '+f(t.get('bin_mean_span_residual_sd'),3)+' SD'
+            elif kind=='independence':stat='DW='+f(t.get('durbin_watson'),3)+'；lag-1 ACF='+f(t.get('acf',[None,None])[1],3)
+            elif kind=='homoscedasticity':stat='LM='+f(t.get('lm_statistic'))+'；p='+ptext(t.get('lm_pvalue'))
+            elif kind=='normality':stat=str(t.get('test',''))+'；p='+ptext(t.get('pvalue'))+'；偏態='+f(t.get('skewness'),3)
+            else:stat='rank='+str(t.get('rank'))+'/'+str(t.get('columns_with_intercept'))+'；完美共線欄數='+str(t.get('perfectly_collinear_columns'))
+            status='可能違反假設' if a['possible_violation'] is True else '未觸發篩檢，非證實成立' if a['possible_violation'] is False else '描述性觀察，非證實成立'
+            diagnostic_rows.append([labels[key],names[kind],stat,status])
+    validation_path=REPORTS/'phase5/validation.json'
+    validation=read(validation_path) if validation_path.is_file() else {}
+    if validation.get('passed'):
+        unit=validation['unit_tests'];browser=validation['browser']
+        verification=('最近一輪完整驗收：**'+str(unit['passed'])+' 項單元測試通過、'+str(unit['failures'])+' 失敗、'+str(unit['skipped'])+' 跳過**；後端、診斷及瀏覽器整合均通過。瀏覽器核對 '+
+                      format(browser['counts']['models'],',')+' 個候選模型、'+format(browser['counts']['predictions'],',')+' 筆預測及 '+format(browser['counts']['interval_rows'],',')+
+                      ' 筆區間，沒有 JavaScript 執行錯誤；另檢查 1440／768／390／320 px、CSV、情境隔離及深／淺色。完整命令、時間與資產雜湊見 [驗收 JSON](reports/phase5/validation.json)。本次 README 更新重用這些實驗產物，未重新訓練或新增模型比較。')
+    else:
+        verification='尚無通過的完整驗收紀錄，請執行 validate_project.py 並檢查 reports/phase5/validation.json。'
+    return {'{{SELECTED_METRICS}}':table(['題目','選定方法','資料','有效 rank','MAE','MSE','RMSE','R²','Adjusted R²'],metric_rows),
+            '{{DIAGNOSTICS}}':table(['題目','假設','實際統計','判讀'],diagnostic_rows),
+            '{{NOTEBOOKLM}}':(ROOT/'docs/NOTEBOOKLM_RESEARCH.md').read_text(encoding='utf-8'),
+            '{{VALIDATION}}':verification}
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -318,6 +354,7 @@ def main():
     args=parser.parse_args()
     overview,comparison,timing=prepare(args.mode)
     template=(ROOT/'docs/README.template.md').read_text(encoding='utf-8')
+    for key,value in readme_evidence(args.mode).items():template=template.replace(key,value)
     write(ROOT/'README.md',template.replace('{{OVERVIEW}}',overview).replace('{{RESULTS}}',comparison).replace('{{TIMING}}',timing).replace('{{MODE}}',args.mode))
     print('Generated actual CRISP-DM report, figure index and explicit AI placeholders')
 if __name__=='__main__':

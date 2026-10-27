@@ -1,8 +1,8 @@
-# AI Assistance Documentation — 待使用者完成
+# AI Assistance Documentation — 摘要已提供，引用與附件待補
 
 ## A. ChatGPT Assistance Record
 
-狀態：尚未附使用者真實 ChatGPT 對話 PDF。請匯出本作業實際對話，保留需求、修正、測試與限制；
+尚未附使用者真實 ChatGPT 對話 PDF。請匯出本作業實際對話，保留需求、修正、測試與限制；
 檢查個資／憑證後附上，不將程式執行紀錄冒充對話 PDF。
 
 - 實際 PDF 檔名／位置：**［待填］**
@@ -11,18 +11,22 @@
 
 ## B. NotebookLM Research Summary
 
-狀態：**未宣稱已使用 NotebookLM**。請上傳真實的 UCI 原始說明／研究文獻、Kaggle 來源與版本差異、
-scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案 README、CRISP_DM_REPORT、實際 CSV 指標與圖表索引。
-不得上傳憑證或個資。
+狀態：已收到使用者提供的 NotebookLM 研究摘要，超過 100 個中文字。原文及對照如下；來源引用與使用日期仍待補。
 
-請自行完成至少 **100 個中文字**的來源導向摘要，說明三題情境、資料差異、洩漏防治、五假設證據與區間限制；
-確認 NotebookLM 引用真的支持每項敘述，不把生成建議當成本專案已執行的實驗。
+## **NotebookLM** 對同主題的解法進行研究
 
-- NotebookLM 實際使用日期與來源清單：**［待填］**
-- 至少 100 中文字摘要：**［使用者依實際 NotebookLM 輸出填入］**
-- 引用位置／人工核對：**［待填］**
+以下為**使用者提供的 NotebookLM 研究摘要原文**，保留其研究觀點；本環境未操作 NotebookLM 或取得摘要所依據的原始引用。此段不是本專案的實驗結果。
+
+> 本研究基於 Kaggle 汽車價格預測與葡萄牙中學生學業表現數據集，探討多元線性迴歸（MLR）在迴歸預測問題中的應用實作與優化策略。資料前處理階段針對兩數據集中的人口統計、車輛規格及類別變數執行獨熱編碼（One-Hot Encoding）與資料清洗。特徵選擇方面，進階實作採用遞迴特徵消除（RFE）結合變異數膨脹因子（VIF）來消除多重共線性，提升模型係數之可解釋性；學生數據則針對前期成績（G1、G2）與最終成績（G3）的高相關性進行結構分析。模型評估採用 $R^2$、MAE 與 RMSE 等指標衡量預測誤差，並與隨機森林及 XGBoost 等非線性模型比對。相較於傳統直接擬合的線性迴歸，導入 RFE+VIF 機制能顯著改善變數共線問題；未來可進一步引入 Lasso/Ridge 正則化及非線性交互作用項，提升模型泛化能力與預測精準度。
+
+- NotebookLM 實際使用日期：**［待填］**
+- 上傳來源清單與逐項引用位置：**［待填］**
+- 來源引用／人工核對結果：**［待填］**
+
+後續來源核對可包含原始 UCI／Kaggle 資料說明、scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案真實 CSV 指標與圖表。不要把來源中的其他模型結果直接當成本專案結果。
+
 
 ## C. 最終 PDF 報告
 
-使用 CRISP_DM_REPORT.md 為稿，補姓名／學號／課程、頁碼與附件，再用 Markdown 編輯器或 Pandoc 匯出 PDF。
-人工檢查中文字型、公式、39 張 PNG、跨頁表格與連結。這裡只交付 Markdown／PNG，不宣稱 PDF 已完成。
+使用 README.md 或 CRISP_DM_REPORT.md 為稿，補姓名／學號／課程、頁碼及附件，再用 Markdown 編輯器或 Pandoc 匯出 PDF。
+人工檢查中文字型、公式、39 張 PNG、跨頁表格及連結。此處不宣稱 PDF 已完成。
