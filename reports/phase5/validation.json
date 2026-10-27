@@ -1,0 +1,199 @@
+{
+  "passed": true,
+  "mode": "FAST",
+  "full_executed": false,
+  "training_reused": true,
+  "steps": [
+    {
+      "name": "diagnostics",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "phase3_evaluation.py",
+        "--mode",
+        "FAST"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 22.769757400033996,
+      "log": "reports/phase5/diagnostics.log"
+    },
+    {
+      "name": "dashboard_export",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "dashboard_export.py",
+        "--mode",
+        "FAST"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 17.120612500002608,
+      "log": "reports/phase5/dashboard_export.log"
+    },
+    {
+      "name": "report_preparation",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "report_preparation.py",
+        "--mode",
+        "FAST"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 3.5920434999861754,
+      "log": "reports/phase5/report_preparation.log"
+    },
+    {
+      "name": "unit_tests",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 23.8018608999555,
+      "log": "reports/phase5/unit_tests.log",
+      "tests_run": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 55
+    },
+    {
+      "name": "backend_integration",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/verify_phase2_results.py"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 4.6096887000021525,
+      "log": "reports/phase5/backend_integration.log"
+    },
+    {
+      "name": "diagnostic_integration",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/verify_phase3_results.py"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 5.910523800004739,
+      "log": "reports/phase5/diagnostic_integration.log"
+    },
+    {
+      "name": "browser_integration",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/verify_official_dashboard.py"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 59.016787600005046,
+      "log": "reports/phase5/browser_integration.log"
+    }
+  ],
+  "audit": {
+    "files_inventoried": 352,
+    "python_syntax_files": 30,
+    "root_modules_imported": 11,
+    "figures": 26
+  },
+  "protected_files_unchanged": 16,
+  "datasets": [
+    {
+      "id": "student_performance",
+      "pipeline_seconds": 15.582453899958637,
+      "cache_namespace_preexisting": false,
+      "run_sha256": "f2452ff2b5bc2954f415d45a285561cf1b1eb877465b58d331fc37606aa85c7d",
+      "selected_method": "Correlation"
+    },
+    {
+      "id": "appliances_energy",
+      "pipeline_seconds": 19.176503699971363,
+      "cache_namespace_preexisting": false,
+      "run_sha256": "91a536eb9d28b5296c236a2ee2a64ede868f2d23407928a076e7d6d48b54117f",
+      "selected_method": "Mutual Information"
+    }
+  ],
+  "unit_tests": {
+    "name": "unit_tests",
+    "command": [
+      "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "runtime_seconds": 23.8018608999555,
+    "log": "reports/phase5/unit_tests.log",
+    "tests_run": 55,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 55
+  },
+  "backend": {
+    "status": "PASS",
+    "datasets": 2,
+    "models": 12,
+    "training_predictions": 96624,
+    "heldout_predictions": 24156,
+    "repeated_fast_reproducible": true,
+    "historical_frontend_check_requested": false,
+    "frontend_unchanged": false
+  },
+  "diagnostics": {
+    "status": "PASS",
+    "datasets": 2,
+    "models": 12,
+    "figures": 26,
+    "interval_rows": 24156,
+    "metric_rows": 24,
+    "historical_frontend_check_requested": false,
+    "frontend_unchanged": false,
+    "saved_predictions_unchanged": true
+  },
+  "browser": {
+    "passed": true,
+    "runtime_seconds": 54.471706599986646,
+    "asset_sha256": {
+      "app.js": "d0b917b77c460c670d1fd4e2204175942c52e7a740c78da9e219d2472888b3ff",
+      "prediction.js": "f752f3f43807d4c704183c50de02ead625dae85bdfcf8ea07b83ef627426f38f",
+      "styles.css": "c182f15de9610eea6de6a71d22479d05921d4a316fd5f146246b1563697d2070",
+      "index.html": "db26a87425b5f76d1a6c889c349e14a7a81912172b6dfb1424ef051343f99ec7",
+      "data.json": "b012b2513000d00221771f58acb67ec9a4001525442ff6ee0741f5e284c0d0df",
+      "data.js": "757ce260275d0b79437aa7eb26fdc5d44a486e13ad88568f5f7d32caeb54e315"
+    },
+    "counts": {
+      "models": 46,
+      "predictions": 92598,
+      "interval_rows": 24156,
+      "missing_unknown_cases": 138,
+      "ui_checks": 46
+    },
+    "max_prediction_absolute_error": 3.346244170643331e-09,
+    "max_interval_absolute_error": 3.430159267736599e-09,
+    "javascript_errors": [],
+    "viewports": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "deployment_verified": false
+  },
+  "runtime_seconds": 143.2088417999912,
+  "deployment_verified": false,
+  "commit_or_push_performed": false,
+  "manual_remaining": [
+    "NotebookLM source-grounded >=100 Chinese-character summary",
+    "Actual ChatGPT conversation PDF",
+    "Final report PDF export"
+  ]
+}

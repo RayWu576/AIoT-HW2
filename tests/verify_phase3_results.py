@@ -1,4 +1,5 @@
 """Verify real saved outputs, all report figures and interval/metric provenance."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -14,6 +15,9 @@ from regression_diagnostics import selected_matrix,design_information,rank_metri
 from regression_pipeline import METHODS
 
 ROOT=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--check-historical-frontend',action='store_true',help='Require the pre-Phase-4 frontend snapshot; only for historical replay')
+args=parser.parse_args()
 counts={'datasets':0,'models':0,'figures':0,'interval_rows':0,'metric_rows':0}
 all_paths=set()
 with threadpool_limits(limits=1):
@@ -50,7 +54,7 @@ with threadpool_limits(limits=1):
                 for name in ['mae','mse','rmse','r2','adjusted_r2']:
                     if expected[name] is None:assert pd.isna(found[name])
                     else:assert np.isclose(found[name],expected[name])
-                for name in ['mae','mse','rmse','r2']:
+                for name in ['mae','mse','rmse','r2','adjusted_r2']:
                     assert np.isclose(found[name],row[part+'_metrics'][name])
                 counts['metric_rows']+=1
             frame=pd.read_csv(tables/(slug+'_test_intervals.csv'))
@@ -69,7 +73,7 @@ with threadpool_limits(limits=1):
             assert len(diagnostic['models'][method]['assumptions'])==5
             counts['models']+=1;counts['interval_rows']+=len(frame)
         # Validate reconstruction against the actual stored fold scores and SST.
-        splits=list(make_cv(config,original['configuration']['inner_folds'],random_state=42).split(data.X.iloc[train]))
+        splits=list(make_cv(config,original['configuration']['inner_folds'],random_state=original['configuration']['seed'],gap=original['configuration']['gap']).split(data.X.iloc[train]))
         for method in METHODS:
             search=pd.read_csv(source/'cv_searches'/(method.lower().replace(' ','_')+'.csv'))
             if method=='LASSO':search=search.loc[[search.mean_test_score.idxmax()]]
@@ -94,8 +98,9 @@ with threadpool_limits(limits=1):
                 image.verify()
             counts['figures']+=1
         counts['datasets']+=1
-frontend=json.loads((ROOT/'results/phase2_frontend_before.json').read_text())
-assert all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in frontend.items())
-result={'status':'PASS',**counts,'frontend_unchanged':True,'saved_predictions_unchanged':True}
+frontend=json.loads((ROOT/'results/phase2_frontend_before.json').read_text(encoding='utf-8'))
+frontend_unchanged=all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in frontend.items())
+if args.check_historical_frontend:assert frontend_unchanged,'Historical frontend snapshot differs (expected after Phase 4)'
+result={'status':'PASS',**counts,'historical_frontend_check_requested':args.check_historical_frontend,'frontend_unchanged':frontend_unchanged,'saved_predictions_unchanged':True}
 (ROOT/'reports/phase3_validation.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
 print('PASS:',result)

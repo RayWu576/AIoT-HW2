@@ -5,5 +5,6 @@
   "training_predictions": 96624,
   "heldout_predictions": 24156,
   "repeated_fast_reproducible": true,
-  "frontend_unchanged": true
+  "historical_frontend_check_requested": false,
+  "frontend_unchanged": false
 }

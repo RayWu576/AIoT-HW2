@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "runtime_seconds": 54.471706599986646,
+  "asset_sha256": {
+    "app.js": "d0b917b77c460c670d1fd4e2204175942c52e7a740c78da9e219d2472888b3ff",
+    "prediction.js": "f752f3f43807d4c704183c50de02ead625dae85bdfcf8ea07b83ef627426f38f",
+    "styles.css": "c182f15de9610eea6de6a71d22479d05921d4a316fd5f146246b1563697d2070",
+    "index.html": "db26a87425b5f76d1a6c889c349e14a7a81912172b6dfb1424ef051343f99ec7",
+    "data.json": "b012b2513000d00221771f58acb67ec9a4001525442ff6ee0741f5e284c0d0df",
+    "data.js": "757ce260275d0b79437aa7eb26fdc5d44a486e13ad88568f5f7d32caeb54e315"
+  },
+  "counts": {
+    "models": 46,
+    "predictions": 92598,
+    "interval_rows": 24156,
+    "missing_unknown_cases": 138,
+    "ui_checks": 46
+  },
+  "max_prediction_absolute_error": 3.346244170643331e-09,
+  "max_interval_absolute_error": 3.430159267736599e-09,
+  "javascript_errors": [],
+  "viewports": [
+    1440,
+    768,
+    390,
+    320
+  ],
+  "deployment_verified": false
+}
+

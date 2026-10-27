@@ -1,0 +1,1415 @@
+{
+  "file_count": 352,
+  "python_syntax_files": 30,
+  "official_figures": 26,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 546
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 413
+    },
+    {
+      "path": "50_Startups.csv",
+      "bytes": 2436
+    },
+    {
+      "path": "dashboard_export.py",
+      "bytes": 15227
+    },
+    {
+      "path": "dashboard_integration.py",
+      "bytes": 15858
+    },
+    {
+      "path": "feature_selection.py",
+      "bytes": 12591
+    },
+    {
+      "path": "HISTORICAL_STUDENT_CAR.md",
+      "bytes": 6141
+    },
+    {
+      "path": "housing_experiment.py",
+      "bytes": 5594
+    },
+    {
+      "path": "main.py",
+      "bytes": 158
+    },
+    {
+      "path": "PHASE2.md",
+      "bytes": 12395
+    },
+    {
+      "path": "phase2_experiment.py",
+      "bytes": 10534
+    },
+    {
+      "path": "PHASE3.md",
+      "bytes": 13093
+    },
+    {
+      "path": "phase3_evaluation.py",
+      "bytes": 22579
+    },
+    {
+      "path": "PHASE4.md",
+      "bytes": 6203
+    },
+    {
+      "path": "PHASE5.md",
+      "bytes": 3595
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 298
+    },
+    {
+      "path": "pyrefly.toml",
+      "bytes": 215
+    },
+    {
+      "path": "pyrightconfig.json",
+      "bytes": 202
+    },
+    {
+      "path": "README.md",
+      "bytes": 13782
+    },
+    {
+      "path": "regression_diagnostics.py",
+      "bytes": 14191
+    },
+    {
+      "path": "regression_experiment.py",
+      "bytes": 11501
+    },
+    {
+      "path": "regression_pipeline.py",
+      "bytes": 11414
+    },
+    {
+      "path": "report_preparation.py",
+      "bytes": 20890
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 47
+    },
+    {
+      "path": "requirements-lock.txt",
+      "bytes": 237
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 89
+    },
+    {
+      "path": "validate_project.py",
+      "bytes": 7074
+    },
+    {
+      "path": ".vscode/settings.json",
+      "bytes": 314
+    },
+    {
+      "path": "dashboard/.gitignore",
+      "bytes": 22
+    },
+    {
+      "path": "datasets/config.py",
+      "bytes": 3566
+    },
+    {
+      "path": "datasets/descriptions.py",
+      "bytes": 2946
+    },
+    {
+      "path": "datasets/HISTORICAL_CAR.md",
+      "bytes": 4994
+    },
+    {
+      "path": "datasets/loading.py",
+      "bytes": 4174
+    },
+    {
+      "path": "datasets/preprocessing.py",
+      "bytes": 2617
+    },
+    {
+      "path": "datasets/README.md",
+      "bytes": 4756
+    },
+    {
+      "path": "datasets/splitting.py",
+      "bytes": 1547
+    },
+    {
+      "path": "datasets/__init__.py",
+      "bytes": 460
+    },
+    {
+      "path": "datasets/__main__.py",
+      "bytes": 1490
+    },
+    {
+      "path": "docs/README.template.md",
+      "bytes": 12111
+    },
+    {
+      "path": "historical/datasets_phase1.md",
+      "bytes": 7899
+    },
+    {
+      "path": "historical/README_before_car.md",
+      "bytes": 6119
+    },
+    {
+      "path": "historical/startup_main.py",
+      "bytes": 19285
+    },
+    {
+      "path": "reports/AI_ASSISTANCE.md",
+      "bytes": 1555
+    },
+    {
+      "path": "reports/appliances_energy_FAST_diagnostics.md",
+      "bytes": 3647
+    },
+    {
+      "path": "reports/CRISP_DM_REPORT.md",
+      "bytes": 32982
+    },
+    {
+      "path": "reports/figure_index.csv",
+      "bytes": 4776
+    },
+    {
+      "path": "reports/FIGURE_INDEX.md",
+      "bytes": 5477
+    },
+    {
+      "path": "reports/phase3_FAST_manifest.json",
+      "bytes": 94741
+    },
+    {
+      "path": "reports/phase3_validation.json",
+      "bytes": 247
+    },
+    {
+      "path": "reports/phase4_appliances_energy_desktop.png",
+      "bytes": 1523685
+    },
+    {
+      "path": "reports/phase4_appliances_energy_mobile.png",
+      "bytes": 1105399
+    },
+    {
+      "path": "reports/phase4_student_performance_desktop.png",
+      "bytes": 1717060
+    },
+    {
+      "path": "reports/phase4_student_performance_mobile.png",
+      "bytes": 1280896
+    },
+    {
+      "path": "reports/phase4_validation.json",
+      "bytes": 1002
+    },
+    {
+      "path": "reports/student_performance_FAST_diagnostics.md",
+      "bytes": 3527
+    },
+    {
+      "path": "results/actual_vs_predicted.png",
+      "bytes": 61140
+    },
+    {
+      "path": "results/best_model_coefficients.csv",
+      "bytes": 88
+    },
+    {
+      "path": "results/best_model_predictions.csv",
+      "bytes": 515
+    },
+    {
+      "path": "results/best_startup_model.pkl",
+      "bytes": 2242
+    },
+    {
+      "path": "results/correlation.png",
+      "bytes": 86775
+    },
+    {
+      "path": "results/feature_count_metrics.csv",
+      "bytes": 2383
+    },
+    {
+      "path": "results/linearity.png",
+      "bytes": 49720
+    },
+    {
+      "path": "results/model_comparison.csv",
+      "bytes": 1064
+    },
+    {
+      "path": "results/model_comparison.png",
+      "bytes": 213323
+    },
+    {
+      "path": "results/normality.png",
+      "bytes": 57721
+    },
+    {
+      "path": "results/official_validation.json",
+      "bytes": 106
+    },
+    {
+      "path": "results/phase2_FAST_initial_summary.json",
+      "bytes": 3838
+    },
+    {
+      "path": "results/phase2_FAST_summary.json",
+      "bytes": 3927
+    },
+    {
+      "path": "results/phase2_frontend_before.json",
+      "bytes": 598
+    },
+    {
+      "path": "results/phase2_validation.json",
+      "bytes": 246
+    },
+    {
+      "path": "results/selected_features.csv",
+      "bytes": 334
+    },
+    {
+      "path": "results/vif_results.csv",
+      "bytes": 79
+    },
+    {
+      "path": "tests/test_datasets.py",
+      "bytes": 11991
+    },
+    {
+      "path": "tests/test_phase2.py",
+      "bytes": 11280
+    },
+    {
+      "path": "tests/test_phase3.py",
+      "bytes": 7146
+    },
+    {
+      "path": "tests/test_phase4.py",
+      "bytes": 3020
+    },
+    {
+      "path": "tests/test_phase5.py",
+      "bytes": 5607
+    },
+    {
+      "path": "tests/verify_dashboard.py",
+      "bytes": 3242
+    },
+    {
+      "path": "tests/verify_housing.py",
+      "bytes": 4689
+    },
+    {
+      "path": "tests/verify_official_dashboard.py",
+      "bytes": 9909
+    },
+    {
+      "path": "tests/verify_phase2_results.py",
+      "bytes": 7687
+    },
+    {
+      "path": "tests/verify_phase3_results.py",
+      "bytes": 7049
+    },
+    {
+      "path": ".github/workflows/static.yml",
+      "bytes": 1320
+    },
+    {
+      "path": "dashboard/.openai/hosting.json",
+      "bytes": 112
+    },
+    {
+      "path": "dashboard/dist/app.js",
+      "bytes": 22510
+    },
+    {
+      "path": "dashboard/dist/data.js",
+      "bytes": 4812262
+    },
+    {
+      "path": "dashboard/dist/data.json",
+      "bytes": 4812235
+    },
+    {
+      "path": "dashboard/dist/index.html",
+      "bytes": 9599
+    },
+    {
+      "path": "dashboard/dist/prediction.js",
+      "bytes": 3589
+    },
+    {
+      "path": "dashboard/dist/styles.css",
+      "bytes": 18256
+    },
+    {
+      "path": "dashboard/qa/car_price-desktop.png",
+      "bytes": 927100
+    },
+    {
+      "path": "dashboard/qa/car_price-mobile.png",
+      "bytes": 633075
+    },
+    {
+      "path": "dashboard/qa/student_performance-desktop.png",
+      "bytes": 858279
+    },
+    {
+      "path": "dashboard/qa/student_performance-mobile.png",
+      "bytes": 589762
+    },
+    {
+      "path": "datasets/appliances_energy/energydata_complete.csv",
+      "bytes": 11979363
+    },
+    {
+      "path": "datasets/appliances_energy/metadata.json",
+      "bytes": 1643
+    },
+    {
+      "path": "datasets/appliances_energy/source.json",
+      "bytes": 889
+    },
+    {
+      "path": "datasets/boston_housing/HousingData.csv",
+      "bytes": 35008
+    },
+    {
+      "path": "datasets/boston_housing/metadata.json",
+      "bytes": 1267
+    },
+    {
+      "path": "datasets/car_price/CarPrice_Assignment.csv",
+      "bytes": 26717
+    },
+    {
+      "path": "datasets/car_price/metadata.json",
+      "bytes": 1915
+    },
+    {
+      "path": "datasets/car_price/source.json",
+      "bytes": 884
+    },
+    {
+      "path": "datasets/student_performance/metadata.json",
+      "bytes": 1997
+    },
+    {
+      "path": "datasets/student_performance/source.json",
+      "bytes": 932
+    },
+    {
+      "path": "datasets/student_performance/student-mat.csv",
+      "bytes": 56993
+    },
+    {
+      "path": "datasets/student_performance/student-mat.source.json",
+      "bytes": 699
+    },
+    {
+      "path": "datasets/student_performance/student-por.csv",
+      "bytes": 93220
+    },
+    {
+      "path": "historical/appliances_energy/energydata_complete.csv",
+      "bytes": 11979363
+    },
+    {
+      "path": "historical/appliances_energy/README.md",
+      "bytes": 142
+    },
+    {
+      "path": "historical/appliances_energy/source.json",
+      "bytes": 889
+    },
+    {
+      "path": "historical/dashboard/dist/app.js",
+      "bytes": 17599
+    },
+    {
+      "path": "historical/dashboard/dist/data.js",
+      "bytes": 916557
+    },
+    {
+      "path": "historical/dashboard/dist/data.json",
+      "bytes": 916531
+    },
+    {
+      "path": "historical/dashboard/dist/index.html",
+      "bytes": 8350
+    },
+    {
+      "path": "historical/dashboard/dist/styles.css",
+      "bytes": 14961
+    },
+    {
+      "path": "reports/phase5/attempt_before_final.json",
+      "bytes": 2064
+    },
+    {
+      "path": "reports/phase5/audit_inventory.json",
+      "bytes": 36561
+    },
+    {
+      "path": "reports/phase5/backend_integration.log",
+      "bytes": 229
+    },
+    {
+      "path": "reports/phase5/browser_integration.log",
+      "bytes": 1004
+    },
+    {
+      "path": "reports/phase5/dashboard_export.log",
+      "bytes": 773
+    },
+    {
+      "path": "reports/phase5/diagnostics.log",
+      "bytes": 703
+    },
+    {
+      "path": "reports/phase5/diagnostic_integration.log",
+      "bytes": 227
+    },
+    {
+      "path": "reports/phase5/environment.json",
+      "bytes": 364
+    },
+    {
+      "path": "reports/phase5/module_import_audit.log",
+      "bytes": 2
+    },
+    {
+      "path": "reports/phase5/report_manifest.json",
+      "bytes": 664
+    },
+    {
+      "path": "reports/phase5/report_preparation.log",
+      "bytes": 79
+    },
+    {
+      "path": "reports/phase5/training.log",
+      "bytes": 6215
+    },
+    {
+      "path": "reports/phase5/unit_tests.log",
+      "bytes": 7152
+    },
+    {
+      "path": "reports/phase5/unit_tests_before_final.log",
+      "bytes": 7718
+    },
+    {
+      "path": "reports/phase5/validation.json",
+      "bytes": 2064
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/baseline_vs_feature_selection_rmse.png",
+      "bytes": 100419
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/feature_count_vs_inner_cv_rmse.png",
+      "bytes": 251408
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/feature_count_vs_inner_validation_r2.png",
+      "bytes": 235312
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/heldout_actual_vs_predicted.png",
+      "bytes": 226960
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png",
+      "bytes": 301260
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/residual_histogram_train_test.png",
+      "bytes": 73437
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/selected_encoded_correlation_heatmap.png",
+      "bytes": 118021
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/selected_feature_coefficients.png",
+      "bytes": 71382
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/target_distribution_train_test.png",
+      "bytes": 82191
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/training_original_numeric_correlation_heatmap.png",
+      "bytes": 197088
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/training_residuals_vs_fitted.png",
+      "bytes": 627827
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/training_residual_autocorrelation.png",
+      "bytes": 91183
+    },
+    {
+      "path": "reports/figures/appliances_energy/FAST/training_residual_normal_qq.png",
+      "bytes": 110906
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/baseline_vs_feature_selection_rmse.png",
+      "bytes": 95459
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/feature_count_vs_inner_cv_rmse.png",
+      "bytes": 261285
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/feature_count_vs_inner_validation_r2.png",
+      "bytes": 274812
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/heldout_actual_vs_predicted.png",
+      "bytes": 116104
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png",
+      "bytes": 151211
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/residual_histogram_train_test.png",
+      "bytes": 75657
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/selected_encoded_correlation_heatmap.png",
+      "bytes": 57637
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/selected_feature_coefficients.png",
+      "bytes": 64441
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/target_distribution_train_test.png",
+      "bytes": 76686
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/training_original_numeric_correlation_heatmap.png",
+      "bytes": 176925
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/training_residuals_vs_fitted.png",
+      "bytes": 120277
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/training_residual_autocorrelation.png",
+      "bytes": 92855
+    },
+    {
+      "path": "reports/figures/student_performance/FAST/training_residual_normal_qq.png",
+      "bytes": 114385
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/assumption_summary.csv",
+      "bytes": 20740
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/baseline_encoded_correlation.csv",
+      "bytes": 12845
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/baseline_test_intervals.csv",
+      "bytes": 651212
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/baseline_vif.csv",
+      "bytes": 1117
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/coefficient_identifiability.csv",
+      "bytes": 3718
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/correlation_encoded_correlation.csv",
+      "bytes": 565
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/correlation_test_intervals.csv",
+      "bytes": 654080
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/correlation_vif.csv",
+      "bytes": 237
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/cross_validation_metrics.csv",
+      "bytes": 899
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/diagnostics.json",
+      "bytes": 45158
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/evaluation_metrics.csv",
+      "bytes": 2035
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/interval_summary.csv",
+      "bytes": 1344
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/lasso_encoded_correlation.csv",
+      "bytes": 374
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/lasso_test_intervals.csv",
+      "bytes": 653978
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/lasso_vif.csv",
+      "bytes": 194
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/mutual_information_encoded_correlation.csv",
+      "bytes": 2112
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/mutual_information_test_intervals.csv",
+      "bytes": 650172
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/mutual_information_vif.csv",
+      "bytes": 447
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/rfecv_encoded_correlation.csv",
+      "bytes": 2100
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/rfecv_test_intervals.csv",
+      "bytes": 651396
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/rfecv_vif.csv",
+      "bytes": 446
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/rfe_encoded_correlation.csv",
+      "bytes": 2100
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/rfe_test_intervals.csv",
+      "bytes": 651396
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/rfe_vif.csv",
+      "bytes": 446
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/training_cv_feature_count_curves.csv",
+      "bytes": 5921
+    },
+    {
+      "path": "reports/tables/appliances_energy/FAST/training_original_numeric_correlation.csv",
+      "bytes": 13456
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/assumption_summary.csv",
+      "bytes": 19080
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/baseline_encoded_correlation.csv",
+      "bytes": 66412
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/baseline_test_intervals.csv",
+      "bytes": 11384
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/baseline_vif.csv",
+      "bytes": 2676
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/coefficient_identifiability.csv",
+      "bytes": 5056
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/correlation_encoded_correlation.csv",
+      "bytes": 43
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/correlation_test_intervals.csv",
+      "bytes": 11441
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/correlation_vif.csv",
+      "bytes": 53
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/cross_validation_metrics.csv",
+      "bytes": 911
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/diagnostics.json",
+      "bytes": 41526
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/evaluation_metrics.csv",
+      "bytes": 1995
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/interval_summary.csv",
+      "bytes": 1320
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/lasso_encoded_correlation.csv",
+      "bytes": 251
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/lasso_test_intervals.csv",
+      "bytes": 11397
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/lasso_vif.csv",
+      "bytes": 165
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/mutual_information_encoded_correlation.csv",
+      "bytes": 2278
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/mutual_information_test_intervals.csv",
+      "bytes": 11392
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/mutual_information_vif.csv",
+      "bytes": 493
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/rfecv_encoded_correlation.csv",
+      "bytes": 43
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/rfecv_test_intervals.csv",
+      "bytes": 11441
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/rfecv_vif.csv",
+      "bytes": 53
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/rfe_encoded_correlation.csv",
+      "bytes": 43
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/rfe_test_intervals.csv",
+      "bytes": 11441
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/rfe_vif.csv",
+      "bytes": 53
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/training_cv_feature_count_curves.csv",
+      "bytes": 5927
+    },
+    {
+      "path": "reports/tables/student_performance/FAST/training_original_numeric_correlation.csv",
+      "bytes": 3978
+    },
+    {
+      "path": "results/boston_housing/best_housing_model.pkl",
+      "bytes": 1409
+    },
+    {
+      "path": "results/boston_housing/best_model_predictions.csv",
+      "bytes": 3786
+    },
+    {
+      "path": "results/boston_housing/feature_count_metrics.csv",
+      "bytes": 5884
+    },
+    {
+      "path": "results/boston_housing/model_comparison.csv",
+      "bytes": 1086
+    },
+    {
+      "path": "results/boston_housing/model_comparison.png",
+      "bytes": 227851
+    },
+    {
+      "path": "results/boston_housing/selected_features.csv",
+      "bytes": 528
+    },
+    {
+      "path": "results/car_price/best_model.pkl",
+      "bytes": 11107
+    },
+    {
+      "path": "results/car_price/Correlation_cv_search.csv",
+      "bytes": 4737
+    },
+    {
+      "path": "results/car_price/feature_count_metrics.csv",
+      "bytes": 37994
+    },
+    {
+      "path": "results/car_price/LASSO_cv_search.csv",
+      "bytes": 17115
+    },
+    {
+      "path": "results/car_price/metadata.json",
+      "bytes": 3317
+    },
+    {
+      "path": "results/car_price/models.pkl",
+      "bytes": 40387
+    },
+    {
+      "path": "results/car_price/model_comparison.csv",
+      "bytes": 827
+    },
+    {
+      "path": "results/car_price/Mutual_Information_cv_search.csv",
+      "bytes": 4692
+    },
+    {
+      "path": "results/car_price/RFECV_cv_search.csv",
+      "bytes": 4718
+    },
+    {
+      "path": "results/car_price/RFE_cv_search.csv",
+      "bytes": 4700
+    },
+    {
+      "path": "results/car_price/selected_features.csv",
+      "bytes": 4580
+    },
+    {
+      "path": "results/car_price/test_predictions.csv",
+      "bytes": 5092
+    },
+    {
+      "path": "results/previous_feature_selection/actual_vs_predicted.png",
+      "bytes": 61140
+    },
+    {
+      "path": "results/previous_feature_selection/best_model_coefficients.csv",
+      "bytes": 88
+    },
+    {
+      "path": "results/previous_feature_selection/best_model_predictions.csv",
+      "bytes": 515
+    },
+    {
+      "path": "results/previous_feature_selection/best_startup_model.pkl",
+      "bytes": 2226
+    },
+    {
+      "path": "results/previous_feature_selection/correlation.png",
+      "bytes": 86775
+    },
+    {
+      "path": "results/previous_feature_selection/feature_count_metrics.csv",
+      "bytes": 2383
+    },
+    {
+      "path": "results/previous_feature_selection/linearity.png",
+      "bytes": 49720
+    },
+    {
+      "path": "results/previous_feature_selection/model_comparison.csv",
+      "bytes": 1064
+    },
+    {
+      "path": "results/previous_feature_selection/model_comparison.png",
+      "bytes": 213323
+    },
+    {
+      "path": "results/previous_feature_selection/normality.png",
+      "bytes": 57721
+    },
+    {
+      "path": "results/previous_feature_selection/selected_features.csv",
+      "bytes": 334
+    },
+    {
+      "path": "results/previous_feature_selection/vif_results.csv",
+      "bytes": 79
+    },
+    {
+      "path": "results/previous_predictive_models/actual_vs_predicted.png",
+      "bytes": 57882
+    },
+    {
+      "path": "results/previous_predictive_models/best_model_coefficients.csv",
+      "bytes": 185
+    },
+    {
+      "path": "results/previous_predictive_models/best_model_importances.csv",
+      "bytes": 50
+    },
+    {
+      "path": "results/previous_predictive_models/best_model_predictions.csv",
+      "bytes": 554
+    },
+    {
+      "path": "results/previous_predictive_models/best_startup_model.pkl",
+      "bytes": 1974
+    },
+    {
+      "path": "results/previous_predictive_models/browser_prediction_checks.json",
+      "bytes": 12656
+    },
+    {
+      "path": "results/previous_predictive_models/dashboard_models.pkl",
+      "bytes": 596196
+    },
+    {
+      "path": "results/previous_predictive_models/feature_count_metrics.csv",
+      "bytes": 5094
+    },
+    {
+      "path": "results/previous_predictive_models/model_comparison.csv",
+      "bytes": 1218
+    },
+    {
+      "path": "results/previous_predictive_models/model_comparison.png",
+      "bytes": 253813
+    },
+    {
+      "path": "results/previous_predictive_models/selected_features.csv",
+      "bytes": 236
+    },
+    {
+      "path": "results/previous_predictive_models/vif_results.csv",
+      "bytes": 79
+    },
+    {
+      "path": "results/student_performance/best_model.pkl",
+      "bytes": 8880
+    },
+    {
+      "path": "results/student_performance/Correlation_cv_search.csv",
+      "bytes": 4714
+    },
+    {
+      "path": "results/student_performance/feature_count_metrics.csv",
+      "bytes": 33419
+    },
+    {
+      "path": "results/student_performance/LASSO_cv_search.csv",
+      "bytes": 17082
+    },
+    {
+      "path": "results/student_performance/metadata.json",
+      "bytes": 5271
+    },
+    {
+      "path": "results/student_performance/models.pkl",
+      "bytes": 47075
+    },
+    {
+      "path": "results/student_performance/model_comparison.csv",
+      "bytes": 848
+    },
+    {
+      "path": "results/student_performance/Mutual_Information_cv_search.csv",
+      "bytes": 4695
+    },
+    {
+      "path": "results/student_performance/RFECV_cv_search.csv",
+      "bytes": 4695
+    },
+    {
+      "path": "results/student_performance/RFE_cv_search.csv",
+      "bytes": 4697
+    },
+    {
+      "path": "results/student_performance/selected_features.csv",
+      "bytes": 2105
+    },
+    {
+      "path": "results/student_performance/test_predictions.csv",
+      "bytes": 9506
+    },
+    {
+      "path": "results/appliances_energy/FAST/best_model.joblib",
+      "bytes": 2568
+    },
+    {
+      "path": "results/appliances_energy/FAST/best_model.json",
+      "bytes": 232
+    },
+    {
+      "path": "results/appliances_energy/FAST/coefficients.csv",
+      "bytes": 3527
+    },
+    {
+      "path": "results/appliances_energy/FAST/dashboard_payload.json",
+      "bytes": 248595
+    },
+    {
+      "path": "results/appliances_energy/FAST/model_comparison.csv",
+      "bytes": 2102
+    },
+    {
+      "path": "results/appliances_energy/FAST/outer_folds.json",
+      "bytes": 2397685
+    },
+    {
+      "path": "results/appliances_energy/FAST/run.json",
+      "bytes": 248595
+    },
+    {
+      "path": "results/appliances_energy/FAST/selected_features.json",
+      "bytes": 13444
+    },
+    {
+      "path": "results/appliances_energy/FAST/test_predictions.csv",
+      "bytes": 556559
+    },
+    {
+      "path": "results/appliances_energy/FAST/train_predictions.csv",
+      "bytes": 2197351
+    },
+    {
+      "path": "results/appliances_energy/FAST/cv_searches/baseline.csv",
+      "bytes": 316
+    },
+    {
+      "path": "results/appliances_energy/FAST/cv_searches/correlation.csv",
+      "bytes": 1102
+    },
+    {
+      "path": "results/appliances_energy/FAST/cv_searches/lasso.csv",
+      "bytes": 579
+    },
+    {
+      "path": "results/appliances_energy/FAST/cv_searches/mutual_information.csv",
+      "bytes": 1090
+    },
+    {
+      "path": "results/appliances_energy/FAST/cv_searches/rfe.csv",
+      "bytes": 1105
+    },
+    {
+      "path": "results/appliances_energy/FAST/cv_searches/rfecv.csv",
+      "bytes": 1102
+    },
+    {
+      "path": "results/appliances_energy/FAST/models/baseline.joblib",
+      "bytes": 2531
+    },
+    {
+      "path": "results/appliances_energy/FAST/models/correlation.joblib",
+      "bytes": 2465
+    },
+    {
+      "path": "results/appliances_energy/FAST/models/lasso.joblib",
+      "bytes": 2932
+    },
+    {
+      "path": "results/appliances_energy/FAST/models/mutual_information.joblib",
+      "bytes": 2568
+    },
+    {
+      "path": "results/appliances_energy/FAST/models/rfe.joblib",
+      "bytes": 2913
+    },
+    {
+      "path": "results/appliances_energy/FAST/models/rfecv.joblib",
+      "bytes": 2926
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/baseline-k25-c0.joblib",
+      "bytes": 2543
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/correlation-k1-c0.joblib",
+      "bytes": 2403
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/correlation-k10-c2.joblib",
+      "bytes": 2575
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/correlation-k20-c3.joblib",
+      "bytes": 2759
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/correlation-k25-c4.joblib",
+      "bytes": 2845
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/correlation-k5-c1.joblib",
+      "bytes": 2483
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/lasso-k16-c0.joblib",
+      "bytes": 3264
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/lasso-k4-c1.joblib",
+      "bytes": 2936
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/mutual_information-k1-c0.joblib",
+      "bytes": 2405
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/mutual_information-k10-c2.joblib",
+      "bytes": 2580
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/mutual_information-k20-c3.joblib",
+      "bytes": 2763
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/mutual_information-k25-c4.joblib",
+      "bytes": 2851
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/mutual_information-k5-c1.joblib",
+      "bytes": 2481
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfe-k1-c0.joblib",
+      "bytes": 2755
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfe-k10-c2.joblib",
+      "bytes": 2924
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfe-k20-c3.joblib",
+      "bytes": 3108
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfe-k25-c4.joblib",
+      "bytes": 3193
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfe-k5-c1.joblib",
+      "bytes": 2826
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfecv-k1-c0.joblib",
+      "bytes": 2750
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfecv-k10-c2.joblib",
+      "bytes": 2927
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfecv-k20-c3.joblib",
+      "bytes": 3104
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfecv-k25-c4.joblib",
+      "bytes": 3194
+    },
+    {
+      "path": "results/dashboard/FAST/appliances_energy/models/rfecv-k5-c1.joblib",
+      "bytes": 2823
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/baseline-k56-c0.joblib",
+      "bytes": 3267
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/correlation-k1-c0.joblib",
+      "bytes": 2811
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/correlation-k10-c2.joblib",
+      "bytes": 2977
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/correlation-k20-c3.joblib",
+      "bytes": 3157
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/correlation-k5-c1.joblib",
+      "bytes": 2889
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/correlation-k56-c4.joblib",
+      "bytes": 3708
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/lasso-k3-c1.joblib",
+      "bytes": 3895
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/lasso-k37-c0.joblib",
+      "bytes": 4908
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/mutual_information-k1-c0.joblib",
+      "bytes": 2813
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/mutual_information-k10-c2.joblib",
+      "bytes": 2993
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/mutual_information-k20-c3.joblib",
+      "bytes": 3164
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/mutual_information-k5-c1.joblib",
+      "bytes": 2893
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/mutual_information-k56-c4.joblib",
+      "bytes": 3723
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfe-k1-c0.joblib",
+      "bytes": 3856
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfe-k10-c2.joblib",
+      "bytes": 4032
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfe-k20-c3.joblib",
+      "bytes": 4220
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfe-k5-c1.joblib",
+      "bytes": 3928
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfe-k56-c4.joblib",
+      "bytes": 4728
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfecv-k1-c0.joblib",
+      "bytes": 3852
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfecv-k10-c2.joblib",
+      "bytes": 4028
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfecv-k20-c3.joblib",
+      "bytes": 4212
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfecv-k5-c1.joblib",
+      "bytes": 3920
+    },
+    {
+      "path": "results/dashboard/FAST/student_performance/models/rfecv-k56-c4.joblib",
+      "bytes": 4726
+    },
+    {
+      "path": "results/student_performance/FAST/best_model.joblib",
+      "bytes": 2802
+    },
+    {
+      "path": "results/student_performance/FAST/best_model.json",
+      "bytes": 224
+    },
+    {
+      "path": "results/student_performance/FAST/coefficients.csv",
+      "bytes": 4825
+    },
+    {
+      "path": "results/student_performance/FAST/dashboard_payload.json",
+      "bytes": 29441
+    },
+    {
+      "path": "results/student_performance/FAST/model_comparison.csv",
+      "bytes": 2100
+    },
+    {
+      "path": "results/student_performance/FAST/outer_folds.json",
+      "bytes": 57007
+    },
+    {
+      "path": "results/student_performance/FAST/run.json",
+      "bytes": 29441
+    },
+    {
+      "path": "results/student_performance/FAST/selected_features.json",
+      "bytes": 16161
+    },
+    {
+      "path": "results/student_performance/FAST/test_predictions.csv",
+      "bytes": 9546
+    },
+    {
+      "path": "results/student_performance/FAST/train_predictions.csv",
+      "bytes": 37868
+    },
+    {
+      "path": "results/student_performance/FAST/cv_searches/baseline.csv",
+      "bytes": 319
+    },
+    {
+      "path": "results/student_performance/FAST/cv_searches/correlation.csv",
+      "bytes": 1109
+    },
+    {
+      "path": "results/student_performance/FAST/cv_searches/lasso.csv",
+      "bytes": 582
+    },
+    {
+      "path": "results/student_performance/FAST/cv_searches/mutual_information.csv",
+      "bytes": 1094
+    },
+    {
+      "path": "results/student_performance/FAST/cv_searches/rfe.csv",
+      "bytes": 1101
+    },
+    {
+      "path": "results/student_performance/FAST/cv_searches/rfecv.csv",
+      "bytes": 1101
+    },
+    {
+      "path": "results/student_performance/FAST/models/baseline.joblib",
+      "bytes": 3251
+    },
+    {
+      "path": "results/student_performance/FAST/models/correlation.joblib",
+      "bytes": 2802
+    },
+    {
+      "path": "results/student_performance/FAST/models/lasso.joblib",
+      "bytes": 3878
+    },
+    {
+      "path": "results/student_performance/FAST/models/mutual_information.joblib",
+      "bytes": 2983
+    },
+    {
+      "path": "results/student_performance/FAST/models/rfe.joblib",
+      "bytes": 3837
+    },
+    {
+      "path": "results/student_performance/FAST/models/rfecv.joblib",
+      "bytes": 3845
+    }
+  ]
+}

@@ -7,7 +7,7 @@
       "outer_rmse": 4.6951691464152585,
       "selected_encoded_count": 56,
       "best_params": {},
-      "runtime_seconds": 4.910684499889612,
+      "runtime_seconds": 5.401941200019792,
       "train_row_indices": [
         181,
         194,
@@ -338,7 +338,7 @@
       "best_params": {
         "selector__k": 5
       },
-      "runtime_seconds": 0.49316260032355785,
+      "runtime_seconds": 0.5260340999811888,
       "train_row_indices": [
         181,
         194,
@@ -669,7 +669,7 @@
       "best_params": {
         "selector__k": 10
       },
-      "runtime_seconds": 1.2590782004408538,
+      "runtime_seconds": 0.7186814000015147,
       "train_row_indices": [
         181,
         194,
@@ -1000,7 +1000,7 @@
       "best_params": {
         "selector__k": 1
       },
-      "runtime_seconds": 0.6765848998911679,
+      "runtime_seconds": 0.48488959996029735,
       "train_row_indices": [
         181,
         194,
@@ -1331,7 +1331,7 @@
       "best_params": {
         "selector__k": 1
       },
-      "runtime_seconds": 0.5598828997462988,
+      "runtime_seconds": 0.5514248999534175,
       "train_row_indices": [
         181,
         194,
@@ -1662,7 +1662,7 @@
       "best_params": {
         "ranking__alpha_fraction": 0.1
       },
-      "runtime_seconds": 0.20881470013409853,
+      "runtime_seconds": 0.4108915000106208,
       "train_row_indices": [
         181,
         194,
@@ -1991,7 +1991,7 @@
       "outer_rmse": 4.880035052985518,
       "selected_encoded_count": 56,
       "best_params": {},
-      "runtime_seconds": 0.30749369971454144,
+      "runtime_seconds": 0.18528340000193566,
       "train_row_indices": [
         173,
         63,
@@ -2322,7 +2322,7 @@
       "best_params": {
         "selector__k": 1
       },
-      "runtime_seconds": 0.7131711998954415,
+      "runtime_seconds": 0.3883697999990545,
       "train_row_indices": [
         173,
         63,
@@ -2653,7 +2653,7 @@
       "best_params": {
         "selector__k": 5
       },
-      "runtime_seconds": 0.8525932002812624,
+      "runtime_seconds": 1.2788190999999642,
       "train_row_indices": [
         173,
         63,
@@ -2984,7 +2984,7 @@
       "best_params": {
         "selector__k": 1
       },
-      "runtime_seconds": 0.6828160001896322,
+      "runtime_seconds": 0.5473236999823712,
       "train_row_indices": [
         173,
         63,
@@ -3315,7 +3315,7 @@
       "best_params": {
         "selector__k": 1
       },
-      "runtime_seconds": 0.8008038997650146,
+      "runtime_seconds": 0.41358760005095974,
       "train_row_indices": [
         173,
         63,
@@ -3646,7 +3646,7 @@
       "best_params": {
         "ranking__alpha_fraction": 0.1
       },
-      "runtime_seconds": 0.5442339996807277,
+      "runtime_seconds": 0.1520040999748744,
       "train_row_indices": [
         173,
         63,

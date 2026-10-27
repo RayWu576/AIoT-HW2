@@ -4,7 +4,7 @@
   "dataset_id": "appliances_energy",
   "display_name": "Appliances Energy Prediction",
   "mode": "FAST",
-  "generated_at_utc": "2026-10-21T16:10:02.859483+00:00",
+  "generated_at_utc": "2026-10-27T06:06:51.768743+00:00",
   "target": "Appliances",
   "target_unit": "Wh",
   "source_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
@@ -19812,6 +19812,7 @@
       "encoded_input_count": 25,
       "selected_encoded_count": 10,
       "selected_original_count": 10,
+      "fitted_design_rank": 11,
       "selected_original_names": [
         "T3",
         "T5",
@@ -19906,7 +19907,7 @@
       "cv_std": 1.0752448635896883,
       "nested_cv_rmse": 96.18271409690149,
       "nested_cv_std": 1.2294019639164802,
-      "runtime_seconds": 12.368524100165814,
+      "runtime_seconds": 10.052789699926507,
       "train_metrics": {
         "mae": 58.55355498748907,
         "mse": 10217.13982415475,
@@ -19928,6 +19929,7 @@
       "encoded_input_count": 25,
       "selected_encoded_count": 10,
       "selected_original_count": 10,
+      "fitted_design_rank": 11,
       "selected_original_names": [
         "RH_8",
         "RH_1",
@@ -20022,7 +20024,7 @@
       "cv_std": 1.6599004467428955,
       "nested_cv_rmse": 100.02056945394634,
       "nested_cv_std": 0.06704236250575946,
-      "runtime_seconds": 2.4558131000958383,
+      "runtime_seconds": 1.7725483999820426,
       "train_metrics": {
         "mae": 55.140157274761826,
         "mse": 9264.448856718052,
@@ -20044,6 +20046,7 @@
       "encoded_input_count": 25,
       "selected_encoded_count": 10,
       "selected_original_count": 10,
+      "fitted_design_rank": 11,
       "selected_original_names": [
         "RH_8",
         "RH_1",
@@ -20138,7 +20141,7 @@
       "cv_std": 1.6599004467428955,
       "nested_cv_rmse": 100.02056945394634,
       "nested_cv_std": 0.06704236250575946,
-      "runtime_seconds": 1.9123456999659538,
+      "runtime_seconds": 1.2235635000397451,
       "train_metrics": {
         "mae": 55.140157274761826,
         "mse": 9264.448856718052,
@@ -20160,6 +20163,7 @@
       "encoded_input_count": 25,
       "selected_encoded_count": 5,
       "selected_original_count": 5,
+      "fitted_design_rank": 6,
       "selected_original_names": [
         "lights",
         "T2",
@@ -20214,7 +20218,7 @@
       "cv_std": 0.04804434163367688,
       "nested_cv_rmse": 98.98859214634174,
       "nested_cv_std": 0.5984437695519773,
-      "runtime_seconds": 1.9870963995344937,
+      "runtime_seconds": 1.6060548999812454,
       "train_metrics": {
         "mae": 58.02463635286914,
         "mse": 10137.832838370916,
@@ -20236,6 +20240,7 @@
       "encoded_input_count": 25,
       "selected_encoded_count": 4,
       "selected_original_count": 4,
+      "fitted_design_rank": 5,
       "selected_original_names": [
         "lights",
         "T2",
@@ -20282,7 +20287,7 @@
       "cv_std": 0.6517051403392671,
       "nested_cv_rmse": 99.25775501376799,
       "nested_cv_std": 0.6517051403392671,
-      "runtime_seconds": 1.0710477004759014,
+      "runtime_seconds": 2.4492849000380374,
       "train_metrics": {
         "mae": 58.02937577139905,
         "mse": 10137.89327262613,
@@ -20304,6 +20309,7 @@
       "encoded_input_count": 25,
       "selected_encoded_count": 25,
       "selected_original_count": 25,
+      "fitted_design_rank": 26,
       "selected_original_names": [
         "lights",
         "T1",
@@ -20516,7 +20522,7 @@
       "cv_std": 2.8834261941185844,
       "nested_cv_rmse": 100.47101772856209,
       "nested_cv_std": 2.8834261941185844,
-      "runtime_seconds": 0.9212797996588051,
+      "runtime_seconds": 0.8210549000068568,
       "train_metrics": {
         "mae": 54.289187872782186,
         "mse": 9152.687408646965,
@@ -20533,7 +20539,7 @@
       }
     }
   ],
-  "training_runtime_seconds": 21.009230500087142,
+  "training_runtime_seconds": 18.393255199945997,
   "versions": {
     "python": "3.12.10",
     "sklearn": "1.9.1",
@@ -20547,9 +20553,9 @@
     "test_start": "2016-04-30 08:20:00",
     "test_end": "2016-05-27 18:00:00"
   },
-  "runtime_seconds": 21.96191189996898,
+  "runtime_seconds": 19.176503699971363,
   "runtime_note": "Load, nested/final CV, evaluation, model and CSV export; excludes final JSON serialization. Includes cache hits if present.",
   "cache_enabled": true,
-  "cache_namespace": "2a48a794aa47c72d",
+  "cache_namespace": "4a3712c85740a0eb",
   "cache_namespace_preexisting": false
 }

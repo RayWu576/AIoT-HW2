@@ -4,7 +4,7 @@
   "dataset_id": "student_performance",
   "display_name": "Student Performance (Mathematics)",
   "mode": "FAST",
-  "generated_at_utc": "2026-10-21T16:09:41.200303+00:00",
+  "generated_at_utc": "2026-10-27T06:06:32.871683+00:00",
   "target": "G3",
   "target_unit": "grade (0-20)",
   "source_sha256": "e47f9ee225e1ee6e69b7564e6dac7123e80b8486677fe111f351964cef5dec80",
@@ -477,6 +477,7 @@
       "encoded_input_count": 56,
       "selected_encoded_count": 1,
       "selected_original_count": 1,
+      "fitted_design_rank": 2,
       "selected_original_names": [
         "failures"
       ],
@@ -499,7 +500,7 @@
       "cv_std": 0.034630351388833525,
       "nested_cv_rmse": 4.274466720286452,
       "nested_cv_std": 0.03997876337733519,
-      "runtime_seconds": 1.9194334000349045,
+      "runtime_seconds": 1.4511970999883488,
       "train_metrics": {
         "mae": 3.195684310472063,
         "mse": 18.07012167034083,
@@ -521,6 +522,7 @@
       "encoded_input_count": 56,
       "selected_encoded_count": 1,
       "selected_original_count": 1,
+      "fitted_design_rank": 2,
       "selected_original_names": [
         "failures"
       ],
@@ -543,7 +545,7 @@
       "cv_std": 0.034630351388833525,
       "nested_cv_rmse": 4.279815132274954,
       "nested_cv_std": 0.034630351388833525,
-      "runtime_seconds": 2.3473571999929845,
+      "runtime_seconds": 1.4119513999321498,
       "train_metrics": {
         "mae": 3.195684310472063,
         "mse": 18.07012167034083,
@@ -565,6 +567,7 @@
       "encoded_input_count": 56,
       "selected_encoded_count": 1,
       "selected_original_count": 1,
+      "fitted_design_rank": 2,
       "selected_original_names": [
         "failures"
       ],
@@ -587,7 +590,7 @@
       "cv_std": 0.034630351388833525,
       "nested_cv_rmse": 4.279815132274954,
       "nested_cv_std": 0.034630351388833525,
-      "runtime_seconds": 2.0759750995785,
+      "runtime_seconds": 1.4512106000329368,
       "train_metrics": {
         "mae": 3.195684310472063,
         "mse": 18.07012167034083,
@@ -609,6 +612,7 @@
       "encoded_input_count": 56,
       "selected_encoded_count": 10,
       "selected_original_count": 9,
+      "fitted_design_rank": 10,
       "selected_original_names": [
         "absences",
         "failures",
@@ -702,20 +706,20 @@
       "cv_std": 0.09082250375372869,
       "nested_cv_rmse": 4.402703069567403,
       "nested_cv_std": 0.17708338621654418,
-      "runtime_seconds": 3.330429700668901,
+      "runtime_seconds": 3.8098553000018,
       "train_metrics": {
         "mae": 3.141900458301278,
         "mse": 17.230745818608444,
         "rmse": 4.1509933532358785,
         "r2": 0.17966472517853305,
-        "adjusted_r2": 0.15276848665979648
+        "adjusted_r2": 0.1555372170955488
       },
       "test_metrics": {
         "mae": 3.427040098848601,
         "mse": 18.649318929150265,
         "rmse": 4.3184857217721895,
         "r2": 0.09050105150480736,
-        "adjusted_r2": -0.04324879386213265
+        "adjusted_r2": -0.02812924612500045
       }
     },
     {
@@ -724,6 +728,7 @@
       "encoded_input_count": 56,
       "selected_encoded_count": 3,
       "selected_original_count": 3,
+      "fitted_design_rank": 4,
       "selected_original_names": [
         "Medu",
         "failures",
@@ -762,7 +767,7 @@
       "cv_std": 0.038358176943747324,
       "nested_cv_rmse": 4.610949151177231,
       "nested_cv_std": 0.038358176943747324,
-      "runtime_seconds": 0.9908146997913718,
+      "runtime_seconds": 0.7823889999417588,
       "train_metrics": {
         "mae": 3.1825139400484557,
         "mse": 17.56006078245361,
@@ -784,6 +789,7 @@
       "encoded_input_count": 56,
       "selected_encoded_count": 56,
       "selected_original_count": 30,
+      "fitted_design_rank": 40,
       "selected_original_names": [
         "age",
         "Medu",
@@ -1218,24 +1224,24 @@
       "cv_std": 0.09243295328512957,
       "nested_cv_rmse": 4.787602099700388,
       "nested_cv_std": 0.09243295328512957,
-      "runtime_seconds": 5.408500799443573,
+      "runtime_seconds": 5.72244550002506,
       "train_metrics": {
         "mae": 2.9461846578987707,
         "mse": 14.938970943804087,
         "rmse": 3.865096498640634,
         "r2": 0.288773395896734,
-        "adjusted_r2": 0.1349946706852171
+        "adjusted_r2": 0.18827398444735954
       },
       "test_metrics": {
         "mae": 3.3952609258019213,
         "mse": 17.603737398324718,
         "rmse": 4.195680802721379,
         "r2": 0.14149247411195764,
-        "adjusted_r2": -2.0437994099666956
+        "adjusted_r2": -0.7170150517760849
       }
     }
   ],
-  "training_runtime_seconds": 16.473275399766862,
+  "training_runtime_seconds": 15.234578399977181,
   "versions": {
     "python": "3.12.10",
     "sklearn": "1.9.1",
@@ -1243,9 +1249,9 @@
     "pandas": "3.0.6",
     "joblib": "1.6.0"
   },
-  "runtime_seconds": 16.944276200141758,
+  "runtime_seconds": 15.582453899958637,
   "runtime_note": "Load, nested/final CV, evaluation, model and CSV export; excludes final JSON serialization. Includes cache hits if present.",
   "cache_enabled": true,
-  "cache_namespace": "2a48a794aa47c72d",
+  "cache_namespace": "4a3712c85740a0eb",
   "cache_namespace_preexisting": false
 }

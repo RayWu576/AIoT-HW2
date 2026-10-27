@@ -200,7 +200,7 @@ def evaluate_dataset(config,mode='FAST',root=ROOT):
               'source_run_sha256':hashlib.sha256((source/'run.json').read_bytes()).hexdigest(),
               'selected_method':run['best_model']['method'],'selection_unchanged':True,
               'adjusted_r2_convention':'Training effective affine design rank (including intercept) defines model complexity. Held-out adjusted R2 uses n_test-rank_train as a descriptive penalty, not refitted-test inference; null for n<=rank or constant target.',
-              'supersedes':'Only Phase 2 nominal-count adjusted R2 is superseded. Predictions and other metrics are unchanged.',
+              'supersedes':'Rank-aware Phase 2 and Phase 3 metrics agree. Historical nominal-count adjusted R2 is superseded; predictions and selection are unchanged.',
               'interval_note':'Classical mean CI and individual PI are pointwise working-model intervals. HC3/HAC mean intervals are asymptotic approximations. None correct selection uncertainty or ensure temporal/heteroscedastic PI coverage.',
               'models':all_diagnostics,'figures':figures,'runtime_seconds':perf_counter()-start}
     write_json(tables/'diagnostics.json',metadata)

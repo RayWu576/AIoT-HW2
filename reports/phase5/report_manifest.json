@@ -1,0 +1,21 @@
+{
+  "mode": "FAST",
+  "full_executed_in_phase5": false,
+  "figure_count": 26,
+  "datasets": [
+    {
+      "id": "student_performance",
+      "run_sha256": "f2452ff2b5bc2954f415d45a285561cf1b1eb877465b58d331fc37606aa85c7d",
+      "pipeline_seconds": 15.582453899958637,
+      "diagnostics_seconds": 7.393117400002666,
+      "selected_method": "Correlation"
+    },
+    {
+      "id": "appliances_energy",
+      "run_sha256": "91a536eb9d28b5296c236a2ee2a64ede868f2d23407928a076e7d6d48b54117f",
+      "pipeline_seconds": 19.176503699971363,
+      "diagnostics_seconds": 10.445172099978663,
+      "selected_method": "Mutual Information"
+    }
+  ]
+}

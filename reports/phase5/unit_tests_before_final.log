@@ -1,0 +1,69 @@
+
+test_all_five_methods_accept_both_raw_datasets (test_datasets.DatasetTests.test_all_five_methods_accept_both_raw_datasets) ... ok
+test_authentic_student_32_preserves_prior_grades (test_datasets.DatasetTests.test_authentic_student_32_preserves_prior_grades) ... ok
+test_bad_numeric_including_excluded_columns (test_datasets.DatasetTests.test_bad_numeric_including_excluded_columns) ... ok
+test_car_24_candidate_inputs (test_datasets.DatasetTests.test_car_24_candidate_inputs) ... ok
+test_car_unknown_categories_and_missing_values (test_datasets.DatasetTests.test_car_unknown_categories_and_missing_values) ... ok
+test_categorical_missing_and_unseen_in_pipeline (test_datasets.DatasetTests.test_categorical_missing_and_unseen_in_pipeline) ... ok
+test_complete_pipeline_refits_preprocessing_inside_search (test_datasets.DatasetTests.test_complete_pipeline_refits_preprocessing_inside_search) ... ok
+test_feature_name_order_matches_selector_transform (test_datasets.DatasetTests.test_feature_name_order_matches_selector_transform) ... ok
+test_identifier_validation (test_datasets.DatasetTests.test_identifier_validation) ... ok
+test_loader_retains_missing_predictors (test_datasets.DatasetTests.test_loader_retains_missing_predictors) ... ok
+test_manufacturer_corrections_and_cardinality (test_datasets.DatasetTests.test_manufacturer_corrections_and_cardinality) ... ok
+test_missing_extra_and_duplicate_headers (test_datasets.DatasetTests.test_missing_extra_and_duplicate_headers) ... ok
+test_missing_file (test_datasets.DatasetTests.test_missing_file) ... ok
+test_missing_target_and_infinity_rejected (test_datasets.DatasetTests.test_missing_target_and_infinity_rejected) ... ok
+test_random_holdout_and_training_only_statistics (test_datasets.DatasetTests.test_random_holdout_and_training_only_statistics) ... ok
+test_random_split_reproducible_and_invalid_split (test_datasets.DatasetTests.test_random_split_reproducible_and_invalid_split) ... ok
+test_student_30_explicit_early_profile (test_datasets.DatasetTests.test_student_30_explicit_early_profile) ... ok
+test_targets_and_feature_contract (test_datasets.DatasetTests.test_targets_and_feature_contract) ... ok
+test_wrong_student_subject_row_count (test_datasets.DatasetTests.test_wrong_student_subject_row_count) ... ok
+test_all_six_pipelines_and_linear_final_estimators (test_phase2.Phase2Tests.test_all_six_pipelines_and_linear_final_estimators) ... ok
+test_cache_reuses_ranking_but_keeps_fold_boundaries (test_phase2.Phase2Tests.test_cache_reuses_ranking_but_keeps_fold_boundaries) ... ok
+test_cached_rfe_path_matches_fixed_k_elimination (test_phase2.Phase2Tests.test_cached_rfe_path_matches_fixed_k_elimination) ... ok
+test_chronological_holdout_and_both_cv_levels (test_phase2.Phase2Tests.test_chronological_holdout_and_both_cv_levels) ... ok
+test_energy_bad_dates_and_excluded_numeric_rejected (test_phase2.Phase2Tests.test_energy_bad_dates_and_excluded_numeric_rejected) ... ok
+test_energy_schema_predictor_count_and_date (test_phase2.Phase2Tests.test_energy_schema_predictor_count_and_date) ... ok
+test_feature_names_coefficients_and_order_match_prediction (test_phase2.Phase2Tests.test_feature_names_coefficients_and_order_match_prediction) ... ok
+test_full_grid_explores_all_training_encoded_counts (test_phase2.Phase2Tests.test_full_grid_explores_all_training_encoded_counts) ... ok
+test_invalid_jobs_order_alignment_and_nonfinite_predictions (test_phase2.Phase2Tests.test_invalid_jobs_order_alignment_and_nonfinite_predictions) ... ok
+test_outer_method_choice_uses_only_inner_scores (test_phase2.Phase2Tests.test_outer_method_choice_uses_only_inner_scores) ... ok
+test_preprocessor_and_selector_fitted_in_each_inner_fold (test_phase2.Phase2Tests.test_preprocessor_and_selector_fitted_in_each_inner_fold) ... ok
+test_reproducible_selection_and_predictions (test_phase2.Phase2Tests.test_reproducible_selection_and_predictions) ... ok
+test_student_split_uses_42 (test_phase2.Phase2Tests.test_student_split_uses_42) ... ok
+test_training_api_and_holdout_evaluation_cannot_refit (test_phase2.Phase2Tests.test_training_api_and_holdout_evaluation_cannot_refit) ... ok
+test_ci_pi_match_statsmodels_on_original_full_rank_design (test_phase3.Phase3Tests.test_ci_pi_match_statsmodels_on_original_full_rank_design) ... ok
+test_hac_ci_finite_and_ordered (test_phase3.Phase3Tests.test_hac_ci_finite_and_ordered) ... ok
+test_hc3_mean_ci_matches_reference_and_is_available (test_phase3.Phase3Tests.test_hc3_mean_ci_matches_reference_and_is_available) ... ok
+test_invalid_designs_and_predictions_raise (test_phase3.Phase3Tests.test_invalid_designs_and_predictions_raise) ... ok
+test_low_cardinality_fitted_values_retain_all_levels (test_phase3.Phase3Tests.test_low_cardinality_fitted_values_retain_all_levels) ... ok
+test_nonpositive_df_constant_target_and_exact_fit (test_phase3.Phase3Tests.test_nonpositive_df_constant_target_and_exact_fit) ... ok
+test_rank_adjusted_r2_agrees_with_ols (test_phase3.Phase3Tests.test_rank_adjusted_r2_agrees_with_ols) ... FAIL
+test_singular_design_masks_nonestimable_rows (test_phase3.Phase3Tests.test_singular_design_masks_nonestimable_rows) ... ok
+test_vif_constant_perfect_collinearity_and_intercept_handling (test_phase3.Phase3Tests.test_vif_constant_perfect_collinearity_and_intercept_handling) ... ok
+test_zero_variance_residual_diagnostics_are_explicit (test_phase3.Phase3Tests.test_zero_variance_residual_diagnostics_are_explicit) ... ok
+test_actual_run_provenance_and_training_cv_recommendation (test_phase4.Phase4Tests.test_actual_run_provenance_and_training_cv_recommendation) ... ok
+test_json_and_direct_file_bundle_are_identical (test_phase4.Phase4Tests.test_json_and_direct_file_bundle_are_identical) ... ok
+test_official_registry_and_feature_metadata (test_phase4.Phase4Tests.test_official_registry_and_feature_metadata) ... ok
+test_relative_asset_versions_match_contents (test_phase4.Phase4Tests.test_relative_asset_versions_match_contents) ... ok
+test_ai_records_are_explicitly_unfinished (test_phase5.Phase5Tests.test_ai_records_are_explicitly_unfinished) ... ok
+test_all_26_report_figures_exist_and_are_unique (test_phase5.Phase5Tests.test_all_26_report_figures_exist_and_are_unique) ... ok
+test_dataset_provenance_matches_preserved_authentic_files (test_phase5.Phase5Tests.test_dataset_provenance_matches_preserved_authentic_files) ... ok
+test_effective_rank_differs_from_aliased_column_count (test_phase5.Phase5Tests.test_effective_rank_differs_from_aliased_column_count) ... ok
+test_local_markdown_links_resolve (test_phase5.Phase5Tests.test_local_markdown_links_resolve) ... ok
+test_phase2_and_phase3_use_same_effective_rank (test_phase5.Phase5Tests.test_phase2_and_phase3_use_same_effective_rank) ... ok
+test_readme_is_generated_from_template_with_real_tables (test_phase5.Phase5Tests.test_readme_is_generated_from_template_with_real_tables) ... ok
+test_report_values_and_hashes_come_from_current_runs (test_phase5.Phase5Tests.test_report_values_and_hashes_come_from_current_runs) ... ok
+
+======================================================================
+FAIL: test_rank_adjusted_r2_agrees_with_ols (test_phase3.Phase3Tests.test_rank_adjusted_r2_agrees_with_ols)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ray\Desktop\AIoT\HW2\tests\test_phase3.py", line 40, in test_rank_adjusted_r2_agrees_with_ols
+    self.assertNotAlmostEqual(metrics['adjusted_r2'],old,places=3)
+AssertionError: 0.18827398444735954 == 0.18827398444735954 within 3 places
+
+----------------------------------------------------------------------
+Ran 55 tests in 19.185s
+
+FAILED (failures=1)

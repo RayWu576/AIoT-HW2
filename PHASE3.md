@@ -1,3 +1,5 @@
+> Historical Phase 3 record. The current complete pipeline and verification commands are in README.md and PHASE5.md; frontend snapshot checks are now opt-in.
+
 # Phase 3: model evaluation, diagnostics and report figures
 
 ## Reproduce without repeating Phase 2 training

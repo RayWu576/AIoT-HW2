@@ -1,3 +1,5 @@
+> Historical Phase 2 record. The current official dashboard now uses Student/Energy; see README.md and PHASE5.md. Old frontend-byte preservation applies only to historical replay.
+
 # Phase 2: leakage-safe Multiple Linear Regression
 
 This backend phase follows the latest request: Student Performance (30 original inputs) and Appliances Energy (25 original inputs including lights). The existing Car Price implementation and dashboard remain intact. No file under dashboard/dist is written by the Phase 2 runner. Dataset IDs are explicitly separated: PHASE2_DATASETS drives this runner; OFFICIAL_DATASETS still describes the preserved student/car dashboard.

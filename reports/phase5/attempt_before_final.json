@@ -1,0 +1,79 @@
+{
+  "passed": false,
+  "failed_step": "unit_tests",
+  "steps": [
+    {
+      "name": "training",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "phase2_experiment.py",
+        "--mode",
+        "FAST",
+        "--jobs",
+        "2"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 38.51732629997423,
+      "log": "reports/phase5/training.log"
+    },
+    {
+      "name": "diagnostics",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "phase3_evaluation.py",
+        "--mode",
+        "FAST"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 23.7204400000046,
+      "log": "reports/phase5/diagnostics.log"
+    },
+    {
+      "name": "dashboard_export",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "dashboard_export.py",
+        "--mode",
+        "FAST"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 16.443202599999495,
+      "log": "reports/phase5/dashboard_export.log"
+    },
+    {
+      "name": "report_preparation",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "report_preparation.py",
+        "--mode",
+        "FAST"
+      ],
+      "returncode": 0,
+      "runtime_seconds": 3.414692800026387,
+      "log": "reports/phase5/report_preparation.log"
+    },
+    {
+      "name": "unit_tests",
+      "command": [
+        "C:\\Users\\Ray\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "runtime_seconds": 23.388362199999392,
+      "log": "reports/phase5/unit_tests.log",
+      "tests_run": 55,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 54
+    }
+  ],
+  "runtime_seconds": 105.59090150002157
+}

@@ -1,11 +1,11 @@
 {
   "mode": "FAST",
-  "runtime_seconds": 38.94257940026,
+  "runtime_seconds": 34.790561500005424,
   "runtime_note": "Inside CLI main; excludes Python imports and process teardown.",
   "datasets": [
     {
       "id": "student_performance",
-      "runtime_seconds": 16.944276200141758,
+      "runtime_seconds": 15.582453899958637,
       "best_method": "Correlation",
       "workflow_nested_cv_rmse": 4.274466720286452,
       "methods": [
@@ -61,7 +61,7 @@
     },
     {
       "id": "appliances_energy",
-      "runtime_seconds": 21.96191189996898,
+      "runtime_seconds": 19.176503699971363,
       "best_method": "Mutual Information",
       "workflow_nested_cv_rmse": 98.98859214634174,
       "methods": [

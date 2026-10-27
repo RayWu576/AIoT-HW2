@@ -25,7 +25,8 @@ def write_json(path, value):
 def evaluate_holdout(training, X_test, y_test):
     """Evaluation after method/parameter selection; cannot change the decision."""
     return {method: regression_metrics(y_test, model.predict(X_test),
-                                       training["methods"][method]["selected_encoded_count"])
+                                       training["methods"][method]["selected_encoded_count"],
+                                       fitted_rank=training["methods"][method].get("fitted_design_rank"))
             for method, model in training["models"].items()}
 
 

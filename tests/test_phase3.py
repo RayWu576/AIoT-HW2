@@ -36,8 +36,10 @@ class Phase3Tests(unittest.TestCase):
         fit=sm.OLS(self.y,info['basis']).fit()
         metrics=rank_metrics(self.y,baseline.predict(self.data.X.iloc[self.train]),info['rank'])
         self.assertAlmostEqual(metrics['adjusted_r2'],fit.rsquared_adj,places=10)
-        old=next(m for m in self.run_metadata['methods'] if m['method']=='Baseline')['train_metrics']['adjusted_r2']
-        self.assertNotAlmostEqual(metrics['adjusted_r2'],old,places=3)
+        recorded=next(m for m in self.run_metadata['methods'] if m['method']=='Baseline')['train_metrics']['adjusted_r2']
+        self.assertAlmostEqual(metrics['adjusted_r2'],recorded,places=10)
+        nominal=1-(1-metrics['r2'])*(len(self.y)-1)/(len(self.y)-info['columns_with_intercept'])
+        self.assertNotAlmostEqual(metrics['adjusted_r2'],nominal,places=3)
 
     def test_ci_pi_match_statsmodels_on_original_full_rank_design(self):
         intervals,metadata=prediction_intervals(self.Z,self.y,self.new,self.pred)

@@ -11,7 +11,7 @@ sys.path.insert(0,str(ROOT))
 from housing_experiment import load_housing
 from dashboard_export import refresh_asset_versions
 
-bundle=json.loads((ROOT/'dashboard/dist/data.json').read_text(encoding='utf-8'))
+bundle=json.loads((ROOT/'results/historical_boston_startups/data.json').read_text(encoding='utf-8'))
 assert set(bundle['datasets'])=={'startups','boston'}
 D=bundle['datasets']['boston']
 raw=pd.read_csv(ROOT/'datasets/boston_housing/HousingData.csv')
@@ -32,7 +32,7 @@ with sync_playwright() as p:
     b=p.chromium.launch(channel='msedge',headless=True)
     page=b.new_page(viewport={'width':1440,'height':1000})
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto((ROOT/'dashboard/dist/index.html').as_uri())
+    page.goto((ROOT/'historical/dashboard/dist/index.html').as_uri())
     assert page.locator('#dataset-select option').count()==2
     assert page.locator('#counts button').count()==5
     page.select_option('#dataset-select','boston')

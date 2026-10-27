@@ -82,14 +82,25 @@ def feature_details(fitted, config):
              "coefficient": float(coefficients[i])} for i,j in enumerate(indices)]
 
 
-def regression_metrics(y, predicted, selected_count):
+def fitted_design_rank(fitted, X):
+    """Affine rank of the training-fitted selected design, including intercept."""
+    values = fitted['preprocessor'].transform(X)
+    for step in ('ranking', 'selector'):
+        if step in fitted.named_steps:
+            values = fitted[step].transform(values)
+    values = np.asarray(values, dtype=float)
+    return int(np.linalg.matrix_rank(values-values.mean(axis=0)))+1
+
+
+def regression_metrics(y, predicted, selected_count, *, fitted_rank=None):
     y = np.asarray(y, dtype=float)
     predicted = np.asarray(predicted, dtype=float)
     if not np.isfinite(predicted).all():
         raise ValueError("Model emitted nonfinite predictions")
     mse = float(mean_squared_error(y, predicted))
     r2 = float(r2_score(y, predicted))
-    adjusted = 1-(1-r2)*(len(y)-1)/(len(y)-selected_count-1) if len(y)>selected_count+1 else None
+    rank = selected_count+1 if fitted_rank is None else fitted_rank
+    adjusted = 1-(1-r2)*(len(y)-1)/(len(y)-rank) if len(y)>rank else None
     return {"mae": float(mean_absolute_error(y, predicted)), "mse": mse,
             "rmse": float(np.sqrt(mse)), "r2": r2, "adjusted_r2": adjusted}
 
@@ -133,7 +144,8 @@ def fit_training(config, X_train, y_train, *, mode=MODES["FAST"], cache_dir=None
                 method_seconds[method] += elapsed
                 fitted = search.best_estimator_
                 details = feature_details(fitted, config)
-                score = regression_metrics(y_train.iloc[validation], fitted.predict(X_train.iloc[validation]), len(details))
+                score = regression_metrics(y_train.iloc[validation], fitted.predict(X_train.iloc[validation]), len(details),
+                                           fitted_rank=fitted_design_rank(fitted, X_train.iloc[train]))
                 inner_rmse = float(-search.best_score_)
                 record = {"outer_fold": fold, "method": method, "inner_cv_rmse": inner_rmse,
                           "outer_rmse": score["rmse"], "selected_encoded_count": len(details),
@@ -159,11 +171,13 @@ def fit_training(config, X_train, y_train, *, mode=MODES["FAST"], cache_dir=None
             final_searches[method] = search
             details = feature_details(fitted, config)
             encoded_width = len(fitted["preprocessor"].get_feature_names_out())
+            rank = fitted_design_rank(fitted, X_train)
             outer_scores = [r["outer_rmse"] for r in fold_records if r["method"] == method]
             selected_original = list(dict.fromkeys(d["original_name"] for d in details))
             method_records[method] = {"method": method, "original_input_count": config.original_feature_count,
                                       "encoded_input_count": encoded_width, "selected_encoded_count": len(details),
                                       "selected_original_count": len(selected_original),
+                                      "fitted_design_rank": rank,
                                       "selected_original_names": selected_original,
                                       "selected_encoded_names": [d["encoded_name"] for d in details],
                                       "features": details, "intercept": float(fitted["regressor"].intercept_),
@@ -173,7 +187,7 @@ def fit_training(config, X_train, y_train, *, mode=MODES["FAST"], cache_dir=None
                                       "nested_cv_rmse": float(np.mean(outer_scores)),
                                       "nested_cv_std": float(np.std(outer_scores)),
                                       "runtime_seconds": method_seconds[method],
-                                      "train_metrics": regression_metrics(y_train, fitted.predict(X_train), len(details))}
+                                      "train_metrics": regression_metrics(y_train, fitted.predict(X_train), len(details), fitted_rank=rank)}
             if progress: progress(f"final {method}: k={len(details)}, inner CV RMSE={-search.best_score_:.4f}")
     best_method = min(METHODS, key=lambda m: method_records[m]["best_cv_rmse"])
     workflow_scores = [r["rmse"] for r in workflow_folds]

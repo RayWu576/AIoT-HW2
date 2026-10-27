@@ -1,0 +1,14 @@
+student_performance: diagnosed Correlation, rank=2/2
+student_performance: diagnosed RFE, rank=2/2
+student_performance: diagnosed RFECV, rank=2/2
+student_performance: diagnosed Mutual Information, rank=10/11
+student_performance: diagnosed LASSO, rank=4/4
+student_performance: diagnosed Baseline, rank=40/57
+appliances_energy: diagnosed Mutual Information, rank=11/11
+appliances_energy: diagnosed RFE, rank=11/11
+appliances_energy: diagnosed RFECV, rank=11/11
+appliances_energy: diagnosed Correlation, rank=6/6
+appliances_energy: diagnosed LASSO, rank=5/5
+appliances_energy: diagnosed Baseline, rank=26/26
+Generated Phase 3 reports: [('student_performance', 13), ('appliances_energy', 13)]
+

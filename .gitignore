@@ -24,3 +24,5 @@ env/
 Thumbs.db
 # Fold-local Phase 2 joblib cache (rebuildable)
 /.cache/phase2/
+# Intentional Phase 5 reproducible QA command logs
+!/reports/phase5/*.log

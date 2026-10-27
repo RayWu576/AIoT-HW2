@@ -17,11 +17,11 @@
     "seed": 42,
     "gap": 0
   },
-  "source_run_sha256": "fe68083fcf038e30cb0b2300ecd7e6eb29ae3273fbb77d035ccf53cd0022449f",
+  "source_run_sha256": "91a536eb9d28b5296c236a2ee2a64ede868f2d23407928a076e7d6d48b54117f",
   "selected_method": "Mutual Information",
   "selection_unchanged": true,
   "adjusted_r2_convention": "Training effective affine design rank (including intercept) defines model complexity. Held-out adjusted R2 uses n_test-rank_train as a descriptive penalty, not refitted-test inference; null for n<=rank or constant target.",
-  "supersedes": "Only Phase 2 nominal-count adjusted R2 is superseded. Predictions and other metrics are unchanged.",
+  "supersedes": "Rank-aware Phase 2 and Phase 3 metrics agree. Historical nominal-count adjusted R2 is superseded; predictions and selection are unchanged.",
   "interval_note": "Classical mean CI and individual PI are pointwise working-model intervals. HC3/HAC mean intervals are asymptotic approximations. None correct selection uncertainty or ensure temporal/heteroscedastic PI coverage.",
   "models": {
     "Mutual Information": {
@@ -1058,5 +1058,5 @@
       "dpi": 300
     }
   ],
-  "runtime_seconds": 11.206878999713808
+  "runtime_seconds": 10.445172099978663
 }

@@ -1,4 +1,5 @@
 """Validate full-size real FAST artifacts; never trains against held-out data."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -10,9 +11,12 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from threadpoolctl import threadpool_limits
 from datasets import PHASE2_DATASETS,load_dataset,holdout_indices
-from regression_pipeline import METHODS,feature_details,regression_metrics
+from regression_pipeline import METHODS,feature_details,regression_metrics,fitted_design_rank
 
 ROOT=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--check-historical-frontend',action='store_true',help='Require the pre-Phase-4 frontend snapshot; only for historical replay')
+args=parser.parse_args()
 counts={'datasets':0,'models':0,'training_predictions':0,'heldout_predictions':0}
 with threadpool_limits(limits=1):
     for dataset_id,config in PHASE2_DATASETS.items():
@@ -69,7 +73,8 @@ with threadpool_limits(limits=1):
                 predicted=model.predict(data.X.iloc[indices])
                 assert np.isfinite(predicted).all()
                 np.testing.assert_allclose(predicted,stored[name].to_numpy(),rtol=1e-10,atol=1e-7)
-                metrics=regression_metrics(data.y.iloc[indices],predicted,len(details))
+                metrics=regression_metrics(data.y.iloc[indices],predicted,len(details),
+                                           fitted_rank=fitted_design_rank(model,data.X.iloc[train]))
                 for key,value in metrics.items():
                     if value is None:assert method[part+'_metrics'][key] is None
                     else:assert np.isclose(value,method[part+'_metrics'][key])
@@ -100,11 +105,12 @@ for a,b in zip(first['datasets'],current['datasets']):
         assert m['method']==n['method'] and m['selected_encoded_count']==n['selected_encoded_count']
         for key in ['best_cv_rmse','nested_cv_rmse','test_rmse','test_r2']:
             assert np.isclose(m[key],n[key],rtol=1e-10,atol=1e-7)
-# Frontend bytes must be identical to the start of Phase 2.
+# Phase 4 intentionally changed UI assets. Keep the old byte contract opt-in.
 before=json.loads((ROOT/'results/phase2_frontend_before.json').read_text(encoding='utf-8'))
-after={str(p.relative_to(ROOT)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest()
+after={str(p.relative_to(ROOT)).replace(chr(92),'/'):hashlib.sha256(p.read_bytes()).hexdigest()
        for p in (ROOT/'dashboard/dist').glob('*') if p.is_file()}
-assert before==after,'Phase 2 modified the frontend'
-verification={'status':'PASS',**counts,'repeated_fast_reproducible':True,'frontend_unchanged':True}
+frontend_unchanged=before==after
+if args.check_historical_frontend:assert frontend_unchanged,'Historical frontend snapshot differs (expected after Phase 4)'
+verification={'status':'PASS',**counts,'repeated_fast_reproducible':True,'historical_frontend_check_requested':args.check_historical_frontend,'frontend_unchanged':frontend_unchanged}
 (ROOT/'results/phase2_validation.json').write_text(json.dumps(verification,indent=2),encoding='utf-8')
 print('PASS:',verification)

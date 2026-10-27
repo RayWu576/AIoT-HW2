@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
-data=json.loads((ROOT/'dashboard/dist/data.json').read_text(encoding='utf-8'))
+data=json.loads((ROOT/'results/historical_boston_startups/data.json').read_text(encoding='utf-8'))
 expected={'Correlation','Mutual Information','RFE','RFECV','LASSO'}
 assert {m['method'] for m in data['models']}==expected
 assert len(data['models'])==25
@@ -31,7 +31,7 @@ with sync_playwright() as p:
     page=browser.new_page(viewport={'width':1440,'height':1000})
     errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto((ROOT/'dashboard/dist/index.html').as_uri())
+    page.goto((ROOT/'historical/dashboard/dist/index.html').as_uri())
     for m in data['models']:
         page.locator(f'#methods button[data-method="{m["method"]}"]').click()
         page.locator(f'#counts button[data-k="{m["k"]}"]').click()
