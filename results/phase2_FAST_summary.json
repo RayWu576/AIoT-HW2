@@ -1,7 +1,11 @@
 {
   "mode": "FAST",
-  "runtime_seconds": 34.790561500005424,
-  "runtime_note": "Inside CLI main; excludes Python imports and process teardown.",
+  "runtime_seconds": 44.91129329992691,
+  "latest_invocation_runtime_seconds": 10.161004599998705,
+  "latest_invocation_datasets": [
+    "car_price"
+  ],
+  "runtime_note": "Sum of recorded per-dataset pipeline durations; runs may be separate invocations. Latest invocation time is recorded separately.",
   "datasets": [
     {
       "id": "student_performance",
@@ -112,6 +116,62 @@
           "nested_cv_rmse": 100.47101772856209,
           "test_rmse": 86.73293851865498,
           "test_r2": 0.09235159638436541
+        }
+      ]
+    },
+    {
+      "id": "car_price",
+      "runtime_seconds": 10.152335699996911,
+      "best_method": "LASSO",
+      "workflow_nested_cv_rmse": 3465.673276436594,
+      "methods": [
+        {
+          "method": "LASSO",
+          "selected_encoded_count": 38,
+          "best_cv_rmse": 3183.2454387404487,
+          "nested_cv_rmse": 3459.8914957118204,
+          "test_rmse": 2869.822505535114,
+          "test_r2": 0.8956744143317628
+        },
+        {
+          "method": "Correlation",
+          "selected_encoded_count": 5,
+          "best_cv_rmse": 3445.792281663951,
+          "nested_cv_rmse": 3445.792281663951,
+          "test_rmse": 3816.5328559381387,
+          "test_r2": 0.8154904845465165
+        },
+        {
+          "method": "Mutual Information",
+          "selected_encoded_count": 5,
+          "best_cv_rmse": 3524.7609786999083,
+          "nested_cv_rmse": 3828.3475590730222,
+          "test_rmse": 3811.5903857921326,
+          "test_r2": 0.8159680605677554
+        },
+        {
+          "method": "RFE",
+          "selected_encoded_count": 5,
+          "best_cv_rmse": 3755.7106966767014,
+          "nested_cv_rmse": 3649.0349283939936,
+          "test_rmse": 3093.638057788648,
+          "test_r2": 0.8787673046551842
+        },
+        {
+          "method": "RFECV",
+          "selected_encoded_count": 5,
+          "best_cv_rmse": 3755.7106966767014,
+          "nested_cv_rmse": 3649.0349283939936,
+          "test_rmse": 3093.638057788648,
+          "test_r2": 0.8787673046551842
+        },
+        {
+          "method": "Baseline",
+          "selected_encoded_count": 73,
+          "best_cv_rmse": 6091.508623045553,
+          "nested_cv_rmse": 6091.508623045553,
+          "test_rmse": 2794.4079938592386,
+          "test_r2": 0.9010854026798556
         }
       ]
     }

@@ -47,15 +47,18 @@ test_json_and_direct_file_bundle_are_identical (test_phase4.Phase4Tests.test_jso
 test_official_registry_and_feature_metadata (test_phase4.Phase4Tests.test_official_registry_and_feature_metadata) ... ok
 test_relative_asset_versions_match_contents (test_phase4.Phase4Tests.test_relative_asset_versions_match_contents) ... ok
 test_ai_records_are_explicitly_unfinished (test_phase5.Phase5Tests.test_ai_records_are_explicitly_unfinished) ... ok
-test_all_26_report_figures_exist_and_are_unique (test_phase5.Phase5Tests.test_all_26_report_figures_exist_and_are_unique) ... ok
+test_all_official_report_figures_exist_and_are_unique (test_phase5.Phase5Tests.test_all_official_report_figures_exist_and_are_unique) ... ok
 test_dataset_provenance_matches_preserved_authentic_files (test_phase5.Phase5Tests.test_dataset_provenance_matches_preserved_authentic_files) ... ok
 test_effective_rank_differs_from_aliased_column_count (test_phase5.Phase5Tests.test_effective_rank_differs_from_aliased_column_count) ... ok
 test_local_markdown_links_resolve (test_phase5.Phase5Tests.test_local_markdown_links_resolve) ... ok
 test_phase2_and_phase3_use_same_effective_rank (test_phase5.Phase5Tests.test_phase2_and_phase3_use_same_effective_rank) ... ok
 test_readme_is_generated_from_template_with_real_tables (test_phase5.Phase5Tests.test_readme_is_generated_from_template_with_real_tables) ... ok
 test_report_values_and_hashes_come_from_current_runs (test_phase5.Phase5Tests.test_report_values_and_hashes_come_from_current_runs) ... ok
+test_existing_two_problem_predictions_preserved_by_export (test_problem3.Problem3Tests.test_existing_two_problem_predictions_preserved_by_export) ... ok
+test_manufacturer_grid_and_export_descriptor (test_problem3.Problem3Tests.test_manufacturer_grid_and_export_descriptor) ... ok
+test_order_schema_split_and_training_only_selection (test_problem3.Problem3Tests.test_order_schema_split_and_training_only_selection) ... ok
 
 ----------------------------------------------------------------------
-Ran 55 tests in 19.587s
+Ran 58 tests in 20.686s
 
 OK

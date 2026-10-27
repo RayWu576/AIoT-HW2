@@ -46,12 +46,12 @@ def audit():
     for p in python:
         ast.parse(p.read_text(encoding='utf-8-sig'),filename=str(p))
     bundle=json.loads((ROOT/'dashboard/dist/data.json').read_text(encoding='utf-8'))
-    assert set(bundle['datasets'])=={'student_performance','appliances_energy'}
+    assert set(bundle['datasets'])=={'student_performance','appliances_energy','car_price'}
     assert bundle['schemaVersion']==5
-    for key,count in [('student_performance',30),('appliances_energy',25)]:
+    for key,count in [('student_performance',30),('appliances_energy',25),('car_price',24)]:
         assert bundle['datasets'][key]['metadata']['originalFeatureCount']==count
     figures=list((ROOT/'reports/figures').rglob('*.png'))
-    assert len(figures)==26
+    assert len(figures)==39
     inventory={'file_count':len(files),'python_syntax_files':len(python),'official_figures':len(figures),
                'files':[{'path':p.relative_to(ROOT).as_posix(),'bytes':p.stat().st_size} for p in files]}
     (OUT/'audit_inventory.json').write_text(json.dumps(inventory,indent=2)+'\n',encoding='utf-8')
@@ -100,7 +100,7 @@ def main():
     inspected=audit()
     assert before=={name:sha(ROOT/name) for name in before},'Raw/historical files unexpectedly changed'
     runs=[json.loads((ROOT/'results'/key/'FAST/run.json').read_text(encoding='utf-8'))
-          for key in ['student_performance','appliances_energy']]
+          for key in ['student_performance','appliances_energy','car_price']]
     result={'passed':True,'mode':'FAST','full_executed':False,
             'training_reused':args.reuse_training,'steps':steps,
             'audit':inspected,'protected_files_unchanged':len(before),

@@ -9,11 +9,11 @@ from datasets import OFFICIAL_DATASETS
 
 ROOT=Path(__file__).resolve().parents[1]
 class Phase5Tests(unittest.TestCase):
-    def test_all_26_report_figures_exist_and_are_unique(self):
+    def test_all_official_report_figures_exist_and_are_unique(self):
         with (ROOT/'reports/figure_index.csv').open(encoding='utf-8-sig',newline='') as stream:
             rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),26)
-        self.assertEqual(len({r['path'] for r in rows}),26)
+        self.assertEqual(len(rows),13*len(OFFICIAL_DATASETS))
+        self.assertEqual(len({r['path'] for r in rows}),13*len(OFFICIAL_DATASETS))
         report=(ROOT/'reports/CRISP_DM_REPORT.md').read_text(encoding='utf-8')
         for i,row in enumerate(rows,1):
             self.assertEqual(int(row['figure_number']),i)
@@ -81,8 +81,12 @@ class Phase5Tests(unittest.TestCase):
                 self.assertEqual(rank,design_information(selected_matrix(model,data.X.iloc[train]))['rank'])
                 expected=rank_metrics(data.y.iloc[test],model.predict(data.X.iloc[test]),rank)
                 actual=regression_metrics(data.y.iloc[test],model.predict(data.X.iloc[test]),m['selected_encoded_count'],fitted_rank=rank)
-                self.assertAlmostEqual(actual['adjusted_r2'],expected['adjusted_r2'])
-                self.assertAlmostEqual(m['test_metrics']['adjusted_r2'],expected['adjusted_r2'])
+                if expected['adjusted_r2'] is None:
+                    self.assertIsNone(actual['adjusted_r2'])
+                    self.assertIsNone(m['test_metrics']['adjusted_r2'])
+                else:
+                    self.assertAlmostEqual(actual['adjusted_r2'],expected['adjusted_r2'])
+                    self.assertAlmostEqual(m['test_metrics']['adjusted_r2'],expected['adjusted_r2'])
     def test_effective_rank_differs_from_aliased_column_count(self):
         from regression_pipeline import regression_metrics
         nominal=regression_metrics([1,2,3,4],[1,2,3,3],3)

@@ -1,0 +1,6 @@
+feature,vif,status
+numeric__enginesize,3.786619949235309,estimable
+numeric__carwidth,3.7133345899627703,estimable
+categorical__enginelocation_front,1.187755187636342,estimable
+numeric__curbweight,5.893370694635202,estimable
+categorical__CarName_bmw,1.0374338933900928,estimable

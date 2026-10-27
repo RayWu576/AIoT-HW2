@@ -1,15 +1,15 @@
 # AIoT HW2 — Multiple Linear Regression 與 Feature Selection
 
-本專案以 Student Performance 與 Appliances Energy 兩題，研究五種特徵選擇對線性迴歸的影響。
+本專案以 Student Performance、Appliances Energy 與 Car Price 三題，研究五種特徵選擇對線性迴歸的影響。
 沿用既有 Python Pipeline 與 DataLab 互動儀表板；所有指標、係數、預測、區間及 PNG 都來自真實執行。
-正式範圍只有這兩題，不提供任意資料上傳。
+正式範圍只有這三題，不提供任意資料上傳。
 
 ## 作業目標與完成範圍
 
 - 原始輸入數符合 14–39，區分 original、encoded、selected 與有效設計 rank。
 - Baseline 加 Correlation、Mutual Information、RFE、RFECV、LASSO，最終 predictor 全為 LinearRegression。
 - 完整 Pipeline 與 training-only nested CV；保留獨立 test，不以 test 選模型。
-- 五項迴歸假設、95% mean CI／individual PI、報告圖表、兩題靜態互動介面及自動驗證。
+- 五項迴歸假設、95% mean CI／individual PI、報告圖表、三題靜態互動介面及自動驗證。
 - 本次實際執行 FAST。FULL 尚未執行；AI 附件與最終 PDF 仍須人工完成。
 
 ## 資料集、目標與特徵數
@@ -18,6 +18,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 學生表現 | 395 | 33 | 30 | 56 | G3 | grade (0-20) | 316 / 79 |
 | 家電能源 | 19735 | 29 | 25 | 25 | Appliances | Wh | 15788 / 3947 |
+| 汽車價格 | 205 | 26 | 24 | 73 | price | USD | 164 / 41 |
 
 Student 的 G3 是 0–20 數學期末成績。原始 student-mat.csv 有 33 欄、32 個非目標欄位；
 本專案明確排除歷史 G1/G2，採 early-30。加入 G1/G2 會改變實際可預測時點，不能混稱為同一問題。
@@ -35,9 +36,32 @@ Energy 的 Appliances 單位 Wh；排除目標、rv1、rv2，date 另存時間 m
 [Energy Kaggle 副本](https://www.kaggle.com/datasets/loveall/appliances-energy-prediction)
 內原名 KAG_energydata_complete.csv，放置為 datasets/appliances_energy/energydata_complete.csv；
 原始參考是 [UCI Appliances](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction)。
-兩題 CSV 已在儲存庫，source.json／student-mat.source.json 保留來源與 hash。
+三題 CSV 已在儲存庫，source.json／student-mat.source.json 保留來源與 hash。
 網路或認證受限時請從來源頁下載真實檔，不生成替代資料或提交憑證。
-**交付是兩個真實驗證資料集，但不宣稱兩份原檔都從指定 Kaggle 下載；學生來源差異仍須教師接受。**
+**交付是三個真實驗證資料集，但不宣稱三份原檔都從指定 Kaggle 下載；學生來源差異仍須教師接受。**
+
+
+### Problem 3 — Car Price Prediction
+
+來源：[hellbuoy Kaggle](https://www.kaggle.com/datasets/hellbuoy/car-price-prediction)。
+真實 CarPrice_Assignment.csv 已核對 SHA-256：205 筆、26 欄；排除 car_ID 與 price 後有 24 個原始候選輸入（14 數值、10 類別），目標 price 單位 USD。
+CarName 有 147 個原始車名，Pipeline 以第一個 token 擷取廠牌並修正固定拼字，得到 22 個廠牌；
+不是把原始車名直接 one-hot。未知廠牌以 handle_unknown="ignore" 處理。
+完整訓練切分產生 73 個編碼欄位，與 24 個原始輸入不同。
+
+seed=42，164 train／41 test；inner／outer shuffled KFold。
+與其他題相同的 Baseline＋五選擇器，最終都為 LinearRegression。
+本輪 FAST 以 training CV 選 LASSO support（38 encoded），Test RMSE 2869.8225 USD、R² 0.8957。
+LASSO 僅選特徵；不以 test 較佳的 Baseline 重選。205 筆與稀疏廠牌限制推論及外推，不是當前市場估價保證。
+
+只重跑第三題：
+
+    python phase2_experiment.py --dataset car_price --mode FAST --jobs 2
+    python phase3_evaluation.py --dataset car_price --mode FAST
+    python dashboard_export.py --mode FAST
+    python report_preparation.py --mode FAST
+
+單題訓練摘要會保留其他題的真實既有紀錄，三題結果分開存放。
 
 ## 專案結構
 
@@ -46,7 +70,7 @@ Energy 的 Appliances 單位 Wh；排除目標、rv1、rv2，date 另存時間 m
     regression_pipeline.py         training-only nested CV、FAST/FULL
     phase2_experiment.py            訓練、模型與 CSV/JSON
     regression_diagnostics.py      rank、VIF、假設、CI/PI
-    phase3_evaluation.py            指標、26 張 PNG 與診斷表
+    phase3_evaluation.py            指標、39 張 PNG 與診斷表
     dashboard_integration.py        已擬合模型的靜態推論 descriptor
     dashboard_export.py / main.py   正式 dashboard export
     dashboard/dist/                原有 DataLab HTML/CSS/JS 與真實 data bundle
@@ -163,10 +187,16 @@ VIF／rank／condition（共線性）。
 | 家電能源 | Correlation | 5 | 98.4382 | 0.0480 | 94.7469 | -0.0831 |
 | 家電能源 | LASSO | 4 | 99.2578 | 0.6517 | 94.7312 | -0.0828 |
 | 家電能源 | Baseline | 25 | 100.4710 | 2.8834 | 86.7329 | 0.0924 |
+| 汽車價格 | LASSO | 38 | 3183.2454 | 618.5981 | 2869.8225 | 0.8957 |
+| 汽車價格 | Correlation | 5 | 3445.7923 | 519.8880 | 3816.5329 | 0.8155 |
+| 汽車價格 | Mutual Information | 5 | 3524.7610 | 447.8558 | 3811.5904 | 0.8160 |
+| 汽車價格 | RFE | 5 | 3755.7107 | 561.0313 | 3093.6381 | 0.8788 |
+| 汽車價格 | RFECV | 5 | 3755.7107 | 561.0313 | 3093.6381 | 0.8788 |
+| 汽車價格 | Baseline | 73 | 6091.5086 | 3265.8509 | 2794.4080 | 0.9011 |
 
-正式學生推薦 Correlation，能源推薦 Mutual Information，依 training CV 決定。
+正式學生推薦 Correlation、能源推薦 Mutual Information、汽車推薦 LASSO support，均依 training CV 決定。
 Baseline 測試結果可能更好，並未據此重選。負 test R² 保留，不隱藏失敗。
-兩題 RMSE 單位不同（grade、Wh），不能直接以大小比較模型品質。
+三題 RMSE 單位不同（grade、Wh），不能直接以大小比較模型品質。
 完整 train/test MAE、MSE、rank-adjusted R² 與 nested CV 見
 [CRISP-DM 報告](reports/CRISP_DM_REPORT.md)及 reports/tables/。
 
@@ -174,8 +204,9 @@ Baseline 測試結果可能更好，並未據此重選。負 test R² 保留，�
 
 | 題目 | Pipeline 秒 | 診斷／圖表秒 | 上述合計秒 | cache namespace 已存在 |
 | --- | --- | --- | --- | --- |
-| 學生表現 | 15.58 | 7.39 | 22.98 | False |
-| 家電能源 | 19.18 | 10.45 | 29.62 | False |
+| 學生表現 | 15.58 | 7.67 | 23.25 | False |
+| 家電能源 | 19.18 | 10.60 | 29.77 | False |
+| 汽車價格 | 10.15 | 12.32 | 22.47 | True |
 
 Pipeline 包含載入／CV／評估／匯出，不含 Python 匯入及程序啟閉。
 診斷包含 13 圖／題。上述合計不含共用 dashboard、browser QA 或文件產生；
@@ -183,7 +214,7 @@ Pipeline 包含載入／CV／評估／匯出，不含 Python 匯入及程序啟�
 
 ## 儀表板與本機執行
 
-保留既有雙題、六模型、k、CV 曲線、係數／統計、殘差排序／分頁、數值與類別預測、
+保留既有三題、六模型、k、CV 曲線、係數／統計、殘差排序／分頁、數值與類別預測、
 95% CI/PI、外插警示、情境比較、CSV、深色與響應式介面。切題隔離全部資料與情境。
 全部前端數值由 Python 真實產物提供，與 sklearn／statsmodels 逐筆核對。
 靜態架構不需要後端 API 或前端 build。
@@ -204,7 +235,7 @@ Pipeline 包含載入／CV／評估／匯出，不含 Python 匯入及程序啟�
 以 [Phase 5 驗收](reports/phase5/validation.json) 為準。
 歷史的 frontend-byte preservation 已改為 --check-historical-frontend 顯式選項，
 不會把 Phase 4 正常更新判成後端失敗，也不偽稱前端沒變。
-歷史驗證檔不屬正式雙題驗收，不對舊題重跑模型。
+歷史驗證檔不屬正式三題驗收，不對舊題重跑模型。
 
 ## GitHub Pages 發布
 
@@ -215,7 +246,7 @@ Pipeline 包含載入／CV／評估／匯出，不含 Python 匯入及程序啟�
 
 ## 報告與 AI 使用附件
 
-- [繁體中文 CRISP-DM 稿](reports/CRISP_DM_REPORT.md)：六階段、真實數值、26 圖及限制。
+- [繁體中文 CRISP-DM 稿](reports/CRISP_DM_REPORT.md)：六階段、真實數值、39 圖及限制。
 - [圖表索引](reports/FIGURE_INDEX.md)／[CSV 索引](reports/figure_index.csv)。
 - [AI Assistance 待補欄](reports/AI_ASSISTANCE.md)：真實 ChatGPT 對話 PDF、
   NotebookLM 至少 100 中文字的來源導向摘要、最終 PDF 匯出。
@@ -226,7 +257,7 @@ Pipeline 包含載入／CV／評估／匯出，不含 Python 匯入及程序啟�
 
 FAST folds 少；小學生樣本／類別多、能源自相關／異質變異與時段轉移，
 使 OLS 假設、選擇後推論及區間覆蓋受到限制。學生 Kaggle subject 差異已揭露；
-不虛稱兩個指定 Kaggle 原檔均符合預期。FULL、NotebookLM、真實對話 PDF 與最終 PDF 排版尚待完成。
+不虛稱三個指定 Kaggle 原檔均符合預期。FULL、NotebookLM、真實對話 PDF 與最終 PDF 排版尚待完成。
 公開部署狀態須另驗證。無任意上傳、無自動因果結論。
 
 ## 參考資料

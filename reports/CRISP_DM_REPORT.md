@@ -1,11 +1,11 @@
-# AIoT HW2 — Multiple Linear Regression and Feature Selection: Student Performance and Appliances Energy Prediction
+# AIoT HW2 — Multiple Linear Regression and Feature Selection: Student Performance, Appliances Energy and Car Price Prediction
 
 ## 摘要
 
-本研究以兩個真實資料問題實作 Multiple Linear Regression、Baseline 與五種 Feature Selection，
+本研究以三個真實資料問題實作 Multiple Linear Regression、Baseline 與五種 Feature Selection，
 採 training-only nested CV、獨立 holdout、五假設診斷、95% 區間與雙題靜態互動儀表板。
 全部表格／圖檔來自實際 FAST 產物，沒有虛構結果。
-兩題樣本與切分不同；RMSE 目標單位是 grade 與 Wh，不能直接比較大小判定哪題模型較好。
+三題樣本與切分不同；RMSE 目標單位是 grade 與 Wh，不能直接比較大小判定哪題模型較好。
 
 ## 緒論與問題定義
 
@@ -16,13 +16,14 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 學生表現 | 395 | 33 | 30 | 56 | G3 | grade (0-20) | 316 / 79 |
 | 家電能源 | 19735 | 29 | 25 | 25 | Appliances | Wh | 15788 / 3947 |
+| 汽車價格 | 205 | 26 | 24 | 73 | price | USD | 164 / 41 |
 
 ## 資料來源與版本誠實性
 
 指定學生 Kaggle archive 實際只有 Portuguese（649 筆），沒有將其改名為 Mathematics。
 本專案改以已記錄來源的 UCI student-mat.csv，395 筆、33 欄：32 個非目標欄位再排除 G1/G2，得到 early-30。
-能源為 Kaggle 真實副本，29 欄排除目標、日期與兩個隨機欄後得到 25 個輸入。
-因此交付是兩個真實驗證資料集，但不宣稱兩個原檔都來自指定 Kaggle；此來源差異仍需教師接受。
+能源為 Kaggle 真實副本，29 欄排除目標、日期與兩個隨機欄後得到 25 個輸入。汽車使用 hellbuoy Kaggle 真實檔，205 筆、26 欄，排除 ID／目標後保留 24 個原始候選欄位。
+因此交付是三個真實驗證資料集，但不宣稱三個原檔都來自指定 Kaggle；此來源差異仍需教師接受。
 
 ## Multiple Linear Regression 與五種特徵選擇
 
@@ -54,6 +55,12 @@ Adjusted R² = 1−[SSE/(n−rank)]/[SST/(n−1)]，rank 為含截距的有效�
 | 家電能源 | Correlation | 5 | 98.4382 | 0.0480 | 94.7469 | -0.0831 |
 | 家電能源 | LASSO | 4 | 99.2578 | 0.6517 | 94.7312 | -0.0828 |
 | 家電能源 | Baseline | 25 | 100.4710 | 2.8834 | 86.7329 | 0.0924 |
+| 汽車價格 | LASSO | 38 | 3183.2454 | 618.5981 | 2869.8225 | 0.8957 |
+| 汽車價格 | Correlation | 5 | 3445.7923 | 519.8880 | 3816.5329 | 0.8155 |
+| 汽車價格 | Mutual Information | 5 | 3524.7610 | 447.8558 | 3811.5904 | 0.8160 |
+| 汽車價格 | RFE | 5 | 3755.7107 | 561.0313 | 3093.6381 | 0.8788 |
+| 汽車價格 | RFECV | 5 | 3755.7107 | 561.0313 | 3093.6381 | 0.8788 |
+| 汽車價格 | Baseline | 73 | 6091.5086 | 3265.8509 | 2794.4080 | 0.9011 |
 
 CV std 是 fold RMSE 的標準差，不是平均的標準誤或信賴區間。推薦僅依 training inner CV，不依 test。
 下面各題另列完整 train/test 指標。
@@ -62,8 +69,9 @@ CV std 是 fold RMSE 的標準差，不是平均的標準誤或信賴區間。�
 
 | 題目 | Pipeline 秒 | 診斷／圖表秒 | 上述合計秒 | cache namespace 已存在 |
 | --- | --- | --- | --- | --- |
-| 學生表現 | 15.58 | 7.39 | 22.98 | False |
-| 家電能源 | 19.18 | 10.45 | 29.62 | False |
+| 學生表現 | 15.58 | 7.67 | 23.25 | False |
+| 家電能源 | 19.18 | 10.60 | 29.77 | False |
+| 汽車價格 | 10.15 | 12.32 | 22.47 | True |
 
 Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不含 Python 匯入與程序啟閉；可能含 cache hit。
 診斷時間含指標、區間、檢定與 13 張圖。上述合計不含共用 dashboard export、browser QA 與文件產生；
@@ -149,7 +157,7 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 
 原始診斷解讀：DW=2.0610; lag-1 ACF=-0.0332.
 
-限制：Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible.
+限制：These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible.
 
 #### homoscedasticity — Koenker-Breusch-Pagan on full-rank equivalent design
 
@@ -165,7 +173,7 @@ Koenker-Breusch-Pagan 未拒絕等變異，但不等於證明等變異；選擇�
 
 #### normality — Shapiro-Wilk
 
-實際常態性檢定拒絕常態。學生採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。
+實際常態性檢定拒絕常態。學生與汽車採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。
 
 實際統計：
 
@@ -192,7 +200,7 @@ Koenker-Breusch-Pagan 未拒絕等變異，但不等於證明等變異；選擇�
 
 條件平均 mean CI 描述 E[Y|X]；個別觀測 PI 加入殘差變異，通常更寬。
 使用同一已選定 sklearn 模型的設計與係數順序，透過 centered SVD 的等價滿秩基底與 statsmodels OLS 計算 t 區間。
-學生另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
+學生與汽車另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
 超出訓練 affine span 時不輸出可識別區間；不強行反轉奇異矩陣。
 沒有校正特徵／方法選擇不確定性，沒有證實 nominal coverage；不任意裁切負 Wh 或超過 0–20 的區間。
 
@@ -347,7 +355,7 @@ Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳�
 
 #### normality — Jarque-Bera (large-sample)
 
-實際常態性檢定拒絕常態。學生採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。
+實際常態性檢定拒絕常態。學生與汽車採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。
 
 實際統計：
 
@@ -374,7 +382,7 @@ Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳�
 
 條件平均 mean CI 描述 E[Y|X]；個別觀測 PI 加入殘差變異，通常更寬。
 使用同一已選定 sklearn 模型的設計與係數順序，透過 centered SVD 的等價滿秩基底與 statsmodels OLS 計算 t 區間。
-學生另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
+學生與汽車另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
 超出訓練 affine span 時不輸出可識別區間；不強行反轉奇異矩陣。
 沒有校正特徵／方法選擇不確定性，沒有證實 nominal coverage；不任意裁切負 Wh 或超過 0–20 的區間。
 
@@ -433,11 +441,193 @@ Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳�
 
 圖 26：家電能源，測試平均信賴區間與個別預測區間；實際 FAST 產物，300 dpi。
 
+## 汽車價格：六階段 CRISP-DM
 
-## 兩題比較、限制與改善
+### 1. Business Understanding — 業務理解
+
+以車輛規格與廠牌估計 price（USD），研究小樣本價格迴歸；這不是當前市場報價或因果效果。CarName 147 個原始名稱先作確定性廠牌擷取，22 個廠牌保留有意義資訊，避免車型名稱過度擬合。
+
+### 2. Data Understanding — 資料理解
+
+實際 205 筆、26 個 CSV 欄位、24 個原始輸入，包含 14 數值／10 類別。
+目標範圍 5118.00–45400.00，平均 13276.7106，樣本標準差 7988.8523。
+輸入缺失儲存格 0 個。沒有缺值也保留可重用的 fold-local imputer。
+
+原始 CSV：car_ID, symboling, CarName, fueltype, aspiration, doornumber, carbody, drivewheel, enginelocation, wheelbase, carlength, carwidth, carheight, curbweight, enginetype, cylindernumber, enginesize, fuelsystem, boreratio, stroke, compressionratio, horsepower, peakrpm, citympg, highwaympg, price。
+
+正式輸入：symboling, CarName, fueltype, aspiration, doornumber, carbody, drivewheel, enginelocation, wheelbase, carlength, carwidth, carheight, curbweight, enginetype, cylindernumber, enginesize, fuelsystem, boreratio, stroke, compressionratio, horsepower, peakrpm, citympg, highwaympg。
+
+資料 SHA-256：2c78d99359a34cb6c64a97f276c1b6ea0532197b9b950b4521f65c0d9efcbc2b。
+
+### 3. Data Preparation — 資料準備
+
+排除 car_ID 與 price；24 個原始候選輸入全部保留，CarName 在 Pipeline 中轉為廠牌。seed=42，164/41 shuffled 80/20 holdout；inner/outer 均為 shuffled KFold。
+數值中位數補值與 StandardScaler；學生名目類別使用眾數補值與 OneHotEncoder(handle_unknown="ignore")。
+全部處理、排名與選擇放在完整 Pipeline，由每個 training fold 擬合，不能先全資料 fit 再 CV。
+來源索引保留，能源不排序、不回填未來觀測；非法 schema、數值、目標或時間戳明確拒絕。
+
+### 4. Modeling — 建模
+
+Baseline 與五種方法最終都使用 LinearRegression。FAST 的 inner=2、outer=2。
+內層選 k／alpha；外層評估完整訓練期選擇流程；全訓練部分再依 inner CV 固定正式方法，最後才評估 test。
+推薦 **LASSO**，38 個 encoded 特徵，代表 14 個原始欄位；完整訓練編碼寬度 73。
+
+選中特徵：numeric__wheelbase, numeric__carwidth, numeric__curbweight, numeric__enginesize, numeric__horsepower, numeric__peakrpm, categorical__CarName_alfa-romero, categorical__CarName_audi, categorical__CarName_bmw, categorical__CarName_buick, categorical__CarName_dodge, categorical__CarName_jaguar, categorical__CarName_mazda, categorical__CarName_mitsubishi, categorical__CarName_nissan, categorical__CarName_peugeot, categorical__CarName_plymouth, categorical__CarName_porsche, categorical__CarName_renault, categorical__CarName_saab, categorical__CarName_subaru, categorical__CarName_toyota, categorical__CarName_volvo, categorical__aspiration_std, categorical__carbody_convertible, categorical__carbody_hardtop, categorical__carbody_hatchback, categorical__carbody_wagon, categorical__drivewheel_fwd, categorical__enginelocation_front, categorical__enginetype_dohc, categorical__enginetype_l, categorical__enginetype_rotor, categorical__cylindernumber_eight, categorical__cylindernumber_four, categorical__cylindernumber_two, categorical__fuelsystem_mfi, categorical__fuelsystem_spdi。
+
+Inner CV RMSE=3183.245439 ± 618.598052；
+該方法 outer nested RMSE=3459.891496 ± 895.244109；
+包含方法選擇的 workflow nested RMSE=3465.673276 ± 506.943514。
+三者不是同一統計量；inner tuning score 不能冒充獨立泛化保證。
+
+### 5. Evaluation — 評估
+
+| 方法 | 資料 | encoded k | 有效 rank | MAE | MSE | RMSE | R² | Adjusted R² |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| LASSO | train | 38 | 37 | 1021.6287 | 1970168.5901 | 1403.6269 | 0.9670 | 0.9576 |
+| LASSO | test | 38 | 37 | 1965.8326 | 8235881.2133 | 2869.8225 | 0.8957 | -0.0433 |
+| Correlation | train | 5 | 6 | 2339.8629 | 10771809.7978 | 3282.0435 | 0.8194 | 0.8137 |
+| Correlation | test | 5 | 6 | 2781.2732 | 14565923.0405 | 3816.5329 | 0.8155 | 0.7891 |
+| Mutual Information | train | 5 | 6 | 2373.1680 | 11253076.1756 | 3354.5605 | 0.8113 | 0.8053 |
+| Mutual Information | test | 5 | 6 | 2766.5951 | 14528221.2691 | 3811.5904 | 0.8160 | 0.7897 |
+| RFE | train | 5 | 6 | 1961.7489 | 6523036.5659 | 2554.0236 | 0.8906 | 0.8872 |
+| RFE | test | 5 | 6 | 2363.7981 | 9570596.4326 | 3093.6381 | 0.8788 | 0.8614 |
+| RFECV | train | 5 | 6 | 1961.7489 | 6523036.5659 | 2554.0236 | 0.8906 | 0.8872 |
+| RFECV | test | 5 | 6 | 2363.7981 | 9570596.4326 | 3093.6381 | 0.8788 | 0.8614 |
+| Baseline | train | 73 | 60 | 910.1326 | 1508602.6671 | 1228.2519 | 0.9747 | 0.9604 |
+| Baseline | test | 73 | 60 | 1807.7040 | 7808716.0361 | 2794.4080 | 0.9011 | 不適用 |
+
+Adjusted R² 使用 training affine design rank（含截距）；test 值只是描述性懲罰，不是重新擬合測試資料的推論。
+自由度不足或常數目標時為空值。以下五項證據不代表因果，也不能自動宣稱假設全部成立。
+
+#### linearity — Binned residual means vs fitted (descriptive)
+
+以殘差對 fitted 與分箱平均檢查線性。殘差均值跨度 >0.5 個殘差 SD 只是宣告的視覺篩檢，不是顯著性檢定；未觸發不能證明線性。
+
+實際統計：
+
+    {"bin_count": 10, "minimum_bin_mean": -508.76401898554127, "maximum_bin_mean": 524.9352333854247, "bin_mean_span_residual_sd": 0.7364487115651164}
+
+原始診斷解讀：Bin-mean residual span is 0.736 residual SD; inspect the plotted trend.
+
+限制：A span >0.5 SD is a declared visual screening heuristic, not a significance test. A small span does not establish linearity.
+
+#### independence — Durbin-Watson (source row order; descriptive only)
+
+汽車原始行序不是時間；DW／ACF 只能作描述，不能證明觀測獨立。同廠牌或車型群組仍可能相依。
+
+實際統計：
+
+    {"durbin_watson": 1.7990301855497723, "ljung_box": [], "acf": [1.0, 0.0901502729847774, -0.09714475375219721, -0.07026352623861683, 0.02797550150442577, -0.13583688318034368, 0.022763932503927112, -0.05128914526708038, -0.14911489831658095, -0.0696473671586112, -0.018365021910089912, 0.06750040746066709, -0.10686667810484088, -0.02149576358770967, -0.006825316625664316, 0.036151923859314906, -0.023521494916753014, 0.032894667600749036, 0.00558493506465884, -0.07903900039116364, -0.048107564737946654, 0.09095824288205359, 0.1442624582602311, -0.08148340191006515, -0.16753851115107468, -0.011081074306431073, 0.08247608122579506, 0.021966735760934906, 0.0620825066587368, -0.10776527178055756, -0.031975404476023296, -0.004447083504364261, 0.05477448704148752, 0.024833870257010775, 0.06638648157809869, -0.03307252152601719, 0.10112519750364597, 0.0011274401767191588, -0.01743759107803347, 0.005541485909483912, 0.004506191558559995]}
+
+原始診斷解讀：DW=1.7990; lag-1 ACF=0.0902.
+
+限制：These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible.
+
+#### homoscedasticity — Koenker-Breusch-Pagan on full-rank equivalent design
+
+依下列真實 Koenker-Breusch-Pagan 統計判讀；選模及稀疏類別會限制 p 值解釋，未拒絕不等於證明等變異。
+
+實際統計：
+
+    {"lm_statistic": 82.49454289559853, "lm_pvalue": 1.647851655654421e-05, "f_statistic": 3.570588099914016, "f_pvalue": 6.757138873608154e-08, "auxiliary_df": 36}
+
+原始診斷解讀：LM=82.4945, p=1.65e-05; evidence against constant variance.
+
+限制：Rank-reduced auxiliary design includes an intercept. Nonrejection is not proof; temporal dependence and selection can invalidate nominal p-values.
+
+#### normality — Shapiro-Wilk
+
+實際常態性檢定拒絕常態。學生與汽車採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。
+
+實際統計：
+
+    {"test": "Shapiro-Wilk", "statistic": 0.9503690308276725, "pvalue": 1.533541573901201e-05, "pvalue_underflow": false, "n": 164, "skewness": 0.6446282282362026, "pearson_kurtosis": 5.822627605188888}
+
+原始診斷解讀：p=1.53e-05, skew=0.645, kurtosis=5.823; normality rejected.
+
+限制：Shapiro p-values are not used beyond 5000 observations. Large-sample tests detect small departures; fitted/selected and serially dependent residuals are not iid raw samples. Inspect histogram and Q-Q.
+
+#### multicollinearity — Design rank, condition number and VIF (intercept excluded)
+
+檢查含截距的 affine rank、VIF 與 condition。完整 one-hot 可造成 aliasing；個別不可識別係數不提供虛假的 SE/CI，不能只把原始特徵數當模型維度。
+
+實際統計：
+
+    {"rank": 37, "columns_with_intercept": 39, "condition_number": null, "effective_centered_condition": 46.36110039532919, "perfectly_collinear_columns": 4, "vif_above_10": 5}
+
+原始診斷解讀：Design rank 37/39; 4 perfectly collinear columns; 5 finite VIF values above 10.
+
+限制：VIF >10 is a screening convention, not a universal cutoff. Full one-hot sets create exact aliasing; null VIF plus status denotes infinity/undefined, not zero. Individual aliased coefficients are not unique.
+
+
+#### 信賴區間、預測區間與實際殘差分析
+
+條件平均 mean CI 描述 E[Y|X]；個別觀測 PI 加入殘差變異，通常更寬。
+使用同一已選定 sklearn 模型的設計與係數順序，透過 centered SVD 的等價滿秩基底與 statsmodels OLS 計算 t 區間。
+學生與汽車另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
+超出訓練 affine span 時不輸出可識別區間；不強行反轉奇異矩陣。
+沒有校正特徵／方法選擇不確定性，沒有證實 nominal coverage；不任意裁切負 Wh 或超過 0–20 的區間。
+
+實際區間 metadata：
+
+    {"level": 0.95, "training_rank": 37, "residual_df": 127, "classical_label": "Approximate post-selection OLS t mean CI / individual PI; iid homoscedastic normal-error working model", "robust_mean_covariance": "HC3", "hac_maxlags": null, "limitations": "Pointwise, conditional on selected features; excludes feature/method-selection uncertainty. Classical PI is not heteroscedasticity/autocorrelation-robust. Robust mean CI does not provide an individual PI or forecast guarantee. No clipping to physical target bounds.", "maximum_mean_prediction_difference": 4.547473508864641e-11, "robust_mean_status": "unavailable_high_leverage_or_nonfinite_covariance", "status": "partly_nonestimable_outside_training_affine_span", "nonestimable_rows": 1}
+
+正式 training-CV 選定 LASSO（最終仍為 LinearRegression），Test RMSE=2869.8225 USD，R²=0.8957。只有 205 筆觀測，類別稀疏、品牌群組與未知類別限制外推；Baseline 的 test 較佳也不依 test 改選方法。
+
+### 6. Deployment — 部署
+
+既有靜態 DataLab 讀取 Python 真實產出的 schema-5 descriptor、係數、covariance、指標與殘差。
+瀏覽器重現訓練補值、縮放、one-hot 和精確欄序，並逐筆與 Python 核對。
+保留雙題／方法／k 切換、預測、情境、CSV、深色與手機版；切題清除情境，不混合資料。
+本機與 nested HTTP path 通過不等於公開 GitHub Pages 已更新；公開部署狀態以實際驗證為準。
+
+### 本題實際圖表
+
+![圖 27：汽車價格 — 訓練／測試目標分布](figures/car_price/FAST/target_distribution_train_test.png)
+
+圖 27：汽車價格，訓練／測試目標分布；實際 FAST 產物，300 dpi。
+![圖 28：汽車價格 — 訓練原始數值特徵相關矩陣](figures/car_price/FAST/training_original_numeric_correlation_heatmap.png)
+
+圖 28：汽車價格，訓練原始數值特徵相關矩陣；實際 FAST 產物，300 dpi。
+![圖 29：汽車價格 — 特徵數與 inner CV RMSE](figures/car_price/FAST/feature_count_vs_inner_cv_rmse.png)
+
+圖 29：汽車價格，特徵數與 inner CV RMSE；實際 FAST 產物，300 dpi。
+![圖 30：汽車價格 — 特徵數與 inner validation R²](figures/car_price/FAST/feature_count_vs_inner_validation_r2.png)
+
+圖 30：汽車價格，特徵數與 inner validation R²；實際 FAST 產物，300 dpi。
+![圖 31：汽車價格 — Baseline 與特徵選擇 RMSE 比較](figures/car_price/FAST/baseline_vs_feature_selection_rmse.png)
+
+圖 31：汽車價格，Baseline 與特徵選擇 RMSE 比較；實際 FAST 產物，300 dpi。
+![圖 32：汽車價格 — 測試實際值對預測值](figures/car_price/FAST/heldout_actual_vs_predicted.png)
+
+圖 32：汽車價格，測試實際值對預測值；實際 FAST 產物，300 dpi。
+![圖 33：汽車價格 — 訓練殘差對擬合值](figures/car_price/FAST/training_residuals_vs_fitted.png)
+
+圖 33：汽車價格，訓練殘差對擬合值；實際 FAST 產物，300 dpi。
+![圖 34：汽車價格 — 訓練／測試殘差直方圖](figures/car_price/FAST/residual_histogram_train_test.png)
+
+圖 34：汽車價格，訓練／測試殘差直方圖；實際 FAST 產物，300 dpi。
+![圖 35：汽車價格 — 訓練殘差常態 Q-Q 圖](figures/car_price/FAST/training_residual_normal_qq.png)
+
+圖 35：汽車價格，訓練殘差常態 Q-Q 圖；實際 FAST 產物，300 dpi。
+![圖 36：汽車價格 — 選定模型係數](figures/car_price/FAST/selected_feature_coefficients.png)
+
+圖 36：汽車價格，選定模型係數；實際 FAST 產物，300 dpi。
+![圖 37：汽車價格 — 選定編碼特徵相關矩陣](figures/car_price/FAST/selected_encoded_correlation_heatmap.png)
+
+圖 37：汽車價格，選定編碼特徵相關矩陣；實際 FAST 產物，300 dpi。
+![圖 38：汽車價格 — 訓練殘差自相關](figures/car_price/FAST/training_residual_autocorrelation.png)
+
+圖 38：汽車價格，訓練殘差自相關；實際 FAST 產物，300 dpi。
+![圖 39：汽車價格 — 測試平均信賴區間與個別預測區間](figures/car_price/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png)
+
+圖 39：汽車價格，測試平均信賴區間與個別預測區間；實際 FAST 產物，300 dpi。
+
+
+## 三題比較、限制與改善
 
 學生資料小、類別多、one-hot 與截距存在 aliasing，early-30 訊號有限，受切分與選擇不確定性影響；
-能源雖大卻有序列相依與時段轉移，有效資訊量不等於獨立樣本數。兩題 RMSE 不能跨單位直接比較。
+能源雖大卻有序列相依與時段轉移，有效資訊量不等於獨立樣本數。三題 RMSE 不能跨單位直接比較。
 後續先規劃 training-only FULL、能源時間 gap 敏感度與學生 group-aware 驗證；已觀察的 test 不應反覆用來調參。
 非線性／不同誤差結構可作未來研究，本作業最終模型仍保留 LinearRegression。
 
@@ -453,7 +643,7 @@ Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳�
 
 ## 圖表索引與驗收
 
-[FIGURE_INDEX.md](FIGURE_INDEX.md) 列出全部 26 張真實 PNG 的圖號、檔名、用途與章節。
+[FIGURE_INDEX.md](FIGURE_INDEX.md) 列出全部 39 張真實 PNG 的圖號、檔名、用途與章節。
 [最終驗收 JSON](phase5/validation.json) 記錄命令、測試數與 runtime；各 run hash 見 report_manifest.json。
 
 ## 參考文獻
@@ -465,4 +655,5 @@ Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳�
 5. [scikit-learn Pipeline 與資料洩漏](https://scikit-learn.org/stable/common_pitfalls.html)。
 6. [statsmodels OLS](https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html)。
 7. [GitHub Pages 工作流程](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+9. [Car Price Kaggle](https://www.kaggle.com/datasets/hellbuoy/car-price-prediction)。
 8. [專案原始碼](https://github.com/RayWu576/AIoT-HW2)。

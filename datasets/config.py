@@ -1,4 +1,4 @@
-"""Single source of truth for the two official regression problems."""
+"""Single source of truth for the official regression problems."""
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -51,7 +51,7 @@ CAR = DatasetConfig("car_price", "Car Price Prediction", "CarPrice_Assignment.cs
 STUDENT = student_config(include_prior_grades=False)
 LEGACY_DATASETS = {c.dataset_id: c for c in (STUDENT, CAR)}
 
-# Energy is the official Phase 2-4 problem; Car remains a historical reference.
+# The original Phase 2 pair remains available as a historical scope.
 ENERGY_COLUMNS = tuple(["date", "Appliances", "lights"] + [c for i in range(1, 10) for c in (f"T{i}", f"RH_{i}")] + ["T_out", "Press_mm_hg", "RH_out", "Windspeed", "Visibility", "Tdewpoint", "rv1", "rv2"])
 ENERGY = DatasetConfig("appliances_energy", "Appliances Energy Prediction", "energydata_complete.csv",
                        "Appliances", "Wh",
@@ -59,5 +59,5 @@ ENERGY = DatasetConfig("appliances_energy", "Appliances Energy Prediction", "ene
                        (), ENERGY_COLUMNS, 19735, ",", "chronological", ("date", "rv1", "rv2"))
 PHASE2_DATASETS = {c.dataset_id: c for c in (STUDENT, ENERGY)}
 
-# Phase 4 official dashboard follows the completed Phase 2/3 scope.
-OFFICIAL_DATASETS = PHASE2_DATASETS
+# Official problems are ordered for the dashboard: Student, Energy, Car.
+OFFICIAL_DATASETS = {c.dataset_id: c for c in (STUDENT, ENERGY, CAR)}

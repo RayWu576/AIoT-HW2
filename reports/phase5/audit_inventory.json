@@ -1,7 +1,7 @@
 {
-  "file_count": 352,
-  "python_syntax_files": 30,
-  "official_figures": 26,
+  "file_count": 456,
+  "python_syntax_files": 31,
+  "official_figures": 39,
   "files": [
     {
       "path": ".gitattributes",
@@ -17,11 +17,11 @@
     },
     {
       "path": "dashboard_export.py",
-      "bytes": 15227
+      "bytes": 15232
     },
     {
       "path": "dashboard_integration.py",
-      "bytes": 15858
+      "bytes": 14748
     },
     {
       "path": "feature_selection.py",
@@ -45,7 +45,7 @@
     },
     {
       "path": "phase2_experiment.py",
-      "bytes": 10534
+      "bytes": 11114
     },
     {
       "path": "PHASE3.md",
@@ -53,7 +53,7 @@
     },
     {
       "path": "phase3_evaluation.py",
-      "bytes": 22579
+      "bytes": 22766
     },
     {
       "path": "PHASE4.md",
@@ -61,7 +61,11 @@
     },
     {
       "path": "PHASE5.md",
-      "bytes": 3595
+      "bytes": 3754
+    },
+    {
+      "path": "PROBLEM3.md",
+      "bytes": 3399
     },
     {
       "path": "pyproject.toml",
@@ -77,11 +81,11 @@
     },
     {
       "path": "README.md",
-      "bytes": 13782
+      "bytes": 15762
     },
     {
       "path": "regression_diagnostics.py",
-      "bytes": 14191
+      "bytes": 14194
     },
     {
       "path": "regression_experiment.py",
@@ -89,11 +93,11 @@
     },
     {
       "path": "regression_pipeline.py",
-      "bytes": 11414
+      "bytes": 11560
     },
     {
       "path": "report_preparation.py",
-      "bytes": 20890
+      "bytes": 22507
     },
     {
       "path": "requirements-dev.txt",
@@ -109,7 +113,7 @@
     },
     {
       "path": "validate_project.py",
-      "bytes": 7074
+      "bytes": 7238
     },
     {
       "path": ".vscode/settings.json",
@@ -121,11 +125,11 @@
     },
     {
       "path": "datasets/config.py",
-      "bytes": 3566
+      "bytes": 3590
     },
     {
       "path": "datasets/descriptions.py",
-      "bytes": 2946
+      "bytes": 6405
     },
     {
       "path": "datasets/HISTORICAL_CAR.md",
@@ -141,7 +145,7 @@
     },
     {
       "path": "datasets/README.md",
-      "bytes": 4756
+      "bytes": 6146
     },
     {
       "path": "datasets/splitting.py",
@@ -149,15 +153,15 @@
     },
     {
       "path": "datasets/__init__.py",
-      "bytes": 460
+      "bytes": 438
     },
     {
       "path": "datasets/__main__.py",
-      "bytes": 1490
+      "bytes": 1519
     },
     {
       "path": "docs/README.template.md",
-      "bytes": 12111
+      "bytes": 13731
     },
     {
       "path": "historical/datasets_phase1.md",
@@ -180,20 +184,24 @@
       "bytes": 3647
     },
     {
+      "path": "reports/car_price_FAST_diagnostics.md",
+      "bytes": 3502
+    },
+    {
       "path": "reports/CRISP_DM_REPORT.md",
-      "bytes": 32982
+      "bytes": 48171
     },
     {
       "path": "reports/figure_index.csv",
-      "bytes": 4776
+      "bytes": 6903
     },
     {
       "path": "reports/FIGURE_INDEX.md",
-      "bytes": 5477
+      "bytes": 7916
     },
     {
       "path": "reports/phase3_FAST_manifest.json",
-      "bytes": 94741
+      "bytes": 140079
     },
     {
       "path": "reports/phase3_validation.json",
@@ -201,27 +209,35 @@
     },
     {
       "path": "reports/phase4_appliances_energy_desktop.png",
-      "bytes": 1523685
+      "bytes": 1598479
     },
     {
       "path": "reports/phase4_appliances_energy_mobile.png",
-      "bytes": 1105399
+      "bytes": 1194558
+    },
+    {
+      "path": "reports/phase4_car_price_desktop.png",
+      "bytes": 1983851
+    },
+    {
+      "path": "reports/phase4_car_price_mobile.png",
+      "bytes": 1655363
     },
     {
       "path": "reports/phase4_student_performance_desktop.png",
-      "bytes": 1717060
+      "bytes": 1793530
     },
     {
       "path": "reports/phase4_student_performance_mobile.png",
-      "bytes": 1280896
+      "bytes": 1358983
     },
     {
       "path": "reports/phase4_validation.json",
-      "bytes": 1002
+      "bytes": 1001
     },
     {
       "path": "reports/student_performance_FAST_diagnostics.md",
-      "bytes": 3527
+      "bytes": 3530
     },
     {
       "path": "results/actual_vs_predicted.png",
@@ -273,7 +289,7 @@
     },
     {
       "path": "results/phase2_FAST_summary.json",
-      "bytes": 3927
+      "bytes": 5968
     },
     {
       "path": "results/phase2_frontend_before.json",
@@ -305,11 +321,15 @@
     },
     {
       "path": "tests/test_phase4.py",
-      "bytes": 3020
+      "bytes": 3032
     },
     {
       "path": "tests/test_phase5.py",
-      "bytes": 5607
+      "bytes": 5972
+    },
+    {
+      "path": "tests/test_problem3.py",
+      "bytes": 3410
     },
     {
       "path": "tests/verify_dashboard.py",
@@ -321,15 +341,15 @@
     },
     {
       "path": "tests/verify_official_dashboard.py",
-      "bytes": 9909
+      "bytes": 13235
     },
     {
       "path": "tests/verify_phase2_results.py",
-      "bytes": 7687
+      "bytes": 8512
     },
     {
       "path": "tests/verify_phase3_results.py",
-      "bytes": 7049
+      "bytes": 7178
     },
     {
       "path": ".github/workflows/static.yml",
@@ -341,19 +361,19 @@
     },
     {
       "path": "dashboard/dist/app.js",
-      "bytes": 22510
+      "bytes": 29122
     },
     {
       "path": "dashboard/dist/data.js",
-      "bytes": 4812262
+      "bytes": 6591977
     },
     {
       "path": "dashboard/dist/data.json",
-      "bytes": 4812235
+      "bytes": 6591950
     },
     {
       "path": "dashboard/dist/index.html",
-      "bytes": 9599
+      "bytes": 9622
     },
     {
       "path": "dashboard/dist/prediction.js",
@@ -361,7 +381,7 @@
     },
     {
       "path": "dashboard/dist/styles.css",
-      "bytes": 18256
+      "bytes": 23554
     },
     {
       "path": "dashboard/qa/car_price-desktop.png",
@@ -464,12 +484,68 @@
       "bytes": 14961
     },
     {
+      "path": "reports/diagnostics_ui/appliances_energy_dark_1440.png",
+      "bytes": 224550
+    },
+    {
+      "path": "reports/diagnostics_ui/appliances_energy_dark_390.png",
+      "bytes": 232297
+    },
+    {
+      "path": "reports/diagnostics_ui/appliances_energy_light_1440.png",
+      "bytes": 224944
+    },
+    {
+      "path": "reports/diagnostics_ui/appliances_energy_light_390.png",
+      "bytes": 230750
+    },
+    {
+      "path": "reports/diagnostics_ui/car_price_dark_1440.png",
+      "bytes": 222011
+    },
+    {
+      "path": "reports/diagnostics_ui/car_price_dark_390.png",
+      "bytes": 228347
+    },
+    {
+      "path": "reports/diagnostics_ui/car_price_light_1440.png",
+      "bytes": 222309
+    },
+    {
+      "path": "reports/diagnostics_ui/car_price_light_390.png",
+      "bytes": 226970
+    },
+    {
+      "path": "reports/diagnostics_ui/larger_font_mobile.png",
+      "bytes": 229505
+    },
+    {
+      "path": "reports/diagnostics_ui/student_performance_dark_1440.png",
+      "bytes": 226421
+    },
+    {
+      "path": "reports/diagnostics_ui/student_performance_dark_390.png",
+      "bytes": 229070
+    },
+    {
+      "path": "reports/diagnostics_ui/student_performance_light_1440.png",
+      "bytes": 226320
+    },
+    {
+      "path": "reports/diagnostics_ui/student_performance_light_390.png",
+      "bytes": 227399
+    },
+    {
+      "path": "reports/diagnostics_ui/validation.json",
+      "bytes": 2055
+    },
+    {
       "path": "reports/phase5/attempt_before_final.json",
       "bytes": 2064
     },
     {
       "path": "reports/phase5/audit_inventory.json",
-      "bytes": 36561
+      "bytes": 36927
     },
     {
       "path": "reports/phase5/backend_integration.log",
@@ -477,15 +553,15 @@
     },
     {
       "path": "reports/phase5/browser_integration.log",
-      "bytes": 1004
+      "bytes": 1003
     },
     {
       "path": "reports/phase5/dashboard_export.log",
-      "bytes": 773
+      "bytes": 1070
     },
     {
       "path": "reports/phase5/diagnostics.log",
-      "bytes": 703
+      "bytes": 974
     },
     {
       "path": "reports/phase5/diagnostic_integration.log",
@@ -501,7 +577,7 @@
     },
     {
       "path": "reports/phase5/report_manifest.json",
-      "bytes": 664
+      "bytes": 925
     },
     {
       "path": "reports/phase5/report_preparation.log",
@@ -513,7 +589,7 @@
     },
     {
       "path": "reports/phase5/unit_tests.log",
-      "bytes": 7152
+      "bytes": 7588
     },
     {
       "path": "reports/phase5/unit_tests_before_final.log",
@@ -521,7 +597,7 @@
     },
     {
       "path": "reports/phase5/validation.json",
-      "bytes": 2064
+      "bytes": 5859
     },
     {
       "path": "reports/figures/appliances_energy/FAST/baseline_vs_feature_selection_rmse.png",
@@ -574,6 +650,58 @@
     {
       "path": "reports/figures/appliances_energy/FAST/training_residual_normal_qq.png",
       "bytes": 110906
+    },
+    {
+      "path": "reports/figures/car_price/FAST/baseline_vs_feature_selection_rmse.png",
+      "bytes": 93860
+    },
+    {
+      "path": "reports/figures/car_price/FAST/feature_count_vs_inner_cv_rmse.png",
+      "bytes": 220063
+    },
+    {
+      "path": "reports/figures/car_price/FAST/feature_count_vs_inner_validation_r2.png",
+      "bytes": 252628
+    },
+    {
+      "path": "reports/figures/car_price/FAST/heldout_actual_vs_predicted.png",
+      "bytes": 116637
+    },
+    {
+      "path": "reports/figures/car_price/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png",
+      "bytes": 258967
+    },
+    {
+      "path": "reports/figures/car_price/FAST/residual_histogram_train_test.png",
+      "bytes": 82060
+    },
+    {
+      "path": "reports/figures/car_price/FAST/selected_encoded_correlation_heatmap.png",
+      "bytes": 784519
+    },
+    {
+      "path": "reports/figures/car_price/FAST/selected_feature_coefficients.png",
+      "bytes": 301809
+    },
+    {
+      "path": "reports/figures/car_price/FAST/target_distribution_train_test.png",
+      "bytes": 72057
+    },
+    {
+      "path": "reports/figures/car_price/FAST/training_original_numeric_correlation_heatmap.png",
+      "bytes": 216842
+    },
+    {
+      "path": "reports/figures/car_price/FAST/training_residuals_vs_fitted.png",
+      "bytes": 156372
+    },
+    {
+      "path": "reports/figures/car_price/FAST/training_residual_autocorrelation.png",
+      "bytes": 95911
+    },
+    {
+      "path": "reports/figures/car_price/FAST/training_residual_normal_qq.png",
+      "bytes": 108510
     },
     {
       "path": "reports/figures/student_performance/FAST/baseline_vs_feature_selection_rmse.png",
@@ -732,8 +860,112 @@
       "bytes": 13456
     },
     {
+      "path": "reports/tables/car_price/FAST/assumption_summary.csv",
+      "bytes": 19139
+    },
+    {
+      "path": "reports/tables/car_price/FAST/baseline_encoded_correlation.csv",
+      "bytes": 112941
+    },
+    {
+      "path": "reports/tables/car_price/FAST/baseline_test_intervals.csv",
+      "bytes": 4626
+    },
+    {
+      "path": "reports/tables/car_price/FAST/baseline_vif.csv",
+      "bytes": 3779
+    },
+    {
+      "path": "reports/tables/car_price/FAST/coefficient_identifiability.csv",
+      "bytes": 9523
+    },
+    {
+      "path": "reports/tables/car_price/FAST/correlation_encoded_correlation.csv",
+      "bytes": 611
+    },
+    {
+      "path": "reports/tables/car_price/FAST/correlation_test_intervals.csv",
+      "bytes": 6170
+    },
+    {
+      "path": "reports/tables/car_price/FAST/correlation_vif.csv",
+      "bytes": 265
+    },
+    {
+      "path": "reports/tables/car_price/FAST/cross_validation_metrics.csv",
+      "bytes": 885
+    },
+    {
+      "path": "reports/tables/car_price/FAST/diagnostics.json",
+      "bytes": 41573
+    },
+    {
+      "path": "reports/tables/car_price/FAST/evaluation_metrics.csv",
+      "bytes": 1849
+    },
+    {
+      "path": "reports/tables/car_price/FAST/interval_summary.csv",
+      "bytes": 1290
+    },
+    {
+      "path": "reports/tables/car_price/FAST/lasso_encoded_correlation.csv",
+      "bytes": 31438
+    },
+    {
+      "path": "reports/tables/car_price/FAST/lasso_test_intervals.csv",
+      "bytes": 4630
+    },
+    {
+      "path": "reports/tables/car_price/FAST/lasso_vif.csv",
+      "bytes": 2162
+    },
+    {
+      "path": "reports/tables/car_price/FAST/mutual_information_encoded_correlation.csv",
+      "bytes": 611
+    },
+    {
+      "path": "reports/tables/car_price/FAST/mutual_information_test_intervals.csv",
+      "bytes": 6149
+    },
+    {
+      "path": "reports/tables/car_price/FAST/mutual_information_vif.csv",
+      "bytes": 261
+    },
+    {
+      "path": "reports/tables/car_price/FAST/rfecv_encoded_correlation.csv",
+      "bytes": 661
+    },
+    {
+      "path": "reports/tables/car_price/FAST/rfecv_test_intervals.csv",
+      "bytes": 6155
+    },
+    {
+      "path": "reports/tables/car_price/FAST/rfecv_vif.csv",
+      "bytes": 284
+    },
+    {
+      "path": "reports/tables/car_price/FAST/rfe_encoded_correlation.csv",
+      "bytes": 661
+    },
+    {
+      "path": "reports/tables/car_price/FAST/rfe_test_intervals.csv",
+      "bytes": 6155
+    },
+    {
+      "path": "reports/tables/car_price/FAST/rfe_vif.csv",
+      "bytes": 284
+    },
+    {
+      "path": "reports/tables/car_price/FAST/training_cv_feature_count_curves.csv",
+      "bytes": 5863
+    },
+    {
+      "path": "reports/tables/car_price/FAST/training_original_numeric_correlation.csv",
+      "bytes": 4573
+    },
+    {
       "path": "reports/tables/student_performance/FAST/assumption_summary.csv",
-      "bytes": 19080
+      "bytes": 19098
     },
     {
       "path": "reports/tables/student_performance/FAST/baseline_encoded_correlation.csv",
@@ -769,7 +1001,7 @@
     },
     {
       "path": "reports/tables/student_performance/FAST/diagnostics.json",
-      "bytes": 41526
+      "bytes": 41544
     },
     {
       "path": "reports/tables/student_performance/FAST/evaluation_metrics.csv",
@@ -1140,6 +1372,98 @@
       "bytes": 2926
     },
     {
+      "path": "results/car_price/FAST/best_model.joblib",
+      "bytes": 5305
+    },
+    {
+      "path": "results/car_price/FAST/best_model.json",
+      "bytes": 234
+    },
+    {
+      "path": "results/car_price/FAST/coefficients.csv",
+      "bytes": 9143
+    },
+    {
+      "path": "results/car_price/FAST/dashboard_payload.json",
+      "bytes": 42303
+    },
+    {
+      "path": "results/car_price/FAST/model_comparison.csv",
+      "bytes": 2046
+    },
+    {
+      "path": "results/car_price/FAST/outer_folds.json",
+      "bytes": 31370
+    },
+    {
+      "path": "results/car_price/FAST/reproducibility_reference.json",
+      "bytes": 38432
+    },
+    {
+      "path": "results/car_price/FAST/run.json",
+      "bytes": 42303
+    },
+    {
+      "path": "results/car_price/FAST/selected_features.json",
+      "bytes": 30160
+    },
+    {
+      "path": "results/car_price/FAST/test_predictions.csv",
+      "bytes": 5103
+    },
+    {
+      "path": "results/car_price/FAST/train_predictions.csv",
+      "bytes": 20113
+    },
+    {
+      "path": "results/car_price/FAST/cv_searches/baseline.csv",
+      "bytes": 318
+    },
+    {
+      "path": "results/car_price/FAST/cv_searches/correlation.csv",
+      "bytes": 1072
+    },
+    {
+      "path": "results/car_price/FAST/cv_searches/lasso.csv",
+      "bytes": 582
+    },
+    {
+      "path": "results/car_price/FAST/cv_searches/mutual_information.csv",
+      "bytes": 1077
+    },
+    {
+      "path": "results/car_price/FAST/cv_searches/rfe.csv",
+      "bytes": 1067
+    },
+    {
+      "path": "results/car_price/FAST/cv_searches/rfecv.csv",
+      "bytes": 1108
+    },
+    {
+      "path": "results/car_price/FAST/models/baseline.joblib",
+      "bytes": 3837
+    },
+    {
+      "path": "results/car_price/FAST/models/correlation.joblib",
+      "bytes": 3194
+    },
+    {
+      "path": "results/car_price/FAST/models/lasso.joblib",
+      "bytes": 5305
+    },
+    {
+      "path": "results/car_price/FAST/models/mutual_information.joblib",
+      "bytes": 3201
+    },
+    {
+      "path": "results/car_price/FAST/models/rfe.joblib",
+      "bytes": 4405
+    },
+    {
+      "path": "results/car_price/FAST/models/rfecv.joblib",
+      "bytes": 4405
+    },
+    {
       "path": "results/dashboard/FAST/appliances_energy/models/baseline-k25-c0.joblib",
       "bytes": 2543
     },
@@ -1230,6 +1554,98 @@
     {
       "path": "results/dashboard/FAST/appliances_energy/models/rfecv-k5-c1.joblib",
       "bytes": 2823
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/baseline-k73-c0.joblib",
+      "bytes": 3849
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/correlation-k1-c0.joblib",
+      "bytes": 3113
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/correlation-k10-c2.joblib",
+      "bytes": 3296
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/correlation-k20-c3.joblib",
+      "bytes": 3488
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/correlation-k5-c1.joblib",
+      "bytes": 3200
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/correlation-k73-c4.joblib",
+      "bytes": 4356
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/lasso-k10-c1.joblib",
+      "bytes": 4502
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/lasso-k38-c0.joblib",
+      "bytes": 5307
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/mutual_information-k1-c0.joblib",
+      "bytes": 3118
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/mutual_information-k10-c2.joblib",
+      "bytes": 3301
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/mutual_information-k20-c3.joblib",
+      "bytes": 3497
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/mutual_information-k5-c1.joblib",
+      "bytes": 3202
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/mutual_information-k73-c4.joblib",
+      "bytes": 4367
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfe-k1-c0.joblib",
+      "bytes": 4321
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfe-k10-c2.joblib",
+      "bytes": 4493
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfe-k20-c3.joblib",
+      "bytes": 4677
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfe-k5-c1.joblib",
+      "bytes": 4408
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfe-k73-c4.joblib",
+      "bytes": 5545
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfecv-k1-c0.joblib",
+      "bytes": 4321
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfecv-k10-c2.joblib",
+      "bytes": 4493
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfecv-k20-c3.joblib",
+      "bytes": 4677
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfecv-k5-c1.joblib",
+      "bytes": 4408
+    },
+    {
+      "path": "results/dashboard/FAST/car_price/models/rfecv-k73-c4.joblib",
+      "bytes": 5545
     },
     {
       "path": "results/dashboard/FAST/student_performance/models/baseline-k56-c0.joblib",

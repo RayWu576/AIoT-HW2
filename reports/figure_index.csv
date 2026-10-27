@@ -25,3 +25,16 @@
 24,appliances_energy,selected_encoded_correlation_heatmap.png,選定編碼特徵相關矩陣,評估／回歸假設,figures/appliances_energy/FAST/selected_encoded_correlation_heatmap.png
 25,appliances_energy,training_residual_autocorrelation.png,訓練殘差自相關,評估／回歸假設,figures/appliances_energy/FAST/training_residual_autocorrelation.png
 26,appliances_energy,heldout_mean_confidence_and_individual_prediction_intervals.png,測試平均信賴區間與個別預測區間,評估／回歸假設,figures/appliances_energy/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png
+27,car_price,target_distribution_train_test.png,訓練／測試目標分布,資料理解,figures/car_price/FAST/target_distribution_train_test.png
+28,car_price,training_original_numeric_correlation_heatmap.png,訓練原始數值特徵相關矩陣,資料理解,figures/car_price/FAST/training_original_numeric_correlation_heatmap.png
+29,car_price,feature_count_vs_inner_cv_rmse.png,特徵數與 inner CV RMSE,建模,figures/car_price/FAST/feature_count_vs_inner_cv_rmse.png
+30,car_price,feature_count_vs_inner_validation_r2.png,特徵數與 inner validation R²,建模,figures/car_price/FAST/feature_count_vs_inner_validation_r2.png
+31,car_price,baseline_vs_feature_selection_rmse.png,Baseline 與特徵選擇 RMSE 比較,評估／回歸假設,figures/car_price/FAST/baseline_vs_feature_selection_rmse.png
+32,car_price,heldout_actual_vs_predicted.png,測試實際值對預測值,評估／回歸假設,figures/car_price/FAST/heldout_actual_vs_predicted.png
+33,car_price,training_residuals_vs_fitted.png,訓練殘差對擬合值,評估／回歸假設,figures/car_price/FAST/training_residuals_vs_fitted.png
+34,car_price,residual_histogram_train_test.png,訓練／測試殘差直方圖,評估／回歸假設,figures/car_price/FAST/residual_histogram_train_test.png
+35,car_price,training_residual_normal_qq.png,訓練殘差常態 Q-Q 圖,評估／回歸假設,figures/car_price/FAST/training_residual_normal_qq.png
+36,car_price,selected_feature_coefficients.png,選定模型係數,評估／回歸假設,figures/car_price/FAST/selected_feature_coefficients.png
+37,car_price,selected_encoded_correlation_heatmap.png,選定編碼特徵相關矩陣,評估／回歸假設,figures/car_price/FAST/selected_encoded_correlation_heatmap.png
+38,car_price,training_residual_autocorrelation.png,訓練殘差自相關,評估／回歸假設,figures/car_price/FAST/training_residual_autocorrelation.png
+39,car_price,heldout_mean_confidence_and_individual_prediction_intervals.png,測試平均信賴區間與個別預測區間,評估／回歸假設,figures/car_price/FAST/heldout_mean_confidence_and_individual_prediction_intervals.png

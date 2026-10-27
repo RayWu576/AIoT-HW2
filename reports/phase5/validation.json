@@ -13,7 +13,7 @@
         "FAST"
       ],
       "returncode": 0,
-      "runtime_seconds": 22.769757400033996,
+      "runtime_seconds": 35.768457099969964,
       "log": "reports/phase5/diagnostics.log"
     },
     {
@@ -25,7 +25,7 @@
         "FAST"
       ],
       "returncode": 0,
-      "runtime_seconds": 17.120612500002608,
+      "runtime_seconds": 20.20970359997591,
       "log": "reports/phase5/dashboard_export.log"
     },
     {
@@ -37,7 +37,7 @@
         "FAST"
       ],
       "returncode": 0,
-      "runtime_seconds": 3.5920434999861754,
+      "runtime_seconds": 4.066582499945071,
       "log": "reports/phase5/report_preparation.log"
     },
     {
@@ -54,13 +54,13 @@
         "-v"
       ],
       "returncode": 0,
-      "runtime_seconds": 23.8018608999555,
+      "runtime_seconds": 25.299054400005843,
       "log": "reports/phase5/unit_tests.log",
-      "tests_run": 55,
+      "tests_run": 58,
       "failures": 0,
       "errors": 0,
       "skipped": 0,
-      "passed": 55
+      "passed": 58
     },
     {
       "name": "backend_integration",
@@ -69,7 +69,7 @@
         "tests/verify_phase2_results.py"
       ],
       "returncode": 0,
-      "runtime_seconds": 4.6096887000021525,
+      "runtime_seconds": 5.100629499997012,
       "log": "reports/phase5/backend_integration.log"
     },
     {
@@ -79,7 +79,7 @@
         "tests/verify_phase3_results.py"
       ],
       "returncode": 0,
-      "runtime_seconds": 5.910523800004739,
+      "runtime_seconds": 6.909105799975805,
       "log": "reports/phase5/diagnostic_integration.log"
     },
     {
@@ -89,15 +89,15 @@
         "tests/verify_official_dashboard.py"
       ],
       "returncode": 0,
-      "runtime_seconds": 59.016787600005046,
+      "runtime_seconds": 93.30547760002082,
       "log": "reports/phase5/browser_integration.log"
     }
   ],
   "audit": {
-    "files_inventoried": 352,
-    "python_syntax_files": 30,
+    "files_inventoried": 456,
+    "python_syntax_files": 31,
     "root_modules_imported": 11,
-    "figures": 26
+    "figures": 39
   },
   "protected_files_unchanged": 16,
   "datasets": [
@@ -114,6 +114,13 @@
       "cache_namespace_preexisting": false,
       "run_sha256": "91a536eb9d28b5296c236a2ee2a64ede868f2d23407928a076e7d6d48b54117f",
       "selected_method": "Mutual Information"
+    },
+    {
+      "id": "car_price",
+      "pipeline_seconds": 10.152335699996911,
+      "cache_namespace_preexisting": true,
+      "run_sha256": "2eb95a1135f436bd644ebb8328cb6a5fa4224657edb9017e5e7c46cf3f82d166",
+      "selected_method": "LASSO"
     }
   ],
   "unit_tests": {
@@ -130,52 +137,52 @@
       "-v"
     ],
     "returncode": 0,
-    "runtime_seconds": 23.8018608999555,
+    "runtime_seconds": 25.299054400005843,
     "log": "reports/phase5/unit_tests.log",
-    "tests_run": 55,
+    "tests_run": 58,
     "failures": 0,
     "errors": 0,
     "skipped": 0,
-    "passed": 55
+    "passed": 58
   },
   "backend": {
     "status": "PASS",
-    "datasets": 2,
-    "models": 12,
-    "training_predictions": 96624,
-    "heldout_predictions": 24156,
+    "datasets": 3,
+    "models": 18,
+    "training_predictions": 97608,
+    "heldout_predictions": 24402,
     "repeated_fast_reproducible": true,
     "historical_frontend_check_requested": false,
     "frontend_unchanged": false
   },
   "diagnostics": {
     "status": "PASS",
-    "datasets": 2,
-    "models": 12,
-    "figures": 26,
-    "interval_rows": 24156,
-    "metric_rows": 24,
+    "datasets": 3,
+    "models": 18,
+    "figures": 39,
+    "interval_rows": 24402,
+    "metric_rows": 36,
     "historical_frontend_check_requested": false,
     "frontend_unchanged": false,
     "saved_predictions_unchanged": true
   },
   "browser": {
     "passed": true,
-    "runtime_seconds": 54.471706599986646,
+    "runtime_seconds": 88.44846400001552,
     "asset_sha256": {
-      "app.js": "d0b917b77c460c670d1fd4e2204175942c52e7a740c78da9e219d2472888b3ff",
+      "app.js": "6f1fb1b9ed70de91daa783c778847162dff7605defe1e404bdce8799e281231c",
       "prediction.js": "f752f3f43807d4c704183c50de02ead625dae85bdfcf8ea07b83ef627426f38f",
-      "styles.css": "c182f15de9610eea6de6a71d22479d05921d4a316fd5f146246b1563697d2070",
-      "index.html": "db26a87425b5f76d1a6c889c349e14a7a81912172b6dfb1424ef051343f99ec7",
-      "data.json": "b012b2513000d00221771f58acb67ec9a4001525442ff6ee0741f5e284c0d0df",
-      "data.js": "757ce260275d0b79437aa7eb26fdc5d44a486e13ad88568f5f7d32caeb54e315"
+      "styles.css": "29590cc061960a2af27d9a2ddf22abeea457d01b9ae27c191f2d996d9a7f8edc",
+      "index.html": "50a8452f65c8601410b8e9a1d9460877d4c115fa374a09f6241cb5868e3635b3",
+      "data.json": "5be611cc624ef901ec1ea18b70aeadbefa87a37608d9cd72c3039606840c4399",
+      "data.js": "a109f41aaf81c2e43e0185eb99badd8e1cd375241d9933d1d0068aa429eb5b46"
     },
     "counts": {
-      "models": 46,
-      "predictions": 92598,
-      "interval_rows": 24156,
-      "missing_unknown_cases": 138,
-      "ui_checks": 46
+      "models": 69,
+      "predictions": 93541,
+      "interval_rows": 24402,
+      "missing_unknown_cases": 207,
+      "ui_checks": 69
     },
     "max_prediction_absolute_error": 3.346244170643331e-09,
     "max_interval_absolute_error": 3.430159267736599e-09,
@@ -188,7 +195,7 @@
     ],
     "deployment_verified": false
   },
-  "runtime_seconds": 143.2088417999912,
+  "runtime_seconds": 198.056304000027,
   "deployment_verified": false,
   "commit_or_push_performed": false,
   "manual_remaining": [

@@ -1,0 +1,9 @@
+{
+  "method": "LASSO",
+  "selection_criterion": "minimum final training-only inner CV RMSE",
+  "selection_score": 3183.2454387404487,
+  "params": {
+    "ranking__alpha_fraction": 0.01
+  },
+  "model_path": "best_model.joblib"
+}

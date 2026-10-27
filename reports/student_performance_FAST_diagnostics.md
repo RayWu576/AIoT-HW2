@@ -27,7 +27,7 @@ A span >0.5 SD is a declared visual screening heuristic, not a significance test
 
 DW=2.0610; lag-1 ACF=-0.0332.
 
-Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible.
+These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible.
 
 ### homoscedasticity: Koenker-Breusch-Pagan on full-rank equivalent design
 

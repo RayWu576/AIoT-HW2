@@ -1,3 +1,5 @@
+> 本文件保留 Phase 5 完成時的雙題驗收紀錄。最新三題範圍見 README.md 與 PROBLEM3.md；下方驗收 JSON 由目前三題驗證更新。
+
 # Phase 5 — 最終 QA、GitHub 文件與 CRISP-DM 報告
 
 本階段延續既有實作，正式題目僅 Student Performance 與 Appliances Energy。不 commit／push／部署。

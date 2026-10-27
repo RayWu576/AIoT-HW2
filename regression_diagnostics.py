@@ -113,7 +113,7 @@ def assumption_diagnostics(Z,y,predicted,names,*,temporal=False,hac_lags=24):
                  'statistic':{'durbin_watson':dw,'ljung_box':lb_records,'acf':acf_values},
                  'possible_violation':bool(any(r['pvalue']<.05 for r in lb_records)) if temporal else None,
                  'interpretation':f'DW={dw:.4f}; lag-1 ACF={acf_values[1]:.4f}.' if dw is not None and len(acf_values)>1 else 'Undefined for constant/degenerate residuals.',
-                 'limitations':'Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests.' if temporal else 'Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible.'})
+                 'limitations':'Energy residuals retain chronological order; Ljung-Box model_df=0 is exploratory after regression/selection, with multiple correlated lag tests.' if temporal else 'These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible.'})
     bp=None
     if variable and ols is not None and info['rank']>1 and info['df_resid']>1:
         lm,pvalue,fstat,fp=het_breuschpagan(residual,info['basis'],robust=True)

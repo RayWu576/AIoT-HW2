@@ -232,7 +232,7 @@ def export_current_dashboard(mode='FAST'):
 
 def main():
     import argparse
-    parser=argparse.ArgumentParser(description='Export the official Student/Energy static dashboard from Phase 2/3 artifacts')
+    parser=argparse.ArgumentParser(description='Export the official Student/Energy/Car static dashboard from real model artifacts')
     parser.add_argument('--mode',choices=['FAST','FULL'],default='FAST',type=str.upper)
     args=parser.parse_args()
     export_current_dashboard(args.mode)

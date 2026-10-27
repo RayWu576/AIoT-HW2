@@ -11,6 +11,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from threadpoolctl import threadpool_limits
 from datasets import make_preprocessor, make_cv
+from datasets.preprocessing import manufacturer_name
 from feature_selection import CachedRankingSelector, RankedSubset
 
 METHODS = ("Baseline", "Correlation", "Mutual Information", "RFE", "RFECV", "LASSO")
@@ -44,7 +45,7 @@ def make_pipeline(config, method, *, memory=None, seed=42):
 def feature_grid(config, X_train, mode):
     # Bounds are derived ONLY from this search's training partition. No fitted
     # preprocessing or category mapping is reused in its validation folds.
-    width = len(config.numeric_columns) + sum(max(1, X_train[c].nunique(dropna=True)) for c in config.categorical_columns)
+    width = len(config.numeric_columns) + sum(max(1, (X_train[c].map(manufacturer_name) if config.dataset_id=="car_price" and c=="CarName" else X_train[c]).nunique(dropna=True)) for c in config.categorical_columns)
     if mode.all_k:
         return list(range(1, width+1))
     return [k for k in (1, 5, 10, 20) if k < width] + ["all"]

@@ -29,7 +29,7 @@ with threadpool_limits(limits=1),sync_playwright() as p:
     page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto(f'http://127.0.0.1:{server.server_port}/dashboard/dist/index.html')
-    assert page.locator('#dataset-select option').count()==2
+    assert page.locator('#dataset-select option').count()==len(OFFICIAL_DATASETS)
     for dataset_id,config in OFFICIAL_DATASETS.items():
         d=bundle['datasets'][dataset_id];data=load_dataset(config)
         run=json.loads((ROOT/'results'/dataset_id/'FAST/run.json').read_text())
@@ -50,6 +50,10 @@ with threadpool_limits(limits=1),sync_playwright() as p:
             if config.categorical_columns:
                 cases.iloc[1,cases.columns.get_loc(config.categorical_columns[0])]=np.nan
                 cases.iloc[2,cases.columns.get_loc(config.categorical_columns[0])]='unseen-category'
+            if dataset_id=='car_price':
+                alias=cases.iloc[[0]].copy();alias['CarName']='vw golf'
+                alias_js=page.evaluate("""({id,model,rows})=>{const d=DASHBOARD_DATA.datasets[id],m=d.models.find(m=>m.id===model);return rows.map(r=>DashboardPrediction.predict(d,m,r));}""",{'id':dataset_id,'model':m['id'],'rows':json.loads(alias.to_json(orient='records'))})
+                np.testing.assert_allclose(alias_js,fitted.predict(alias),rtol=1e-10,atol=1e-6)
             js_cases=page.evaluate("""({id,model,rows})=>{const d=DASHBOARD_DATA.datasets[id],m=d.models.find(m=>m.id===model);return rows.map(r=>DashboardPrediction.predict(d,m,r));}""",{'id':dataset_id,'model':m['id'],'rows':json.loads(cases.to_json(orient='records'))})
             np.testing.assert_allclose(js_cases,fitted.predict(cases),rtol=1e-10,atol=1e-7);counts['missing_unknown_cases']+=3
             if m['isOfficial']:
@@ -100,9 +104,12 @@ with threadpool_limits(limits=1),sync_playwright() as p:
         page.locator('#save-scenario').click();assert page.locator('#scenarios .scenario').count()==1
         numeric=page.locator('#inputs input[type=number]').first;old=numeric.input_value();numeric.fill('');assert page.locator('#save-scenario').is_disabled();assert page.locator('#input-errors').inner_text();numeric.fill(old)
         numeric.fill(str(float(old)+0.5));assert page.locator('#save-scenario').is_disabled() if dataset_id=='student_performance' else True
-        field=next(f for f in d['inputs'] if f['kind']=='numeric')
-        numeric.fill(str(field['max']+1));assert 'outside observed training range' in page.locator('#extrapolation').inner_text()
         numeric.fill(old)
+        field=next(f for f in d['inputs'] if f['kind']=='numeric' and (f['domainMax'] is None or f['max']+1<=f['domainMax']))
+        field_index=next(i for i,f in enumerate(d['inputs']) if f['name']==field['name'])
+        ood=page.locator('#number-'+str(field_index));original_ood=ood.input_value()
+        ood.fill(str(field['max']+1));assert 'outside observed training range' in page.locator('#extrapolation').inner_text()
+        ood.fill(original_ood)
         assert '95%' in page.locator('#prediction-intervals').inner_text() or 'not estimable' in page.locator('#prediction-intervals').inner_text()
         if config.categorical_columns:
             result=page.evaluate("""({id,raw})=>{const d=DASHBOARD_DATA.datasets[id],m=d.models.find(m=>m.method==='Baseline');return DashboardPrediction.intervals(d,m,raw);} """,{'id':dataset_id,'raw':json.loads(cases.to_json(orient='records'))[2]})
@@ -137,7 +144,7 @@ with threadpool_limits(limits=1),sync_playwright() as p:
         if page.locator('body').evaluate('(e)=>e.classList.contains("dark")'):page.locator('#theme').click()
 
     page.locator('#theme').click();assert page.locator('body').evaluate('(e)=>e.classList.contains("dark")');page.reload();assert page.locator('body').evaluate('(e)=>e.classList.contains("dark")');page.locator('#theme').click()
-    page.goto((DIST/'index.html').as_uri());assert page.locator('#dataset-select option').count()==2
+    page.goto((DIST/'index.html').as_uri());assert page.locator('#dataset-select option').count()==len(OFFICIAL_DATASETS)
     page.route('**/data.js*',lambda route:route.abort());page.reload();assert 'Dashboard data unavailable' in page.locator('main').inner_text()
     assert not errors,errors
     browser.close()

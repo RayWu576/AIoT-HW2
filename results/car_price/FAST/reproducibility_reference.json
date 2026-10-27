@@ -1,0 +1,1213 @@
+{
+  "source_run_sha256": "8ad4cc81f15388e1b70a07a424d0f6be21c12811600b415f4d3090c28c23e285",
+  "source_sha256": "2c78d99359a34cb6c64a97f276c1b6ea0532197b9b950b4521f65c0d9efcbc2b",
+  "configuration": {
+    "name": "FAST",
+    "outer_folds": 2,
+    "inner_folds": 2,
+    "all_k": false,
+    "alpha_fractions": [
+      0.01,
+      0.1
+    ],
+    "seed": 42,
+    "gap": 0
+  },
+  "methods": [
+    {
+      "method": "LASSO",
+      "original_input_count": 24,
+      "encoded_input_count": 73,
+      "selected_encoded_count": 38,
+      "selected_original_count": 14,
+      "fitted_design_rank": 37,
+      "selected_original_names": [
+        "wheelbase",
+        "carwidth",
+        "curbweight",
+        "enginesize",
+        "horsepower",
+        "peakrpm",
+        "CarName",
+        "aspiration",
+        "carbody",
+        "drivewheel",
+        "enginelocation",
+        "enginetype",
+        "cylindernumber",
+        "fuelsystem"
+      ],
+      "selected_encoded_names": [
+        "numeric__wheelbase",
+        "numeric__carwidth",
+        "numeric__curbweight",
+        "numeric__enginesize",
+        "numeric__horsepower",
+        "numeric__peakrpm",
+        "categorical__CarName_alfa-romero",
+        "categorical__CarName_audi",
+        "categorical__CarName_bmw",
+        "categorical__CarName_buick",
+        "categorical__CarName_dodge",
+        "categorical__CarName_jaguar",
+        "categorical__CarName_mazda",
+        "categorical__CarName_mitsubishi",
+        "categorical__CarName_nissan",
+        "categorical__CarName_peugeot",
+        "categorical__CarName_plymouth",
+        "categorical__CarName_porsche",
+        "categorical__CarName_renault",
+        "categorical__CarName_saab",
+        "categorical__CarName_subaru",
+        "categorical__CarName_toyota",
+        "categorical__CarName_volvo",
+        "categorical__aspiration_std",
+        "categorical__carbody_convertible",
+        "categorical__carbody_hardtop",
+        "categorical__carbody_hatchback",
+        "categorical__carbody_wagon",
+        "categorical__drivewheel_fwd",
+        "categorical__enginelocation_front",
+        "categorical__enginetype_dohc",
+        "categorical__enginetype_l",
+        "categorical__enginetype_rotor",
+        "categorical__cylindernumber_eight",
+        "categorical__cylindernumber_four",
+        "categorical__cylindernumber_two",
+        "categorical__fuelsystem_mfi",
+        "categorical__fuelsystem_spdi"
+      ],
+      "features": [
+        {
+          "position": 0,
+          "encoded_name": "numeric__wheelbase",
+          "original_name": "wheelbase",
+          "coefficient": 536.7282595217522
+        },
+        {
+          "position": 1,
+          "encoded_name": "numeric__carwidth",
+          "original_name": "carwidth",
+          "coefficient": 1200.8474373652089
+        },
+        {
+          "position": 2,
+          "encoded_name": "numeric__curbweight",
+          "original_name": "curbweight",
+          "coefficient": 1650.1849591136263
+        },
+        {
+          "position": 3,
+          "encoded_name": "numeric__enginesize",
+          "original_name": "enginesize",
+          "coefficient": 1958.7221448607597
+        },
+        {
+          "position": 4,
+          "encoded_name": "numeric__horsepower",
+          "original_name": "horsepower",
+          "coefficient": -106.77322301695602
+        },
+        {
+          "position": 5,
+          "encoded_name": "numeric__peakrpm",
+          "original_name": "peakrpm",
+          "coefficient": 529.200904503425
+        },
+        {
+          "position": 6,
+          "encoded_name": "categorical__CarName_alfa-romero",
+          "original_name": "CarName",
+          "coefficient": 2360.2299026037317
+        },
+        {
+          "position": 7,
+          "encoded_name": "categorical__CarName_audi",
+          "original_name": "CarName",
+          "coefficient": 2378.843861173868
+        },
+        {
+          "position": 8,
+          "encoded_name": "categorical__CarName_bmw",
+          "original_name": "CarName",
+          "coefficient": 8082.055201316287
+        },
+        {
+          "position": 9,
+          "encoded_name": "categorical__CarName_buick",
+          "original_name": "CarName",
+          "coefficient": 7448.001041095635
+        },
+        {
+          "position": 10,
+          "encoded_name": "categorical__CarName_dodge",
+          "original_name": "CarName",
+          "coefficient": -525.7520602461932
+        },
+        {
+          "position": 11,
+          "encoded_name": "categorical__CarName_jaguar",
+          "original_name": "CarName",
+          "coefficient": 7114.109463779626
+        },
+        {
+          "position": 12,
+          "encoded_name": "categorical__CarName_mazda",
+          "original_name": "CarName",
+          "coefficient": 425.6652580513619
+        },
+        {
+          "position": 13,
+          "encoded_name": "categorical__CarName_mitsubishi",
+          "original_name": "CarName",
+          "coefficient": -1198.5606436304101
+        },
+        {
+          "position": 14,
+          "encoded_name": "categorical__CarName_nissan",
+          "original_name": "CarName",
+          "coefficient": -283.7005536668327
+        },
+        {
+          "position": 15,
+          "encoded_name": "categorical__CarName_peugeot",
+          "original_name": "CarName",
+          "coefficient": -904.3422188592475
+        },
+        {
+          "position": 16,
+          "encoded_name": "categorical__CarName_plymouth",
+          "original_name": "CarName",
+          "coefficient": -886.7371099822545
+        },
+        {
+          "position": 17,
+          "encoded_name": "categorical__CarName_porsche",
+          "original_name": "CarName",
+          "coefficient": 6163.929604758227
+        },
+        {
+          "position": 18,
+          "encoded_name": "categorical__CarName_renault",
+          "original_name": "CarName",
+          "coefficient": -1749.8018818477483
+        },
+        {
+          "position": 19,
+          "encoded_name": "categorical__CarName_saab",
+          "original_name": "CarName",
+          "coefficient": 2644.335758925231
+        },
+        {
+          "position": 20,
+          "encoded_name": "categorical__CarName_subaru",
+          "original_name": "CarName",
+          "coefficient": -552.6007110518254
+        },
+        {
+          "position": 21,
+          "encoded_name": "categorical__CarName_toyota",
+          "original_name": "CarName",
+          "coefficient": -601.1833868112475
+        },
+        {
+          "position": 22,
+          "encoded_name": "categorical__CarName_volvo",
+          "original_name": "CarName",
+          "coefficient": 1624.9663921245967
+        },
+        {
+          "position": 23,
+          "encoded_name": "categorical__aspiration_std",
+          "original_name": "aspiration",
+          "coefficient": -1869.1064931630995
+        },
+        {
+          "position": 24,
+          "encoded_name": "categorical__carbody_convertible",
+          "original_name": "carbody",
+          "coefficient": 2726.3788139786893
+        },
+        {
+          "position": 25,
+          "encoded_name": "categorical__carbody_hardtop",
+          "original_name": "carbody",
+          "coefficient": 229.25103357338628
+        },
+        {
+          "position": 26,
+          "encoded_name": "categorical__carbody_hatchback",
+          "original_name": "carbody",
+          "coefficient": -172.45980592839743
+        },
+        {
+          "position": 27,
+          "encoded_name": "categorical__carbody_wagon",
+          "original_name": "carbody",
+          "coefficient": -875.4213893157684
+        },
+        {
+          "position": 28,
+          "encoded_name": "categorical__drivewheel_fwd",
+          "original_name": "drivewheel",
+          "coefficient": -448.6099829751132
+        },
+        {
+          "position": 29,
+          "encoded_name": "categorical__enginelocation_front",
+          "original_name": "enginelocation",
+          "coefficient": -11615.149590700452
+        },
+        {
+          "position": 30,
+          "encoded_name": "categorical__enginetype_dohc",
+          "original_name": "enginetype",
+          "coefficient": 121.34010574455277
+        },
+        {
+          "position": 31,
+          "encoded_name": "categorical__enginetype_l",
+          "original_name": "enginetype",
+          "coefficient": -904.3422188592334
+        },
+        {
+          "position": 32,
+          "encoded_name": "categorical__enginetype_rotor",
+          "original_name": "enginetype",
+          "coefficient": 1739.0373311445692
+        },
+        {
+          "position": 33,
+          "encoded_name": "categorical__cylindernumber_eight",
+          "original_name": "cylindernumber",
+          "coefficient": 3606.8876850144056
+        },
+        {
+          "position": 34,
+          "encoded_name": "categorical__cylindernumber_four",
+          "original_name": "cylindernumber",
+          "coefficient": -473.9279871664321
+        },
+        {
+          "position": 35,
+          "encoded_name": "categorical__cylindernumber_two",
+          "original_name": "cylindernumber",
+          "coefficient": 1739.0373311445649
+        },
+        {
+          "position": 36,
+          "encoded_name": "categorical__fuelsystem_mfi",
+          "original_name": "fuelsystem",
+          "coefficient": -1769.5466903267975
+        },
+        {
+          "position": 37,
+          "encoded_name": "categorical__fuelsystem_spdi",
+          "original_name": "fuelsystem",
+          "coefficient": -641.9415878109558
+        }
+      ],
+      "intercept": 26013.37159728988,
+      "best_params": {
+        "ranking__alpha_fraction": 0.01
+      },
+      "best_cv_rmse": 3183.2454387404487,
+      "cv_std": 618.5980522419591,
+      "nested_cv_rmse": 3459.8914957118204,
+      "nested_cv_std": 895.2441092133306,
+      "runtime_seconds": 0.5541256000287831,
+      "train_metrics": {
+        "mae": 1021.6286654834489,
+        "mse": 1970168.5900858757,
+        "rmse": 1403.6269412083382,
+        "r2": 0.9669644528299378,
+        "adjusted_r2": 0.9576000457581092
+      },
+      "test_metrics": {
+        "mae": 1965.8325526720103,
+        "mse": 8235881.21327584,
+        "rmse": 2869.822505535114,
+        "r2": 0.8956744143317628,
+        "adjusted_r2": -0.04325585668237242
+      }
+    },
+    {
+      "method": "Correlation",
+      "original_input_count": 24,
+      "encoded_input_count": 73,
+      "selected_encoded_count": 5,
+      "selected_original_count": 5,
+      "fitted_design_rank": 6,
+      "selected_original_names": [
+        "enginesize",
+        "curbweight",
+        "horsepower",
+        "carwidth",
+        "highwaympg"
+      ],
+      "selected_encoded_names": [
+        "numeric__enginesize",
+        "numeric__curbweight",
+        "numeric__horsepower",
+        "numeric__carwidth",
+        "numeric__highwaympg"
+      ],
+      "features": [
+        {
+          "position": 0,
+          "encoded_name": "numeric__enginesize",
+          "original_name": "enginesize",
+          "coefficient": 3236.15266363501
+        },
+        {
+          "position": 1,
+          "encoded_name": "numeric__curbweight",
+          "original_name": "curbweight",
+          "coefficient": 861.2409816641457
+        },
+        {
+          "position": 2,
+          "encoded_name": "numeric__horsepower",
+          "original_name": "horsepower",
+          "coefficient": 2017.28591062436
+        },
+        {
+          "position": 3,
+          "encoded_name": "numeric__carwidth",
+          "original_name": "carwidth",
+          "coefficient": 1333.9595727618018
+        },
+        {
+          "position": 4,
+          "encoded_name": "numeric__highwaympg",
+          "original_name": "highwaympg",
+          "coefficient": -259.3935798766861
+        }
+      ],
+      "intercept": 13223.414634146342,
+      "best_params": {
+        "selector__k": 5
+      },
+      "best_cv_rmse": 3445.792281663951,
+      "cv_std": 519.8879818162,
+      "nested_cv_rmse": 3445.792281663951,
+      "nested_cv_std": 519.8879818162,
+      "runtime_seconds": 1.145885699952487,
+      "train_metrics": {
+        "mae": 2339.8628738113835,
+        "mse": 10771809.797770387,
+        "rmse": 3282.0435398955915,
+        "r2": 0.8193796041253149,
+        "adjusted_r2": 0.8136637688128248
+      },
+      "test_metrics": {
+        "mae": 2781.273173768285,
+        "mse": 14565923.040455325,
+        "rmse": 3816.5328559381387,
+        "r2": 0.8154904845465165,
+        "adjusted_r2": 0.789131982338876
+      }
+    },
+    {
+      "method": "Mutual Information",
+      "original_input_count": 24,
+      "encoded_input_count": 73,
+      "selected_encoded_count": 5,
+      "selected_original_count": 5,
+      "fitted_design_rank": 6,
+      "selected_original_names": [
+        "curbweight",
+        "highwaympg",
+        "enginesize",
+        "horsepower",
+        "citympg"
+      ],
+      "selected_encoded_names": [
+        "numeric__curbweight",
+        "numeric__highwaympg",
+        "numeric__enginesize",
+        "numeric__horsepower",
+        "numeric__citympg"
+      ],
+      "features": [
+        {
+          "position": 0,
+          "encoded_name": "numeric__curbweight",
+          "original_name": "curbweight",
+          "coefficient": 2083.6568866564953
+        },
+        {
+          "position": 1,
+          "encoded_name": "numeric__highwaympg",
+          "original_name": "highwaympg",
+          "coefficient": 444.2173717052938
+        },
+        {
+          "position": 2,
+          "encoded_name": "numeric__enginesize",
+          "original_name": "enginesize",
+          "coefficient": 3256.410715977795
+        },
+        {
+          "position": 3,
+          "encoded_name": "numeric__horsepower",
+          "original_name": "horsepower",
+          "coefficient": 1904.265457335898
+        },
+        {
+          "position": 4,
+          "encoded_name": "numeric__citympg",
+          "original_name": "citympg",
+          "coefficient": -701.8171795448701
+        }
+      ],
+      "intercept": 13223.414634146342,
+      "best_params": {
+        "selector__k": 5
+      },
+      "best_cv_rmse": 3524.7609786999083,
+      "cv_std": 447.8558120039495,
+      "nested_cv_rmse": 3828.3475590730222,
+      "nested_cv_std": 144.26923163083598,
+      "runtime_seconds": 1.9442767000291497,
+      "train_metrics": {
+        "mae": 2373.1679804261107,
+        "mse": 11253076.175594352,
+        "rmse": 3354.5605040890755,
+        "r2": 0.8113097880669462,
+        "adjusted_r2": 0.8053385788285584
+      },
+      "test_metrics": {
+        "mae": 2766.5951289112018,
+        "mse": 14528221.269063016,
+        "rmse": 3811.5903857921326,
+        "r2": 0.8159680605677554,
+        "adjusted_r2": 0.7896777835060061
+      }
+    },
+    {
+      "method": "RFE",
+      "original_input_count": 24,
+      "encoded_input_count": 73,
+      "selected_encoded_count": 5,
+      "selected_original_count": 5,
+      "fitted_design_rank": 6,
+      "selected_original_names": [
+        "enginesize",
+        "carwidth",
+        "enginelocation",
+        "curbweight",
+        "CarName"
+      ],
+      "selected_encoded_names": [
+        "numeric__enginesize",
+        "numeric__carwidth",
+        "categorical__enginelocation_front",
+        "numeric__curbweight",
+        "categorical__CarName_bmw"
+      ],
+      "features": [
+        {
+          "position": 0,
+          "encoded_name": "numeric__enginesize",
+          "original_name": "enginesize",
+          "coefficient": 2959.562140957162
+        },
+        {
+          "position": 1,
+          "encoded_name": "numeric__carwidth",
+          "original_name": "carwidth",
+          "coefficient": 2472.313450624494
+        },
+        {
+          "position": 2,
+          "encoded_name": "categorical__enginelocation_front",
+          "original_name": "enginelocation",
+          "coefficient": -17358.126514185813
+        },
+        {
+          "position": 3,
+          "encoded_name": "numeric__curbweight",
+          "original_name": "curbweight",
+          "coefficient": 1541.4095338959773
+        },
+        {
+          "position": 4,
+          "encoded_name": "categorical__CarName_bmw",
+          "original_name": "CarName",
+          "coefficient": 7198.766653585325
+        }
+      ],
+      "intercept": 30000.644932087827,
+      "best_params": {
+        "selector__k": 5
+      },
+      "best_cv_rmse": 3755.7106966767014,
+      "cv_std": 561.0313313034583,
+      "nested_cv_rmse": 3649.0349283939936,
+      "nested_cv_std": 690.3051662246639,
+      "runtime_seconds": 1.4699493999942206,
+      "train_metrics": {
+        "mae": 1961.74891009894,
+        "mse": 6523036.565893103,
+        "rmse": 2554.023603237273,
+        "r2": 0.8906225166470607,
+        "adjusted_r2": 0.8871612038827272
+      },
+      "test_metrics": {
+        "mae": 2363.7981417106257,
+        "mse": 9570596.432598317,
+        "rmse": 3093.638057788648,
+        "r2": 0.8787673046551842,
+        "adjusted_r2": 0.8614483481773534
+      }
+    },
+    {
+      "method": "RFECV",
+      "original_input_count": 24,
+      "encoded_input_count": 73,
+      "selected_encoded_count": 5,
+      "selected_original_count": 5,
+      "fitted_design_rank": 6,
+      "selected_original_names": [
+        "enginesize",
+        "carwidth",
+        "enginelocation",
+        "curbweight",
+        "CarName"
+      ],
+      "selected_encoded_names": [
+        "numeric__enginesize",
+        "numeric__carwidth",
+        "categorical__enginelocation_front",
+        "numeric__curbweight",
+        "categorical__CarName_bmw"
+      ],
+      "features": [
+        {
+          "position": 0,
+          "encoded_name": "numeric__enginesize",
+          "original_name": "enginesize",
+          "coefficient": 2959.562140957162
+        },
+        {
+          "position": 1,
+          "encoded_name": "numeric__carwidth",
+          "original_name": "carwidth",
+          "coefficient": 2472.313450624494
+        },
+        {
+          "position": 2,
+          "encoded_name": "categorical__enginelocation_front",
+          "original_name": "enginelocation",
+          "coefficient": -17358.126514185813
+        },
+        {
+          "position": 3,
+          "encoded_name": "numeric__curbweight",
+          "original_name": "curbweight",
+          "coefficient": 1541.4095338959773
+        },
+        {
+          "position": 4,
+          "encoded_name": "categorical__CarName_bmw",
+          "original_name": "CarName",
+          "coefficient": 7198.766653585325
+        }
+      ],
+      "intercept": 30000.644932087827,
+      "best_params": {
+        "selector__k": 5
+      },
+      "best_cv_rmse": 3755.7106966767014,
+      "cv_std": 561.0313313034583,
+      "nested_cv_rmse": 3649.0349283939936,
+      "nested_cv_std": 690.3051662246639,
+      "runtime_seconds": 1.4884982000803575,
+      "train_metrics": {
+        "mae": 1961.74891009894,
+        "mse": 6523036.565893103,
+        "rmse": 2554.023603237273,
+        "r2": 0.8906225166470607,
+        "adjusted_r2": 0.8871612038827272
+      },
+      "test_metrics": {
+        "mae": 2363.7981417106257,
+        "mse": 9570596.432598317,
+        "rmse": 3093.638057788648,
+        "r2": 0.8787673046551842,
+        "adjusted_r2": 0.8614483481773534
+      }
+    },
+    {
+      "method": "Baseline",
+      "original_input_count": 24,
+      "encoded_input_count": 73,
+      "selected_encoded_count": 73,
+      "selected_original_count": 24,
+      "fitted_design_rank": 60,
+      "selected_original_names": [
+        "symboling",
+        "wheelbase",
+        "carlength",
+        "carwidth",
+        "carheight",
+        "curbweight",
+        "enginesize",
+        "boreratio",
+        "stroke",
+        "compressionratio",
+        "horsepower",
+        "peakrpm",
+        "citympg",
+        "highwaympg",
+        "CarName",
+        "fueltype",
+        "aspiration",
+        "doornumber",
+        "carbody",
+        "drivewheel",
+        "enginelocation",
+        "enginetype",
+        "cylindernumber",
+        "fuelsystem"
+      ],
+      "selected_encoded_names": [
+        "numeric__symboling",
+        "numeric__wheelbase",
+        "numeric__carlength",
+        "numeric__carwidth",
+        "numeric__carheight",
+        "numeric__curbweight",
+        "numeric__enginesize",
+        "numeric__boreratio",
+        "numeric__stroke",
+        "numeric__compressionratio",
+        "numeric__horsepower",
+        "numeric__peakrpm",
+        "numeric__citympg",
+        "numeric__highwaympg",
+        "categorical__CarName_alfa-romero",
+        "categorical__CarName_audi",
+        "categorical__CarName_bmw",
+        "categorical__CarName_buick",
+        "categorical__CarName_chevrolet",
+        "categorical__CarName_dodge",
+        "categorical__CarName_honda",
+        "categorical__CarName_isuzu",
+        "categorical__CarName_jaguar",
+        "categorical__CarName_mazda",
+        "categorical__CarName_mercury",
+        "categorical__CarName_mitsubishi",
+        "categorical__CarName_nissan",
+        "categorical__CarName_peugeot",
+        "categorical__CarName_plymouth",
+        "categorical__CarName_porsche",
+        "categorical__CarName_renault",
+        "categorical__CarName_saab",
+        "categorical__CarName_subaru",
+        "categorical__CarName_toyota",
+        "categorical__CarName_volkswagen",
+        "categorical__CarName_volvo",
+        "categorical__fueltype_diesel",
+        "categorical__fueltype_gas",
+        "categorical__aspiration_std",
+        "categorical__aspiration_turbo",
+        "categorical__doornumber_four",
+        "categorical__doornumber_two",
+        "categorical__carbody_convertible",
+        "categorical__carbody_hardtop",
+        "categorical__carbody_hatchback",
+        "categorical__carbody_sedan",
+        "categorical__carbody_wagon",
+        "categorical__drivewheel_4wd",
+        "categorical__drivewheel_fwd",
+        "categorical__drivewheel_rwd",
+        "categorical__enginelocation_front",
+        "categorical__enginelocation_rear",
+        "categorical__enginetype_dohc",
+        "categorical__enginetype_dohcv",
+        "categorical__enginetype_l",
+        "categorical__enginetype_ohc",
+        "categorical__enginetype_ohcf",
+        "categorical__enginetype_ohcv",
+        "categorical__enginetype_rotor",
+        "categorical__cylindernumber_eight",
+        "categorical__cylindernumber_five",
+        "categorical__cylindernumber_four",
+        "categorical__cylindernumber_six",
+        "categorical__cylindernumber_twelve",
+        "categorical__cylindernumber_two",
+        "categorical__fuelsystem_1bbl",
+        "categorical__fuelsystem_2bbl",
+        "categorical__fuelsystem_4bbl",
+        "categorical__fuelsystem_idi",
+        "categorical__fuelsystem_mfi",
+        "categorical__fuelsystem_mpfi",
+        "categorical__fuelsystem_spdi",
+        "categorical__fuelsystem_spfi"
+      ],
+      "features": [
+        {
+          "position": 0,
+          "encoded_name": "numeric__symboling",
+          "original_name": "symboling",
+          "coefficient": -282.24592477574095
+        },
+        {
+          "position": 1,
+          "encoded_name": "numeric__wheelbase",
+          "original_name": "wheelbase",
+          "coefficient": 1481.699572538073
+        },
+        {
+          "position": 2,
+          "encoded_name": "numeric__carlength",
+          "original_name": "carlength",
+          "coefficient": -1915.0718112976797
+        },
+        {
+          "position": 3,
+          "encoded_name": "numeric__carwidth",
+          "original_name": "carwidth",
+          "coefficient": 1204.4341609406451
+        },
+        {
+          "position": 4,
+          "encoded_name": "numeric__carheight",
+          "original_name": "carheight",
+          "coefficient": -576.7439059672438
+        },
+        {
+          "position": 5,
+          "encoded_name": "numeric__curbweight",
+          "original_name": "curbweight",
+          "coefficient": 3367.435240854397
+        },
+        {
+          "position": 6,
+          "encoded_name": "numeric__enginesize",
+          "original_name": "enginesize",
+          "coefficient": 3873.9200878280403
+        },
+        {
+          "position": 7,
+          "encoded_name": "numeric__boreratio",
+          "original_name": "boreratio",
+          "coefficient": -1117.9996209072947
+        },
+        {
+          "position": 8,
+          "encoded_name": "numeric__stroke",
+          "original_name": "stroke",
+          "coefficient": -247.77646375658912
+        },
+        {
+          "position": 9,
+          "encoded_name": "numeric__compressionratio",
+          "original_name": "compressionratio",
+          "coefficient": -645.0253992320299
+        },
+        {
+          "position": 10,
+          "encoded_name": "numeric__horsepower",
+          "original_name": "horsepower",
+          "coefficient": 256.57821969937095
+        },
+        {
+          "position": 11,
+          "encoded_name": "numeric__peakrpm",
+          "original_name": "peakrpm",
+          "coefficient": 866.6155010525038
+        },
+        {
+          "position": 12,
+          "encoded_name": "numeric__citympg",
+          "original_name": "citympg",
+          "coefficient": -280.3575432916696
+        },
+        {
+          "position": 13,
+          "encoded_name": "numeric__highwaympg",
+          "original_name": "highwaympg",
+          "coefficient": 658.5785702379203
+        },
+        {
+          "position": 14,
+          "encoded_name": "categorical__CarName_alfa-romero",
+          "original_name": "CarName",
+          "coefficient": 1750.1134390709503
+        },
+        {
+          "position": 15,
+          "encoded_name": "categorical__CarName_audi",
+          "original_name": "CarName",
+          "coefficient": 2808.380339431625
+        },
+        {
+          "position": 16,
+          "encoded_name": "categorical__CarName_bmw",
+          "original_name": "CarName",
+          "coefficient": 7142.124295624802
+        },
+        {
+          "position": 17,
+          "encoded_name": "categorical__CarName_buick",
+          "original_name": "CarName",
+          "coefficient": 4821.619315906772
+        },
+        {
+          "position": 18,
+          "encoded_name": "categorical__CarName_chevrolet",
+          "original_name": "CarName",
+          "coefficient": -2633.621121909953
+        },
+        {
+          "position": 19,
+          "encoded_name": "categorical__CarName_dodge",
+          "original_name": "CarName",
+          "coefficient": -3429.1982914198716
+        },
+        {
+          "position": 20,
+          "encoded_name": "categorical__CarName_honda",
+          "original_name": "CarName",
+          "coefficient": -569.4650247898189
+        },
+        {
+          "position": 21,
+          "encoded_name": "categorical__CarName_isuzu",
+          "original_name": "CarName",
+          "coefficient": -896.7634090908946
+        },
+        {
+          "position": 22,
+          "encoded_name": "categorical__CarName_jaguar",
+          "original_name": "CarName",
+          "coefficient": 347.10646471685675
+        },
+        {
+          "position": 23,
+          "encoded_name": "categorical__CarName_mazda",
+          "original_name": "CarName",
+          "coefficient": -271.704552869307
+        },
+        {
+          "position": 24,
+          "encoded_name": "categorical__CarName_mercury",
+          "original_name": "CarName",
+          "coefficient": -1807.5364977445824
+        },
+        {
+          "position": 25,
+          "encoded_name": "categorical__CarName_mitsubishi",
+          "original_name": "CarName",
+          "coefficient": -3426.3723613458396
+        },
+        {
+          "position": 26,
+          "encoded_name": "categorical__CarName_nissan",
+          "original_name": "CarName",
+          "coefficient": -534.6635866317807
+        },
+        {
+          "position": 27,
+          "encoded_name": "categorical__CarName_peugeot",
+          "original_name": "CarName",
+          "coefficient": -1473.2528396292407
+        },
+        {
+          "position": 28,
+          "encoded_name": "categorical__CarName_plymouth",
+          "original_name": "CarName",
+          "coefficient": -3354.9710421802047
+        },
+        {
+          "position": 29,
+          "encoded_name": "categorical__CarName_porsche",
+          "original_name": "CarName",
+          "coefficient": 5182.4533237108035
+        },
+        {
+          "position": 30,
+          "encoded_name": "categorical__CarName_renault",
+          "original_name": "CarName",
+          "coefficient": -1775.4613680077546
+        },
+        {
+          "position": 31,
+          "encoded_name": "categorical__CarName_saab",
+          "original_name": "CarName",
+          "coefficient": 2759.2124339260163
+        },
+        {
+          "position": 32,
+          "encoded_name": "categorical__CarName_subaru",
+          "original_name": "CarName",
+          "coefficient": -2098.515911959297
+        },
+        {
+          "position": 33,
+          "encoded_name": "categorical__CarName_toyota",
+          "original_name": "CarName",
+          "coefficient": -1920.0796152335017
+        },
+        {
+          "position": 34,
+          "encoded_name": "categorical__CarName_volkswagen",
+          "original_name": "CarName",
+          "coefficient": -502.39487615132145
+        },
+        {
+          "position": 35,
+          "encoded_name": "categorical__CarName_volvo",
+          "original_name": "CarName",
+          "coefficient": -117.00911342443078
+        },
+        {
+          "position": 36,
+          "encoded_name": "categorical__fueltype_diesel",
+          "original_name": "fueltype",
+          "coefficient": 835.5684833348939
+        },
+        {
+          "position": 37,
+          "encoded_name": "categorical__fueltype_gas",
+          "original_name": "fueltype",
+          "coefficient": -835.5684833349101
+        },
+        {
+          "position": 38,
+          "encoded_name": "categorical__aspiration_std",
+          "original_name": "aspiration",
+          "coefficient": -996.1614624886114
+        },
+        {
+          "position": 39,
+          "encoded_name": "categorical__aspiration_turbo",
+          "original_name": "aspiration",
+          "coefficient": 996.1614624885844
+        },
+        {
+          "position": 40,
+          "encoded_name": "categorical__doornumber_four",
+          "original_name": "doornumber",
+          "coefficient": 303.35540442650245
+        },
+        {
+          "position": 41,
+          "encoded_name": "categorical__doornumber_two",
+          "original_name": "doornumber",
+          "coefficient": -303.3554044264911
+        },
+        {
+          "position": 42,
+          "encoded_name": "categorical__carbody_convertible",
+          "original_name": "carbody",
+          "coefficient": 2013.050676663874
+        },
+        {
+          "position": 43,
+          "encoded_name": "categorical__carbody_hardtop",
+          "original_name": "carbody",
+          "coefficient": -117.40638526935686
+        },
+        {
+          "position": 44,
+          "encoded_name": "categorical__carbody_hatchback",
+          "original_name": "carbody",
+          "coefficient": -649.2833361358794
+        },
+        {
+          "position": 45,
+          "encoded_name": "categorical__carbody_sedan",
+          "original_name": "carbody",
+          "coefficient": -371.2965855068055
+        },
+        {
+          "position": 46,
+          "encoded_name": "categorical__carbody_wagon",
+          "original_name": "carbody",
+          "coefficient": -875.0643697518601
+        },
+        {
+          "position": 47,
+          "encoded_name": "categorical__drivewheel_4wd",
+          "original_name": "drivewheel",
+          "coefficient": -156.47684577882933
+        },
+        {
+          "position": 48,
+          "encoded_name": "categorical__drivewheel_fwd",
+          "original_name": "drivewheel",
+          "coefficient": -137.85774542695435
+        },
+        {
+          "position": 49,
+          "encoded_name": "categorical__drivewheel_rwd",
+          "original_name": "drivewheel",
+          "coefficient": 294.3345912058053
+        },
+        {
+          "position": 50,
+          "encoded_name": "categorical__enginelocation_front",
+          "original_name": "enginelocation",
+          "coefficient": -4624.7931844877085
+        },
+        {
+          "position": 51,
+          "encoded_name": "categorical__enginelocation_rear",
+          "original_name": "enginelocation",
+          "coefficient": 4624.7931844877
+        },
+        {
+          "position": 52,
+          "encoded_name": "categorical__enginetype_dohc",
+          "original_name": "enginetype",
+          "coefficient": 707.2188209924132
+        },
+        {
+          "position": 53,
+          "encoded_name": "categorical__enginetype_dohcv",
+          "original_name": "enginetype",
+          "coefficient": -4226.339722501705
+        },
+        {
+          "position": 54,
+          "encoded_name": "categorical__enginetype_l",
+          "original_name": "enginetype",
+          "coefficient": -1473.252839629213
+        },
+        {
+          "position": 55,
+          "encoded_name": "categorical__enginetype_ohc",
+          "original_name": "enginetype",
+          "coefficient": 791.2530697871714
+        },
+        {
+          "position": 56,
+          "encoded_name": "categorical__enginetype_ohcf",
+          "original_name": "enginetype",
+          "coefficient": 2526.277272528391
+        },
+        {
+          "position": 57,
+          "encoded_name": "categorical__enginetype_ohcv",
+          "original_name": "enginetype",
+          "coefficient": -2083.8529162681266
+        },
+        {
+          "position": 58,
+          "encoded_name": "categorical__enginetype_rotor",
+          "original_name": "enginetype",
+          "coefficient": 3758.696315091042
+        },
+        {
+          "position": 59,
+          "encoded_name": "categorical__cylindernumber_eight",
+          "original_name": "cylindernumber",
+          "coefficient": 2331.1053231004503
+        },
+        {
+          "position": 60,
+          "encoded_name": "categorical__cylindernumber_five",
+          "original_name": "cylindernumber",
+          "coefficient": -1598.529870073934
+        },
+        {
+          "position": 61,
+          "encoded_name": "categorical__cylindernumber_four",
+          "original_name": "cylindernumber",
+          "coefficient": 831.8346574324542
+        },
+        {
+          "position": 62,
+          "encoded_name": "categorical__cylindernumber_six",
+          "original_name": "cylindernumber",
+          "coefficient": -1511.1343716920692
+        },
+        {
+          "position": 63,
+          "encoded_name": "categorical__cylindernumber_twelve",
+          "original_name": "cylindernumber",
+          "coefficient": -3811.9720538579345
+        },
+        {
+          "position": 64,
+          "encoded_name": "categorical__cylindernumber_two",
+          "original_name": "cylindernumber",
+          "coefficient": 3758.696315091042
+        },
+        {
+          "position": 65,
+          "encoded_name": "categorical__fuelsystem_1bbl",
+          "original_name": "fuelsystem",
+          "coefficient": -1335.9741479242425
+        },
+        {
+          "position": 66,
+          "encoded_name": "categorical__fuelsystem_2bbl",
+          "original_name": "fuelsystem",
+          "coefficient": 1236.997654162241
+        },
+        {
+          "position": 67,
+          "encoded_name": "categorical__fuelsystem_4bbl",
+          "original_name": "fuelsystem",
+          "coefficient": -383.46467808296757
+        },
+        {
+          "position": 68,
+          "encoded_name": "categorical__fuelsystem_idi",
+          "original_name": "fuelsystem",
+          "coefficient": 835.5684833348915
+        },
+        {
+          "position": 69,
+          "encoded_name": "categorical__fuelsystem_mfi",
+          "original_name": "fuelsystem",
+          "coefficient": -749.4779592223294
+        },
+        {
+          "position": 70,
+          "encoded_name": "categorical__fuelsystem_mpfi",
+          "original_name": "fuelsystem",
+          "coefficient": 517.9484203681523
+        },
+        {
+          "position": 71,
+          "encoded_name": "categorical__fuelsystem_spdi",
+          "original_name": "fuelsystem",
+          "coefficient": -308.05685211016686
+        },
+        {
+          "position": 72,
+          "encoded_name": "categorical__fuelsystem_spfi",
+          "original_name": "fuelsystem",
+          "coefficient": 186.45907947443885
+        }
+      ],
+      "intercept": 18092.84823281562,
+      "best_params": {},
+      "best_cv_rmse": 6091.508623045553,
+      "cv_std": 3265.8509103598803,
+      "nested_cv_rmse": 6091.508623045553,
+      "nested_cv_std": 3265.8509103598803,
+      "runtime_seconds": 4.019469199934974,
+      "train_metrics": {
+        "mae": 910.1326360479072,
+        "mse": 1508602.667139004,
+        "rmse": 1228.2518744699737,
+        "r2": 0.9747039340582626,
+        "adjusted_r2": 0.9603532812643923
+      },
+      "test_metrics": {
+        "mae": 1807.7039865428098,
+        "mse": 7808716.036144414,
+        "rmse": 2794.4079938592386,
+        "r2": 0.9010854026798556,
+        "adjusted_r2": null
+      }
+    }
+  ]
+}

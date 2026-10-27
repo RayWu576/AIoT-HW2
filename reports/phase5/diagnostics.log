@@ -10,5 +10,11 @@ appliances_energy: diagnosed RFECV, rank=11/11
 appliances_energy: diagnosed Correlation, rank=6/6
 appliances_energy: diagnosed LASSO, rank=5/5
 appliances_energy: diagnosed Baseline, rank=26/26
-Generated Phase 3 reports: [('student_performance', 13), ('appliances_energy', 13)]
+car_price: diagnosed LASSO, rank=37/39
+car_price: diagnosed Correlation, rank=6/6
+car_price: diagnosed Mutual Information, rank=6/6
+car_price: diagnosed RFE, rank=6/6
+car_price: diagnosed RFECV, rank=6/6
+car_price: diagnosed Baseline, rank=60/74
+Generated Phase 3 reports: [('student_performance', 13), ('appliances_energy', 13), ('car_price', 13)]
 

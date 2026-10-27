@@ -11,7 +11,8 @@ from scipy import stats
 import statsmodels.api as sm
 from threadpoolctl import threadpool_limits
 from datasets import OFFICIAL_DATASETS,load_dataset
-from datasets.descriptions import field_definition
+from datasets.descriptions import field_definition, DATASET_PRESENTATION
+from datasets.preprocessing import MANUFACTURER_ALIASES
 from feature_selection import CachedRankingSelector
 from regression_pipeline import METHODS,feature_details
 from regression_diagnostics import (selected_matrix,design_information,rank_metrics,assumption_diagnostics,binned_residuals)
@@ -25,7 +26,8 @@ def preprocessing_descriptor(pre,config):
     result={'numericColumns':list(config.numeric_columns),'numericMedian':numeric['imputer'].statistics_.tolist(),
             'numericMean':numeric['scaler'].mean_.tolist(),'numericScale':numeric['scaler'].scale_.tolist(),
             'categoricalColumns':list(config.categorical_columns),'categoricalFill':[],'categories':[],
-            'featureNames':pre.get_feature_names_out().tolist(),'manufacturerColumn':None,'manufacturerAliases':{}}
+            'featureNames':pre.get_feature_names_out().tolist(),'manufacturerColumn':'CarName' if config.dataset_id=='car_price' else None,
+            'manufacturerAliases':MANUFACTURER_ALIASES if config.dataset_id=='car_price' else {}}
     if config.categorical_columns:
         cat=pre.named_transformers_['categorical']
         result['categoricalFill']=cat['imputer'].statistics_.tolist()
@@ -152,16 +154,10 @@ def export_dataset(config,mode='FAST'):
     rows=[{'id':int(i)+1,'actual':float(y)} for i,y in zip(X_test.index,y_test)]
     if temporal:
         for r,date in zip(rows,data.temporal_metadata.date.iloc[te]):r['date']=str(date)
-    metadata={'id':config.dataset_id,'title':'Student Performance Prediction' if not temporal else 'Appliances Energy Prediction',
-              'problem':('Problem 1: Student Performance Prediction' if not temporal else 'Problem 2: Appliances Energy Prediction'),
-              'description':'Early prediction of Mathematics final grade from background and study characteristics.' if not temporal else 'Predict appliance energy use from contemporaneous household sensors and weather.',
+    metadata={'id':config.dataset_id,**DATASET_PRESENTATION[config.dataset_id],
               'target':config.target,'unit':config.target_unit,'originalFeatureCount':config.original_feature_count,
-              'encodedFeatureCount':len(descriptor['featureNames']),'rawSize':len(data.y),'sampleLabel':'Student' if not temporal else 'Observation',
-              'splitDescription':'Seed=42 shuffled 80/20; nested KFold' if not temporal else 'First 80% train / last 20% test; expanding TimeSeriesSplit at both CV levels',
-              'source':'https://archive.ics.uci.edu/dataset/320/student+performance' if not temporal else 'https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction',
-              'kaggleSource':'https://www.kaggle.com/datasets/larsen0966/student-performance-data-set' if not temporal else 'https://www.kaggle.com/datasets/loveall/appliances-energy-prediction',
-              'sourceNote':'Requested Kaggle archive supplies Portuguese data only; authentic Mathematics file comes from UCI (395 rows).' if not temporal else 'Authentic Kaggle copy; date retained only as metadata, rv1/rv2 excluded; lights is retained.',
-              'targetNote':'G1/G2 are historical grades and excluded from the official early-30 scenario.' if not temporal else 'Chronological residuals are dependent; intervals are working-model approximations, not forecast guarantees.',
+              'encodedFeatureCount':len(descriptor['featureNames']),'rawSize':len(data.y),
+              'splitDescription':f"Seed={run['configuration']['seed']} shuffled 80/20; nested KFold" if not temporal else 'First 80% train / last 20% test; expanding TimeSeriesSplit at both CV levels',
               'fieldLabels':{f['name']:f['label'] for f in inputs},'timeRanges':run.get('time_ranges')}
     return sanitize({'metadata':metadata,'mode':mode,'configuration':run['configuration'],'generatedAt':run['generated_at_utc'],
                      'trainSize':len(tr),'testSize':len(te),'preprocessing':descriptor,'inputs':inputs,'models':exported,'comparison':comparison,

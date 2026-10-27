@@ -1,7 +1,7 @@
 (() => {
 'use strict';
 const BUNDLE=window.DASHBOARD_DATA,$=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-if(!BUNDLE||BUNDLE.schemaVersion!==5||!window.DashboardPrediction||Object.keys(BUNDLE.datasets||{}).join(',')!=='student_performance,appliances_energy'){
+if(!BUNDLE||BUNDLE.schemaVersion!==5||!window.DashboardPrediction||Object.keys(BUNDLE.datasets||{}).join(',')!=='student_performance,appliances_energy,car_price'){
  document.querySelector('main').innerHTML='<section class="panel"><h2>Dashboard data unavailable</h2><p>Export both problems with <code>python dashboard_export.py --mode FAST</code>, then reload. The data and app versions must match.</p></section>';return;
 }
 const methods=['Baseline','Correlation','Mutual Information','RFE','RFECV','LASSO'],colors=['#94a3b8','#5585ef','#09ad87','#e7a43c','#9c68db','#e16a87'];
@@ -116,8 +116,8 @@ function diagnosticCard(a,index,m){
   add('Durbin–Watson',value(t.durbin_watson));add('Lag-1 ACF',value(t.acf?.[1]));
   const ps=(t.ljung_box||[]).map(r=>r.pvalue).filter(known);
   add('Ljung–Box 最小 p 值',ps.length?probability(Math.min(...ps)):'未進行時間序列檢定');
-  meaning=datasetId==='appliances_energy'?(flag?'檢定提示殘差存在時間相依，前後觀測的誤差可能互相關聯。':'目前未標記時間相依違反，仍需搭配 ACF 與時間序列檢定判讀。'):'學生來源行序不是時間；這裡的 DW／ACF 只作描述，無法據此證明觀測獨立。';
-  caution=datasetId==='appliances_energy'?'時間相依會限制傳統 OLS 推論；Ljung–Box 是選模後的探索性檢定，含多個相關 lag。':'同校、家庭或其他群組的相依性仍可能存在，不能只看 DW 是否接近 2。';break;
+  meaning=datasetId==='appliances_energy'?(flag?'檢定提示殘差存在時間相依，前後觀測的誤差可能互相關聯。':'目前未標記時間相依違反，仍需搭配 ACF 與時間序列檢定判讀。'):datasetId==='car_price'?'汽車原始列序不是時間；DW／ACF 只作描述，不能據此證明車輛觀測獨立。':'學生來源行序不是時間；這裡的 DW／ACF 只作描述，無法據此證明觀測獨立。';
+  caution=datasetId==='appliances_energy'?'時間相依會限制傳統 OLS 推論；Ljung–Box 是選模後的探索性檢定，含多個相關 lag。':datasetId==='car_price'?'同廠牌、車型或其他群組的相依性仍可能存在；小樣本會限制統計推論。':'同校、家庭或其他群組的相依性仍可能存在，不能只看 DW 是否接近 2。';break;
  }
  case 'homoscedasticity':
   add('LM 統計量',value(t.lm_statistic));add('Breusch–Pagan p 值',probability(t.lm_pvalue));add('輔助迴歸自由度',value(t.auxiliary_df,0));
@@ -171,7 +171,7 @@ function setupDataset(){
  $('overview-grid').innerHTML=[['Problem',d.title],['Observations',d.rawSize],['Original predictors',d.originalFeatureCount],['Encoded full matrix',d.encodedFeatureCount],['Target / unit',d.target+' / '+d.unit],['Evaluation',d.splitDescription],['Run mode',D.mode+(D.mode==='FAST'?' (development evidence)':' (full evaluation)')],['Train / test',D.trainSize+' / '+D.testSize]].map(([a,b])=>`<div><small>${esc(a)}</small><strong>${esc(b)}</strong></div>`).join('');
  $('ranking').innerHTML=D.comparison.map((r,i)=>`<tr><td>${i+1}</td><td><button data-model="${r.modelId}">${esc(r.method)}</button></td><td>${r.k} / ${r.rank}</td><td>${num(r.cvRmse)}</td><td>${num(r.cvStd)}</td><td>${num(r.nestedCvRmse)} +/- ${num(r.nestedCvStd)}</td><td>${num(r.train.rmse)}</td><td>${num(r.test.rmse)}</td><td>${num(r.test.r2)}</td><td>${num(r.test.mae)}</td><td>${num(r.test.mse)}</td></tr>`).join('');$('ranking').querySelectorAll('button').forEach(b=>b.onclick=()=>choose(null,null,b.dataset.model));
  $('dataset-methodology').textContent=d.splitDescription+'. All preprocessing and selection were fitted inside training folds. Final candidates refit on training rows only. '+d.targetNote+' '+d.sourceNote;
- $('dataset-sources').innerHTML=`<p><a href="${esc(d.kaggleSource)}" target="_blank" rel="noopener noreferrer">Kaggle source</a> / <a href="${esc(d.source)}" target="_blank" rel="noopener noreferrer">Original UCI source</a></p>`;
+ $('dataset-sources').innerHTML='<p><a href="'+esc(d.kaggleSource)+'" target="_blank" rel="noopener noreferrer">Kaggle source</a>'+(d.source===d.kaggleSource?'':' / <a href="'+esc(d.source)+'" target="_blank" rel="noopener noreferrer">Original UCI source</a>')+'</p>';
  $('feature-definitions').innerHTML=D.inputs.map(f=>`<tr><td>${esc(f.name)}</td><td>${esc(f.label)}</td><td>${f.kind} / ${esc(f.unit||'category')}</td></tr>`).join('');
  $('interval-methodology').textContent=model().uncertainty.limitations;$('generated').textContent=`Model run: ${D.generatedAt}; dataset ${datasetId}; ${D.mode}; source run SHA256 ${D.sourceRunSha256}.`;
  render();

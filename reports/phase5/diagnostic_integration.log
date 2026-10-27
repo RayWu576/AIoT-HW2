@@ -1,2 +1,2 @@
-PASS: {'status': 'PASS', 'datasets': 2, 'models': 12, 'figures': 26, 'interval_rows': 24156, 'metric_rows': 24, 'historical_frontend_check_requested': False, 'frontend_unchanged': False, 'saved_predictions_unchanged': True}
+PASS: {'status': 'PASS', 'datasets': 3, 'models': 18, 'figures': 39, 'interval_rows': 24402, 'metric_rows': 36, 'historical_frontend_check_requested': False, 'frontend_unchanged': False, 'saved_predictions_unchanged': True}
 

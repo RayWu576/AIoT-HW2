@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "datasets": 2,
-  "models": 12,
-  "training_predictions": 96624,
-  "heldout_predictions": 24156,
+  "datasets": 3,
+  "models": 18,
+  "training_predictions": 97608,
+  "heldout_predictions": 24402,
   "repeated_fast_reproducible": true,
   "historical_frontend_check_requested": false,
   "frontend_unchanged": false

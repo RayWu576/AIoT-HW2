@@ -12,7 +12,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy import stats
 from threadpoolctl import threadpool_limits
-from datasets import PHASE2_DATASETS, load_dataset, make_cv
+from datasets import OFFICIAL_DATASETS, load_dataset, make_cv
 from regression_pipeline import METHODS, feature_details
 from regression_diagnostics import (selected_matrix, design_information, rank_metrics,
                                     assumption_diagnostics, prediction_intervals)
@@ -221,7 +221,7 @@ def evaluate_dataset(config,mode='FAST',root=ROOT):
         lines += [f"### {entry['assumption']}: {entry['method']}",'',entry['interpretation'],'',entry['limitations'],'']
     lines += ['## Interval interpretation','',metadata['interval_note'],
               'Mean CI concerns E[Y|X]; individual PI adds residual variability for one new Y. Nominal coverage is not asserted. Outside-span rows have no estimable interval. Bounds are not clipped; grades outside 0-20 or negative Wh bounds expose the linear working model limitation.',
-              '', 'G1/G2 are historical first/second-period grades; this student early-30 scenario excludes them. Including them changes prediction availability and practical use.' if not temporal else 'Energy residuals are chronological. HAC uses a declared 24-lag bandwidth (4 hours at 10-minute sampling), not a guarantee of forecast uncertainty. Serial dependence weakens conventional OLS and BP/normality-test assumptions.',
+              '', 'G1/G2 are historical first/second-period grades; this student early-30 scenario excludes them. Including them changes prediction availability and practical use.' if config.dataset_id=='student_performance' else 'Manufacturer is derived from CarName inside training-fold preprocessing; small-sample and brand-group dependence limit inference.' if not temporal else 'Energy residuals are chronological. HAC uses a declared 24-lag bandwidth (4 hours at 10-minute sampling), not a guarantee of forecast uncertainty. Serial dependence weakens conventional OLS and BP/normality-test assumptions.',
               '', 'Feature-count validation R2 is reconstructed from saved fold RMSE and exact fold target SST; no test data, model refitting or fabricated validation scores. LASSO displays only its best-alpha point at final-refit support size, not a fabricated k path.',
               '', 'All tests are exploratory after feature/method selection; they are not causal inference or simultaneous guarantees. FAST has only two outer folds; FULL was not rerun.',
               '', 'See PHASE3.md for methodology, statistical references and output definitions.']
@@ -231,11 +231,11 @@ def evaluate_dataset(config,mode='FAST',root=ROOT):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--dataset',choices=['all',*PHASE2_DATASETS],default='all')
+    parser.add_argument('--dataset',choices=['all',*OFFICIAL_DATASETS],default='all')
     parser.add_argument('--mode',choices=['FAST','FULL'],default='FAST',type=str.upper)
     args=parser.parse_args();outputs=[]
     with threadpool_limits(limits=1):
-        for key,config in PHASE2_DATASETS.items():
+        for key,config in OFFICIAL_DATASETS.items():
             if args.dataset in ('all',key):outputs.append(evaluate_dataset(config,args.mode))
     write_json(ROOT/'reports'/('phase3_'+args.mode+'_manifest.json'),{'phase':3,'mode':args.mode,'datasets':outputs})
     print('Generated Phase 3 reports:',[(r['dataset_id'],len(r['figures'])) for r in outputs],flush=True)

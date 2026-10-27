@@ -1,4 +1,4 @@
-# Official regression datasets: Student Performance and Appliances Energy
+# Official regression datasets: Student Performance, Appliances Energy and Car Price
 
 Feature definitions live in config.py and are shared by loading, preprocessing, experiments and dashboard export. Raw CSVs are authentic downloaded data; malformed versions are rejected rather than fabricated or silently substituted.
 
@@ -23,7 +23,7 @@ Target: numeric G3 (grade 0-20). Categorical: school, sex, address, famsize, Pst
 
 ## Problem 2 - Appliances Energy
 
-OFFICIAL_DATASETS and PHASE2_DATASETS both contain Student Performance and Appliances Energy. Car Price remains only in LEGACY_DATASETS and [historical documentation](HISTORICAL_CAR.md).
+OFFICIAL_DATASETS and PHASE2_DATASETS both contain Student Performance, Appliances Energy and Car Price. Car Price is now official Problem 3 in OFFICIAL_DATASETS; LEGACY_DATASETS only retains the earlier seed=0 runner for reference.
 
 Appliances Energy is restored at appliances_energy/energydata_complete.csv from the authentic, hash-verified historical Kaggle download. Source: https://www.kaggle.com/datasets/loveall/appliances-energy-prediction ; reference: https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction . Its archive filename was KAG_energydata_complete.csv. There are 19,735 rows and 29 raw columns:
 
@@ -47,3 +47,26 @@ preprocessor = make_preprocessor(student.config)  # unfitted; fit inside CV
 Numeric predictors use fold-training median imputation and StandardScaler. Student nominal predictors use mode imputation and OneHotEncoder(handle_unknown="ignore", sparse_output=False). Original feature counts are 30 and 25; encoded widths are fold-dependent (full training 56 and 25). No target enters X. Phase 2 uses seed 42 for Student's 316/79 shuffled holdout/KFold; Energy's 15,788/3,947 holdout and both CV levels preserve chronology. The static exporter reuses these fitted artifacts, exact feature ordering and recorded CV results. See ../PHASE4.md for browser inference and verification.
 
 Acquire Energy from the linked Kaggle page, extract KAG_energydata_complete.csv and save it as datasets/appliances_energy/energydata_complete.csv. Source provenance/hashes are preserved in each dataset directory. Missing files raise explicit FileNotFoundError; schema errors reject incorrect counts, headers, invalid numeric values and dates. Files are never fabricated.
+
+
+### Problem 3 — Car Price Prediction
+
+來源：[hellbuoy Kaggle](https://www.kaggle.com/datasets/hellbuoy/car-price-prediction)。
+真實 CarPrice_Assignment.csv 已核對 SHA-256：205 筆、26 欄；排除 car_ID 與 price 後有 24 個原始候選輸入（14 數值、10 類別），目標 price 單位 USD。
+CarName 有 147 個原始車名，Pipeline 以第一個 token 擷取廠牌並修正固定拼字，得到 22 個廠牌；
+不是把原始車名直接 one-hot。未知廠牌以 handle_unknown="ignore" 處理。
+完整訓練切分產生 73 個編碼欄位，與 24 個原始輸入不同。
+
+seed=42，164 train／41 test；inner／outer shuffled KFold。
+與其他題相同的 Baseline＋五選擇器，最終都為 LinearRegression。
+本輪 FAST 以 training CV 選 LASSO support（38 encoded），Test RMSE 2869.8225 USD、R² 0.8957。
+LASSO 僅選特徵；不以 test 較佳的 Baseline 重選。205 筆與稀疏廠牌限制推論及外推，不是當前市場估價保證。
+
+只重跑第三題：
+
+    python phase2_experiment.py --dataset car_price --mode FAST --jobs 2
+    python phase3_evaluation.py --dataset car_price --mode FAST
+    python dashboard_export.py --mode FAST
+    python report_preparation.py --mode FAST
+
+單題訓練摘要會保留其他題的真實既有紀錄，三題結果分開存放。

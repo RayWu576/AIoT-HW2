@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from threadpoolctl import threadpool_limits
-from datasets import PHASE2_DATASETS,load_dataset,holdout_indices
+from datasets import OFFICIAL_DATASETS,load_dataset,holdout_indices
 from regression_pipeline import METHODS,feature_details,regression_metrics,fitted_design_rank
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -19,7 +19,7 @@ parser.add_argument('--check-historical-frontend',action='store_true',help='Requ
 args=parser.parse_args()
 counts={'datasets':0,'models':0,'training_predictions':0,'heldout_predictions':0}
 with threadpool_limits(limits=1):
-    for dataset_id,config in PHASE2_DATASETS.items():
+    for dataset_id,config in OFFICIAL_DATASETS.items():
         output=ROOT/'results'/dataset_id/'FAST'
         report=json.loads((output/'run.json').read_text(encoding='utf-8'))
         payload=json.loads((output/'dashboard_payload.json').read_text(encoding='utf-8'))
@@ -28,7 +28,7 @@ with threadpool_limits(limits=1):
         assert report['configuration']['outer_folds']==2
         assert report['configuration']['inner_folds']==2
         assert report['runtime_seconds']>0
-        assert report['original_input_count'] in (30,25)
+        assert report['original_input_count'] in (30,25,24)
         assert report['native_threads_per_worker']==1
         assert report['jobs']<=2
         assert report['cache_namespace']
@@ -105,6 +105,18 @@ for a,b in zip(first['datasets'],current['datasets']):
         assert m['method']==n['method'] and m['selected_encoded_count']==n['selected_encoded_count']
         for key in ['best_cv_rmse','nested_cv_rmse','test_rmse','test_r2']:
             assert np.isclose(m[key],n[key],rtol=1e-10,atol=1e-7)
+# New official Car Price was independently repeated with the same seeded protocol.
+car_reference=json.loads((ROOT/'results/car_price/FAST/reproducibility_reference.json').read_text(encoding='utf-8'))
+car_current=json.loads((ROOT/'results/car_price/FAST/run.json').read_text(encoding='utf-8'))
+assert car_reference['configuration']==car_current['configuration']
+for a,b in zip(car_reference['methods'],car_current['methods']):
+    assert a['method']==b['method'] and a['best_params']==b['best_params']
+    assert a['selected_encoded_count']==b['selected_encoded_count']
+    for k in ['best_cv_rmse','nested_cv_rmse']:
+        assert np.isclose(a[k],b[k],rtol=1e-10,atol=1e-7)
+    for k in ['mae','mse','rmse','r2']:
+        assert np.isclose(a['test_metrics'][k],b['test_metrics'][k],rtol=1e-10,atol=1e-7)
+
 # Phase 4 intentionally changed UI assets. Keep the old byte contract opt-in.
 before=json.loads((ROOT/'results/phase2_frontend_before.json').read_text(encoding='utf-8'))
 after={str(p.relative_to(ROOT)).replace(chr(92),'/'):hashlib.sha256(p.read_bytes()).hexdigest()

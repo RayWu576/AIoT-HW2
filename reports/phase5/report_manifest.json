@@ -1,21 +1,28 @@
 {
   "mode": "FAST",
   "full_executed_in_phase5": false,
-  "figure_count": 26,
+  "figure_count": 39,
   "datasets": [
     {
       "id": "student_performance",
       "run_sha256": "f2452ff2b5bc2954f415d45a285561cf1b1eb877465b58d331fc37606aa85c7d",
       "pipeline_seconds": 15.582453899958637,
-      "diagnostics_seconds": 7.393117400002666,
+      "diagnostics_seconds": 7.668023100006394,
       "selected_method": "Correlation"
     },
     {
       "id": "appliances_energy",
       "run_sha256": "91a536eb9d28b5296c236a2ee2a64ede868f2d23407928a076e7d6d48b54117f",
       "pipeline_seconds": 19.176503699971363,
-      "diagnostics_seconds": 10.445172099978663,
+      "diagnostics_seconds": 10.595312800025567,
       "selected_method": "Mutual Information"
+    },
+    {
+      "id": "car_price",
+      "run_sha256": "2eb95a1135f436bd644ebb8328cb6a5fa4224657edb9017e5e7c46cf3f82d166",
+      "pipeline_seconds": 10.152335699996911,
+      "diagnostics_seconds": 12.319264599995222,
+      "selected_method": "LASSO"
     }
   ]
 }

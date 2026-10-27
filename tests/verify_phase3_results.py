@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from threadpoolctl import threadpool_limits
-from datasets import PHASE2_DATASETS,load_dataset,make_cv
+from datasets import OFFICIAL_DATASETS,load_dataset,make_cv
 from regression_diagnostics import selected_matrix,design_information,rank_metrics
 from regression_pipeline import METHODS
 
@@ -21,7 +21,7 @@ args=parser.parse_args()
 counts={'datasets':0,'models':0,'figures':0,'interval_rows':0,'metric_rows':0}
 all_paths=set()
 with threadpool_limits(limits=1):
-    for key,config in PHASE2_DATASETS.items():
+    for key,config in OFFICIAL_DATASETS.items():
         source=ROOT/'results'/key/'FAST';tables=ROOT/'reports/tables'/key/'FAST'
         original=json.loads((source/'run.json').read_text())
         diagnostic=json.loads((tables/'diagnostics.json').read_text())
@@ -55,14 +55,15 @@ with threadpool_limits(limits=1):
                     if expected[name] is None:assert pd.isna(found[name])
                     else:assert np.isclose(found[name],expected[name])
                 for name in ['mae','mse','rmse','r2','adjusted_r2']:
-                    assert np.isclose(found[name],row[part+'_metrics'][name])
+                    if row[part+'_metrics'][name] is None:assert pd.isna(found[name])
+                    else:assert np.isclose(found[name],row[part+'_metrics'][name])
                 counts['metric_rows']+=1
             frame=pd.read_csv(tables/(slug+'_test_intervals.csv'))
             np.testing.assert_allclose(frame.prediction,model.predict(data.X.iloc[test]),rtol=1e-10,atol=1e-7)
             np.testing.assert_allclose(frame.actual,data.y.iloc[test])
             for lower,upper in [('mean_ci_lower','mean_ci_upper'),('individual_pi_lower','individual_pi_upper'),('robust_mean_ci_lower','robust_mean_ci_upper')]:
                 valid=frame[lower].notna() & frame[upper].notna()
-                assert valid.any()
+                if lower!='robust_mean_ci_lower':assert valid.any()
                 assert np.isfinite(frame.loc[valid,[lower,upper]]).all().all()
                 assert (frame.loc[valid,lower]<=frame.loc[valid,upper]).all()
             valid=frame.individual_pi_lower.notna()

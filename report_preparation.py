@@ -16,6 +16,7 @@ REFS = """
 5. [scikit-learn Pipeline 與資料洩漏](https://scikit-learn.org/stable/common_pitfalls.html)。
 6. [statsmodels OLS](https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html)。
 7. [GitHub Pages 工作流程](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+9. [Car Price Kaggle](https://www.kaggle.com/datasets/hellbuoy/car-price-prediction)。
 8. [專案原始碼](https://github.com/RayWu576/AIoT-HW2)。
 """
 def read(path):
@@ -42,7 +43,7 @@ def prepare(mode='FAST'):
         if hashlib.sha256(config.path.read_bytes()).hexdigest()!=run['source_sha256']:
             raise ValueError('Changed source: '+key)
         student=key=='student_performance'
-        title='學生表現' if student else '家電能源'
+        title='學生表現' if student else '汽車價格' if key=='car_price' else '家電能源'
         best=next(m for m in run['methods'] if m['method']==run['best_model']['method'])
         evidence=diag['models'][best['method']]
         overview.append([title,len(data.y),len(data.raw_columns),config.original_feature_count,
@@ -63,9 +64,13 @@ def prepare(mode='FAST'):
             'linearity':'以殘差對 fitted 與分箱平均檢查線性。殘差均值跨度 >0.5 個殘差 SD 只是宣告的視覺篩檢，不是顯著性檢定；未觸發不能證明線性。',
             'independence':('學生來源行序不是時間，DW 只能描述該順序，不足以證實獨立；學校／群組相依仍可能存在。' if student else '能源殘差 DW 約 0.532、lag-1 ACF 約 0.734，顯示強烈正自相關；Ljung-Box 也支持序列相依，p=0 是浮點下溢，不是字面機率為零。'),
             'homoscedasticity':('Koenker-Breusch-Pagan 未拒絕等變異，但不等於證明等變異；選擇程序影響 nominal p-value。' if student else 'Koenker-Breusch-Pagan 提供反對等變異的證據；時間相依又限制傳統檢定 p-value 的解釋。'),
-            'normality':'實際常態性檢定拒絕常態。學生採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。',
+            'normality':'實際常態性檢定拒絕常態。學生與汽車採 Shapiro-Wilk，能源大樣本採 Jarque-Bera；大樣本可對小偏離很敏感，必須同看 Q-Q、直方圖、偏態及尾部。',
             'multicollinearity':'檢查含截距的 affine rank、VIF 與 condition。完整 one-hot 可造成 aliasing；個別不可識別係數不提供虛假的 SE/CI，不能只把原始特徵數當模型維度。'
         }
+        if key=='car_price':
+            interpretation['independence']='汽車原始行序不是時間；DW／ACF 只能作描述，不能證明觀測獨立。同廠牌或車型群組仍可能相依。'
+            interpretation['homoscedasticity']='依下列真實 Koenker-Breusch-Pagan 統計判讀；選模及稀疏類別會限制 p 值解釋，未拒絕不等於證明等變異。'
+
         for a in evidence['assumptions']:
             assumptions.append('#### '+a['assumption']+' — '+a['method']+'\n\n'+interpretation[a['assumption']]+'\n\n實際統計：\n\n    '+
                 json.dumps(a['statistic'],ensure_ascii=False)+'\n\n原始診斷解讀：'+a['interpretation']+'\n\n限制：'+a['limitations']+'\n')
@@ -102,10 +107,16 @@ def prepare(mode='FAST'):
         problem=('以背景、家庭、學習與出缺席資料預測數學 G3，供學習支持研究使用；不是因果評估或個人處分工具。G1/G2 是歷史學期成績，取得後是另一個較晚期情境，正式 early-30 沒有使用。'
                  if student else '由住宅同期感測及氣象估計 Appliances（Wh），探討節能估計的可行性。保留 lights；同期估計不代表可事先取得所有輸入的未來負載預報。')
         split=('seed=42，316/79 的 shuffled 80/20 holdout，inner/outer 為 shuffled KFold。'
-               if student else '前 15,788 筆訓練，後 3,947 筆測試；inner/outer 均為 expanding TimeSeriesSplit，gap=0，不 shuffle。時間從 '+str(data.temporal_metadata.date.iloc[0])+' 至 '+str(data.temporal_metadata.date.iloc[-1])+'。')
+               if config.split_strategy!='chronological' else '前 15,788 筆訓練，後 3,947 筆測試；inner/outer 均為 expanding TimeSeriesSplit，gap=0，不 shuffle。時間從 '+str(data.temporal_metadata.date.iloc[0])+' 至 '+str(data.temporal_metadata.date.iloc[-1])+'。')
         exclusions='G3/G1/G2' if student else 'Appliances、rv1、rv2；date 另存 metadata'
         outcome=('測試 R² 約 0.0795，顯示 early-30 預測訊號有限；Baseline 測試 RMSE 較低，仍不據此重選方法。'
                  if student else '測試 R² 為負，表示在此測試時段的描述性比較中，SSE 大於以測試目標平均值計算的 SST；不表示已建立可部署的平均值模型。Baseline 測試表現較佳仍不據此改選方法。自相關、右尾與異質變異使傳統 OLS 個別 PI 不宜當作已校準保證。')
+        if key=='car_price':
+            problem='以車輛規格與廠牌估計 price（USD），研究小樣本價格迴歸；這不是當前市場報價或因果效果。CarName 147 個原始名稱先作確定性廠牌擷取，22 個廠牌保留有意義資訊，避免車型名稱過度擬合。'
+            split=f"seed={run['configuration']['seed']}，{run['train_size']}/{run['test_size']} shuffled 80/20 holdout；inner/outer 均為 shuffled KFold。"
+            exclusions='car_ID 與 price；24 個原始候選輸入全部保留，CarName 在 Pipeline 中轉為廠牌'
+            outcome=f"正式 training-CV 選定 {best['method']}（最終仍為 LinearRegression），Test RMSE={best['test_metrics']['rmse']:.4f} USD，R²={best['test_metrics']['r2']:.4f}。只有 205 筆觀測，類別稀疏、品牌群組與未知類別限制外推；Baseline 的 test 較佳也不依 test 改選方法。"
+
         parts.append(f"""## {title}：六階段 CRISP-DM
 
 ### 1. Business Understanding — 業務理解
@@ -157,7 +168,7 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 
 條件平均 mean CI 描述 E[Y|X]；個別觀測 PI 加入殘差變異，通常更寬。
 使用同一已選定 sklearn 模型的設計與係數順序，透過 centered SVD 的等價滿秩基底與 statsmodels OLS 計算 t 區間。
-學生另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
+學生與汽車另有 HC3、能源有 HAC（24 lag）漸近 mean CI；robust mean CI 不是 robust individual PI。
 超出訓練 affine span 時不輸出可識別區間；不強行反轉奇異矩陣。
 沒有校正特徵／方法選擇不確定性，沒有證實 nominal coverage；不任意裁切負 Wh 或超過 0–20 的區間。
 
@@ -183,14 +194,14 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
     overview_table=table(['題目','樣本','CSV 欄位','原始輸入','完整編碼','目標','單位','Train / test'],overview)
     comparison_table=table(['題目','方法','encoded k','Inner CV RMSE','CV std','Test RMSE','Test R²'],comparisons)
     timing_table=table(['題目','Pipeline 秒','診斷／圖表秒','上述合計秒','cache namespace 已存在'],timings)
-    report=f"""# AIoT HW2 — Multiple Linear Regression and Feature Selection: Student Performance and Appliances Energy Prediction
+    report=f"""# AIoT HW2 — Multiple Linear Regression and Feature Selection: Student Performance, Appliances Energy and Car Price Prediction
 
 ## 摘要
 
-本研究以兩個真實資料問題實作 Multiple Linear Regression、Baseline 與五種 Feature Selection，
+本研究以三個真實資料問題實作 Multiple Linear Regression、Baseline 與五種 Feature Selection，
 採 training-only nested CV、獨立 holdout、五假設診斷、95% 區間與雙題靜態互動儀表板。
 全部表格／圖檔來自實際 {mode} 產物，沒有虛構結果。
-兩題樣本與切分不同；RMSE 目標單位是 grade 與 Wh，不能直接比較大小判定哪題模型較好。
+三題樣本與切分不同；RMSE 目標單位是 grade 與 Wh，不能直接比較大小判定哪題模型較好。
 
 ## 緒論與問題定義
 
@@ -203,8 +214,8 @@ Adjusted R² 使用 training affine design rank（含截距）；test 值只是�
 
 指定學生 Kaggle archive 實際只有 Portuguese（649 筆），沒有將其改名為 Mathematics。
 本專案改以已記錄來源的 UCI student-mat.csv，395 筆、33 欄：32 個非目標欄位再排除 G1/G2，得到 early-30。
-能源為 Kaggle 真實副本，29 欄排除目標、日期與兩個隨機欄後得到 25 個輸入。
-因此交付是兩個真實驗證資料集，但不宣稱兩個原檔都來自指定 Kaggle；此來源差異仍需教師接受。
+能源為 Kaggle 真實副本，29 欄排除目標、日期與兩個隨機欄後得到 25 個輸入。汽車使用 hellbuoy Kaggle 真實檔，205 筆、26 欄，排除 ID／目標後保留 24 個原始候選欄位。
+因此交付是三個真實驗證資料集，但不宣稱三個原檔都來自指定 Kaggle；此來源差異仍需教師接受。
 
 ## Multiple Linear Regression 與五種特徵選擇
 
@@ -237,10 +248,10 @@ Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不�
 
 {chr(10).join(parts)}
 
-## 兩題比較、限制與改善
+## 三題比較、限制與改善
 
 學生資料小、類別多、one-hot 與截距存在 aliasing，early-30 訊號有限，受切分與選擇不確定性影響；
-能源雖大卻有序列相依與時段轉移，有效資訊量不等於獨立樣本數。兩題 RMSE 不能跨單位直接比較。
+能源雖大卻有序列相依與時段轉移，有效資訊量不等於獨立樣本數。三題 RMSE 不能跨單位直接比較。
 後續先規劃 training-only FULL、能源時間 gap 敏感度與學生 group-aware 驗證；已觀察的 test 不應反覆用來調參。
 非線性／不同誤差結構可作未來研究，本作業最終模型仍保留 LinearRegression。
 
@@ -256,7 +267,7 @@ Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不�
 
 ## 圖表索引與驗收
 
-[FIGURE_INDEX.md](FIGURE_INDEX.md) 列出全部 26 張真實 PNG 的圖號、檔名、用途與章節。
+[FIGURE_INDEX.md](FIGURE_INDEX.md) 列出全部 39 張真實 PNG 的圖號、檔名、用途與章節。
 [最終驗收 JSON](phase5/validation.json) 記錄命令、測試數與 runtime；各 run hash 見 report_manifest.json。
 
 ## 參考文獻
@@ -285,7 +296,7 @@ Pipeline 時間含載入、nested/final CV、評估及模型／CSV 匯出，不�
 scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案 README、CRISP_DM_REPORT、實際 CSV 指標與圖表索引。
 不得上傳憑證或個資。
 
-請自行完成至少 **100 個中文字**的來源導向摘要，說明兩題情境、資料差異、洩漏防治、五假設證據與區間限制；
+請自行完成至少 **100 個中文字**的來源導向摘要，說明三題情境、資料差異、洩漏防治、五假設證據與區間限制；
 確認 NotebookLM 引用真的支持每項敘述，不把生成建議當成本專案已執行的實驗。
 
 - NotebookLM 實際使用日期與來源清單：**［待填］**
@@ -295,7 +306,7 @@ scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案 RE
 ## C. 最終 PDF 報告
 
 使用 CRISP_DM_REPORT.md 為稿，補姓名／學號／課程、頁碼與附件，再用 Markdown 編輯器或 Pandoc 匯出 PDF。
-人工檢查中文字型、公式、26 張 PNG、跨頁表格與連結。這裡只交付 Markdown／PNG，不宣稱 PDF 已完成。
+人工檢查中文字型、公式、39 張 PNG、跨頁表格與連結。這裡只交付 Markdown／PNG，不宣稱 PDF 已完成。
 """)
     write(REPORTS/'phase5/report_manifest.json',json.dumps(
         {'mode':mode,'full_executed_in_phase5':False,'figure_count':len(figures),'datasets':manifests},indent=2))

@@ -101,7 +101,7 @@
           },
           "possible_violation": null,
           "interpretation": "DW=2.0610; lag-1 ACF=-0.0332.",
-          "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+          "limitations": "These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible."
         },
         {
           "assumption": "homoscedasticity",
@@ -241,7 +241,7 @@
           },
           "possible_violation": null,
           "interpretation": "DW=2.0610; lag-1 ACF=-0.0332.",
-          "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+          "limitations": "These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible."
         },
         {
           "assumption": "homoscedasticity",
@@ -381,7 +381,7 @@
           },
           "possible_violation": null,
           "interpretation": "DW=2.0610; lag-1 ACF=-0.0332.",
-          "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+          "limitations": "These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible."
         },
         {
           "assumption": "homoscedasticity",
@@ -521,7 +521,7 @@
           },
           "possible_violation": null,
           "interpretation": "DW=2.0938; lag-1 ACF=-0.0482.",
-          "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+          "limitations": "These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible."
         },
         {
           "assumption": "homoscedasticity",
@@ -661,7 +661,7 @@
           },
           "possible_violation": null,
           "interpretation": "DW=2.0422; lag-1 ACF=-0.0228.",
-          "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+          "limitations": "These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible."
         },
         {
           "assumption": "homoscedasticity",
@@ -801,7 +801,7 @@
           },
           "possible_violation": null,
           "interpretation": "DW=1.9771; lag-1 ACF=0.0097.",
-          "limitations": "Students have no justified temporal sampling order. DW cannot establish independence; school/group dependence remains possible."
+          "limitations": "These observations have no justified temporal sampling order. DW cannot establish independence; group dependence remains possible."
         },
         {
           "assumption": "homoscedasticity",
@@ -932,5 +932,5 @@
       "dpi": 300
     }
   ],
-  "runtime_seconds": 7.393117400002666
+  "runtime_seconds": 7.668023100006394
 }

@@ -12,7 +12,7 @@ class Phase4Tests(unittest.TestCase):
     def setUpClass(cls):
         cls.bundle=json.loads((DIST/'data.json').read_text(encoding='utf-8'))
     def test_official_registry_and_feature_metadata(self):
-        self.assertEqual(set(OFFICIAL_DATASETS),{'student_performance','appliances_energy'})
+        self.assertEqual(set(OFFICIAL_DATASETS),{'student_performance','appliances_energy','car_price'})
         self.assertEqual(set(self.bundle['datasets']),set(OFFICIAL_DATASETS))
         for key,config in OFFICIAL_DATASETS.items():
             d=self.bundle['datasets'][key]

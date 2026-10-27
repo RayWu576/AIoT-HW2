@@ -1,20 +1,20 @@
 {
   "passed": true,
-  "runtime_seconds": 65.1478991000331,
+  "runtime_seconds": 88.44846400001552,
   "asset_sha256": {
-    "app.js": "794a3e0c1968beebfe28b48ae6e5fc276e748b53d65300945386ec229f7bbf03",
+    "app.js": "6f1fb1b9ed70de91daa783c778847162dff7605defe1e404bdce8799e281231c",
     "prediction.js": "f752f3f43807d4c704183c50de02ead625dae85bdfcf8ea07b83ef627426f38f",
-    "styles.css": "6edb8002462fe787c50494124e58fe33775f27576ac4d9d3ed52fa8ce8c371e3",
-    "index.html": "7734508438d9c6981554440a71a14453ee516925f0ec56b404ebded87978377d",
-    "data.json": "b012b2513000d00221771f58acb67ec9a4001525442ff6ee0741f5e284c0d0df",
-    "data.js": "757ce260275d0b79437aa7eb26fdc5d44a486e13ad88568f5f7d32caeb54e315"
+    "styles.css": "29590cc061960a2af27d9a2ddf22abeea457d01b9ae27c191f2d996d9a7f8edc",
+    "index.html": "50a8452f65c8601410b8e9a1d9460877d4c115fa374a09f6241cb5868e3635b3",
+    "data.json": "5be611cc624ef901ec1ea18b70aeadbefa87a37608d9cd72c3039606840c4399",
+    "data.js": "a109f41aaf81c2e43e0185eb99badd8e1cd375241d9933d1d0068aa429eb5b46"
   },
   "counts": {
-    "models": 46,
-    "predictions": 92598,
-    "interval_rows": 24156,
-    "missing_unknown_cases": 138,
-    "ui_checks": 46
+    "models": 69,
+    "predictions": 93541,
+    "interval_rows": 24402,
+    "missing_unknown_cases": 207,
+    "ui_checks": 69
   },
   "max_prediction_absolute_error": 3.346244170643331e-09,
   "max_interval_absolute_error": 3.430159267736599e-09,

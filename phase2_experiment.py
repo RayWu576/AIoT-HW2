@@ -12,7 +12,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import sklearn
-from datasets import PHASE2_DATASETS, load_dataset, holdout_indices
+from datasets import OFFICIAL_DATASETS, load_dataset, holdout_indices
 from regression_pipeline import MODES, METHODS, fit_training, regression_metrics
 
 ROOT = Path(__file__).resolve().parent
@@ -133,7 +133,7 @@ def run_dataset(config, *, mode=MODES["FAST"], output_root=None, jobs=2, use_cac
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", choices=["all", *PHASE2_DATASETS], default="all")
+    parser.add_argument("--dataset", choices=["all", *OFFICIAL_DATASETS], default="all")
     parser.add_argument("--mode", choices=list(MODES), default="FAST", type=str.upper)
     parser.add_argument("--jobs", type=int, choices=[1,2], default=2)
     parser.add_argument("--gap", type=int, default=0, help="Energy gap in rows, applied to holdout and both CV levels")
@@ -142,12 +142,18 @@ def main():
     if args.gap < 0: parser.error("gap must be nonnegative")
     total_started = perf_counter()
     reports = []
-    for dataset_id, config in PHASE2_DATASETS.items():
+    for dataset_id, config in OFFICIAL_DATASETS.items():
         if args.dataset not in ("all", dataset_id): continue
         mode = replace(MODES[args.mode], gap=args.gap if config.split_strategy == "chronological" else 0)
         reports.append(run_dataset(config, mode=mode, jobs=args.jobs, use_cache=not args.no_cache))
-    summary = {"mode": args.mode, "runtime_seconds": perf_counter()-total_started,
-               "runtime_note": "Inside CLI main; excludes Python imports and process teardown.",
+    invocation_seconds = perf_counter()-total_started
+    executed_ids = [r['dataset_id'] for r in reports]
+    # Partial runs retain other problems' real recorded summaries.
+    reports = [json.loads((ROOT/'results'/key/args.mode/'run.json').read_text(encoding='utf-8'))
+               for key in OFFICIAL_DATASETS if (ROOT/'results'/key/args.mode/'run.json').is_file()]
+    summary = {"mode": args.mode, "runtime_seconds": sum(r['runtime_seconds'] for r in reports),
+               "latest_invocation_runtime_seconds": invocation_seconds, "latest_invocation_datasets": executed_ids,
+               "runtime_note": "Sum of recorded per-dataset pipeline durations; runs may be separate invocations. Latest invocation time is recorded separately.",
                "datasets": [{"id": r["dataset_id"], "runtime_seconds": r["runtime_seconds"],
                               "best_method": r["best_model"]["method"], "workflow_nested_cv_rmse": r["workflow_nested_cv_rmse"],
                               "methods": [{"method": m["method"], "selected_encoded_count": m["selected_encoded_count"],

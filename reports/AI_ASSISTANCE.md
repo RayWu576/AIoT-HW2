@@ -15,7 +15,7 @@
 scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案 README、CRISP_DM_REPORT、實際 CSV 指標與圖表索引。
 不得上傳憑證或個資。
 
-請自行完成至少 **100 個中文字**的來源導向摘要，說明兩題情境、資料差異、洩漏防治、五假設證據與區間限制；
+請自行完成至少 **100 個中文字**的來源導向摘要，說明三題情境、資料差異、洩漏防治、五假設證據與區間限制；
 確認 NotebookLM 引用真的支持每項敘述，不把生成建議當成本專案已執行的實驗。
 
 - NotebookLM 實際使用日期與來源清單：**［待填］**
@@ -25,4 +25,4 @@ scikit-learn Pipeline／CV、statsmodels OLS／診斷文件，以及本專案 RE
 ## C. 最終 PDF 報告
 
 使用 CRISP_DM_REPORT.md 為稿，補姓名／學號／課程、頁碼與附件，再用 Markdown 編輯器或 Pandoc 匯出 PDF。
-人工檢查中文字型、公式、26 張 PNG、跨頁表格與連結。這裡只交付 Markdown／PNG，不宣稱 PDF 已完成。
+人工檢查中文字型、公式、39 張 PNG、跨頁表格與連結。這裡只交付 Markdown／PNG，不宣稱 PDF 已完成。

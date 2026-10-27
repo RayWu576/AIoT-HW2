@@ -1,0 +1,12 @@
+{
+  "results/student_performance/FAST/run.json": "f2452ff2b5bc2954f415d45a285561cf1b1eb877465b58d331fc37606aa85c7d",
+  "results/student_performance/FAST/best_model.joblib": "94d64c4aee99ab299ec49b9c9327394d60402234a0971f7b69c28ee4a1bb9a6c",
+  "results/student_performance/FAST/models/baseline.joblib": "cb7d6cb07cbcc2b426340dda610086fed5c8484cbc25f6b4c42dca1b06d26562",
+  "results/student_performance/FAST/train_predictions.csv": "5b93cb6304a0f59a8110da745416088ee77f7d29e4a62d09c7015c8b5ef982c1",
+  "results/student_performance/FAST/test_predictions.csv": "c9751773b88305f8a4d0257eea6ed326aec241602e0495b6685b6d1511614191",
+  "results/appliances_energy/FAST/run.json": "91a536eb9d28b5296c236a2ee2a64ede868f2d23407928a076e7d6d48b54117f",
+  "results/appliances_energy/FAST/best_model.joblib": "3b0f18ecce804923393352b9ab6752b088932db47eb2d3ec5614fc1bf672b093",
+  "results/appliances_energy/FAST/models/baseline.joblib": "40ebbbb11dcd7614194038506f7cf0fe16a1f8bf0c1c26b96d21492a6aba073a",
+  "results/appliances_energy/FAST/train_predictions.csv": "a4473c1a00b1df8678c6dfd888ded20d8deb76ca8a14533fe4852799b1eafe07",
+  "results/appliances_energy/FAST/test_predictions.csv": "9005c1a355813e7ae77d0c8aad03b9a3af9319ad17a51e3ecb41b6b26fd64330"
+}
