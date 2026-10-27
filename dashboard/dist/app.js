@@ -95,6 +95,57 @@ function scatter(id,points,xlabel,ylabel,reference,line){
  points.forEach(p=>svg+=`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="2.3" fill="#5585ef" opacity=".45"><title>${num(p[0],3)}, ${num(p[1],3)}</title></circle>`);
  svg+=`<text x="${W/2}" y="${H-3}" text-anchor="middle">${esc(xlabel)}</text><text transform="translate(13 ${H/2}) rotate(-90)" text-anchor="middle">${esc(ylabel)}</text></svg>`;$(id).innerHTML=svg;
 }
+
+function diagnosticCard(a,index,m){
+ const t=a.statistic||{},known=v=>v!==null&&v!==undefined&&Number.isFinite(Number(v));
+ const value=(v,d=3)=>known(v)?num(v,d):'無法估計';
+ const probability=v=>!known(v)?'無法估計':Number(v)===0?'低於浮點精度':Number(v)<.0001?Number(v).toExponential(2):num(v,4);
+ const fields=[],add=(label,v)=>fields.push([label,v]);
+ const names={linearity:['線性關係','Linearity'],independence:['殘差獨立性','Independence'],homoscedasticity:['等變異性','Homoscedasticity'],normality:['殘差常態性','Normality'],multicollinearity:['多重共線性','Multicollinearity']};
+ const [title,english]=names[a.assumption]||[a.assumption,'Regression diagnostic'];
+ const flag=a.possible_violation===true,status=flag?'warn':a.possible_violation===false?'screened':'descriptive';
+ const badge=flag?'可能違反假設':status==='screened'?'未觸發篩檢警示':'描述性觀察';
+ let meaning='',caution='';
+ switch(a.assumption){
+ case 'linearity':
+  add('分箱數',value(t.bin_count,0));add('殘差均值跨度',known(t.bin_mean_span_residual_sd)?value(t.bin_mean_span_residual_sd)+' SD':'無法估計');
+  add('分箱殘差均值範圍',known(t.minimum_bin_mean)&&known(t.maximum_bin_mean)?value(t.minimum_bin_mean,2)+' ～ '+value(t.maximum_bin_mean,2)+' '+D.metadata.unit:'無法估計');
+  meaning=known(t.bin_mean_span_residual_sd)?flag?'殘差分箱均值的變化較大，可能存在未捕捉的非線性趨勢。':'殘差分箱均值未觸發目前的趨勢篩檢，請搭配上方殘差圖判讀。':'不同擬合值或殘差變異不足，目前無法判讀趨勢。';
+  caution='跨度超過 0.5 SD 是視覺篩檢慣例，不是顯著性檢定；未觸發也不能證明線性成立。';break;
+ case 'independence':{
+  add('Durbin–Watson',value(t.durbin_watson));add('Lag-1 ACF',value(t.acf?.[1]));
+  const ps=(t.ljung_box||[]).map(r=>r.pvalue).filter(known);
+  add('Ljung–Box 最小 p 值',ps.length?probability(Math.min(...ps)):'未進行時間序列檢定');
+  meaning=datasetId==='appliances_energy'?(flag?'檢定提示殘差存在時間相依，前後觀測的誤差可能互相關聯。':'目前未標記時間相依違反，仍需搭配 ACF 與時間序列檢定判讀。'):'學生來源行序不是時間；這裡的 DW／ACF 只作描述，無法據此證明觀測獨立。';
+  caution=datasetId==='appliances_energy'?'時間相依會限制傳統 OLS 推論；Ljung–Box 是選模後的探索性檢定，含多個相關 lag。':'同校、家庭或其他群組的相依性仍可能存在，不能只看 DW 是否接近 2。';break;
+ }
+ case 'homoscedasticity':
+  add('LM 統計量',value(t.lm_statistic));add('Breusch–Pagan p 值',probability(t.lm_pvalue));add('輔助迴歸自由度',value(t.auxiliary_df,0));
+  meaning=known(t.lm_pvalue)?flag?'有反對固定誤差變異的證據：不同輸入情況下，誤差的波動可能不同。':'目前未拒絕等變異假設，仍需搭配殘差散布判讀。':'目前無法估計等變異檢定，請查看詳細資訊與殘差圖。';
+  caution='未拒絕不等於證明等變異；時間相依與特徵選擇會影響檢定 p 值的解釋。';break;
+ case 'normality':
+  add('檢定統計量',value(t.statistic,2));add('p 值',probability(t.pvalue));add('偏態 Skewness',value(t.skewness));add('Pearson 峰度',value(t.pearson_kurtosis));
+  meaning=known(t.pvalue)?flag?'常態性檢定拒絕常態假設；請搭配直方圖及 Q-Q 圖觀察偏態與尾部。':'目前未拒絕常態假設；這不代表殘差已被證明服從常態。':'殘差變異或樣本資訊不足，無法進行常態性判讀。';
+  caution='大樣本檢定對微小偏離也很敏感；「低於浮點精度」表示數值下溢，不是機率真的等於零。';break;
+ case 'multicollinearity':
+  add('有效 rank / 含截距欄數',known(t.rank)&&known(t.columns_with_intercept)?value(t.rank,0)+' / '+value(t.columns_with_intercept,0):'無法估計');
+  add('Condition number',value(t.condition_number));add('完美共線欄數',value(t.perfectly_collinear_columns,0));add('有限 VIF > 10 欄數',value(t.vif_above_10,0));
+  meaning=flag?'設計矩陣可能有別名欄位或高度共線性；個別係數不一定能單獨解釋。':m.k===1?'此模型只有一個選中輸入，沒有多個輸入互相共線的問題；仍需檢查常數欄與有效 rank。':'目前未觸發 rank／VIF 篩檢警示，仍須留意特徵間的關聯。';
+  caution='完整 one-hot 與截距可能造成 aliasing。VIF 的空值可能代表無限大或不可定義，不能視為 0；門檻不是通用定律。';break;
+ default:meaning=a.interpretation||'請查看詳細統計資料。';caution=a.limitations||'';
+ }
+ return '<article class="diagnostic-card diagnostic-card--'+status+'" data-assumption="'+esc(a.assumption)+'" aria-labelledby="diagnostic-title-'+index+'">'+
+ '<div class="diagnostic-card-header"><div class="diagnostic-name"><span class="diagnostic-number" aria-hidden="true">'+String(index+1).padStart(2,'0')+'</span><div><h4 id="diagnostic-title-'+index+'">'+esc(title)+'</h4><span class="diagnostic-english">'+esc(english)+'</span></div></div><span class="diagnostic-badge"><span aria-hidden="true">'+(flag?'!':'•')+'</span>'+badge+'</span></div>'+
+ '<p class="diagnostic-meaning">'+esc(meaning)+'</p><dl class="diagnostic-metrics">'+fields.map(([label,v])=>'<div><dt>'+esc(label)+'</dt><dd>'+esc(v)+'</dd></div>').join('')+'</dl>'+
+ '<p class="diagnostic-caution">'+esc(caution)+'</p><details class="diagnostic-details"><summary>檢定方法與完整統計<span aria-hidden="true">＋</span></summary><div class="diagnostic-detail-body"><p><strong>方法</strong> '+esc(a.method)+'</p><p>'+esc(a.interpretation)+'</p><p>'+esc(a.limitations)+'</p><pre aria-label="原始統計 JSON">'+esc(JSON.stringify(a.statistic,null,2))+'</pre></div></details></article>';
+}
+function diagnosticSummary(m){
+ const d=m.diagnostics,flags=m.assumptions.filter(a=>a.possible_violation===true).length;
+ return '<div class="diagnostic-overview"><div><span class="eyebrow purple">REGRESSION ASSUMPTIONS</span><h3>回歸假設檢查</h3><p>先看重點，再展開細節。以下為訓練資料的探索性診斷，未觸發警示不等於假設成立。</p></div><span class="diagnostic-overview-count">'+flags+' / '+m.assumptions.length+'<small>項需留意</small></span></div>'+
+ '<div class="diagnostic-cards">'+m.assumptions.map((a,i)=>diagnosticCard(a,i,m)).join('')+'</div>'+
+ '<p class="diagnostic-footnote">圖中顯示 '+d.displayedTrainingPoints.toLocaleString('en-US')+' / '+d.trainingSize.toLocaleString('en-US')+' 筆訓練觀測（含殘差極值），Q-Q 最多顯示 201 個分位點；檢定使用完整訓練樣本。這些診斷不代表因果關係，也未校正選模不確定性。</p>';
+}
+
 function diagnosticPlots(m){
  const d=m.diagnostics,u=D.metadata.unit;
  scatter('residual-fit-chart',d.residualScatter,'Fitted ('+u+')','Training residual ('+u+')','zero',d.binnedResiduals.map(b=>[b.fitted_mean,b.residual_mean]));
@@ -102,7 +153,7 @@ function diagnosticPlots(m){
  const h=d.histogram,mid=h.edges.slice(0,-1).map((v,i)=>(v+h.edges[i+1])/2),pts=mid.map((v,i)=>[v,h.trainDensity[i]]);scatter('residual-distribution-chart',pts,'Residual ('+u+')','Probability density',null,mid.map((v,i)=>[v,h.testDensity[i]]));
  $('residual-distribution-chart').insertAdjacentHTML('beforeend','<p class="muted">Blue: training density; pink: held-out test density. Equal-width histogram bins.</p>');
  scatter('acf-chart',d.acf.map((v,i)=>[i,v]),'Lag (ordered training rows)','Residual ACF','zero');
- $('diagnostic-interpretation').innerHTML=`<p>Training plots show ${d.displayedTrainingPoints} of ${d.trainingSize} observations, including residual extremes. Q-Q uses at most 201 quantiles. Tests use the full training sample. Statistics are exploratory after selection.</p>`+m.assumptions.map(a=>`<article><h4>${esc(a.assumption)}: ${esc(a.method)}</h4><strong>${a.possible_violation?'Possible violation flagged':'No screening flag; assumption not established'}</strong><pre>${esc(JSON.stringify(a.statistic,null,2))}</pre><p>${esc(a.interpretation)}</p><small>${esc(a.limitations)}</small></article>`).join('');
+ $('diagnostic-interpretation').innerHTML=diagnosticSummary(m);
 }
 function residuals(m){
  let r=rows(m);r.sort(s.sort==='id'?(a,b)=>a.id-b.id:s.sort==='percent'?(a,b)=>(b.percent??-1)-(a.percent??-1):(a,b)=>b.absolute-a.absolute);

@@ -76,6 +76,20 @@ with threadpool_limits(limits=1),sync_playwright() as p:
                 assert page.locator('#input-errors').inner_text()==''
                 assert page.locator('#profit').inner_text()
                 assert page.locator('#diagnostics svg').count()==5
+                assert page.locator('.diagnostic-card').count()==5
+                assert page.locator('.diagnostic-details[open]').count()==0
+                for a in m['assumptions']:
+                    card=page.locator('.diagnostic-card[data-assumption="'+a['assumption']+'"]')
+                    assert json.loads(card.locator('pre').text_content())==a['statistic']
+                    assert card.locator('.diagnostic-metrics dd').count()>=3
+                    assert card.locator('.diagnostic-meaning').inner_text()
+                    assert card.locator('.diagnostic-badge').inner_text().strip().endswith(
+                        '可能違反假設' if a['possible_violation'] is True else
+                        '未觸發篩檢警示' if a['possible_violation'] is False else '描述性觀察')
+                normal=next(a for a in m['assumptions'] if a['assumption']=='normality')
+                if normal['statistic'].get('pvalue')==0:
+                    assert '低於浮點精度' in page.locator('.diagnostic-card[data-assumption="normality"] .diagnostic-metrics').inner_text()
+
                 counts['ui_checks']+=1
         page.locator('#rmse-chart circle').last.click()
         page.locator('#rmse-chart circle').first.press('Enter')
@@ -101,6 +115,27 @@ with threadpool_limits(limits=1),sync_playwright() as p:
         page.set_viewport_size({'width':1440,'height':1000});page.screenshot(path=str(ROOT/'reports'/('phase4_'+dataset_id+'_desktop.png')),full_page=True)
         page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(ROOT/'reports'/('phase4_'+dataset_id+'_mobile.png')),full_page=True)
         page.set_viewport_size({'width':1440,'height':1000})
+        # Diagnostic disclosure interaction, keyboard accessibility and both themes.
+        detail=page.locator('.diagnostic-details').first
+        detail.locator('summary').click()
+        assert detail.evaluate('(e)=>e.open')
+        assert detail.locator('pre').is_visible()
+        detail.locator('summary').press('Enter')
+        assert not detail.evaluate('(e)=>e.open')
+        for theme in ['light','dark']:
+            dark=page.locator('body').evaluate('(e)=>e.classList.contains("dark")')
+            if dark!=(theme=='dark'):page.locator('#theme').click()
+            for width in [1440,768,390,320]:
+                page.set_viewport_size({'width':width,'height':1000})
+                assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+                for card in page.locator('.diagnostic-card').all():
+                    assert card.evaluate('(e)=>e.scrollWidth<=e.clientWidth+1')
+                if width in [1440,390]:
+                    output=ROOT/'reports/diagnostics_ui'
+                    output.mkdir(exist_ok=True)
+                    page.locator('#diagnostic-interpretation').screenshot(path=str(output/(dataset_id+'_'+theme+'_'+str(width)+'.png')),style='header { visibility: hidden; } :focus { outline: none !important; }')
+        if page.locator('body').evaluate('(e)=>e.classList.contains("dark")'):page.locator('#theme').click()
+
     page.locator('#theme').click();assert page.locator('body').evaluate('(e)=>e.classList.contains("dark")');page.reload();assert page.locator('body').evaluate('(e)=>e.classList.contains("dark")');page.locator('#theme').click()
     page.goto((DIST/'index.html').as_uri());assert page.locator('#dataset-select option').count()==2
     page.route('**/data.js*',lambda route:route.abort());page.reload();assert 'Dashboard data unavailable' in page.locator('main').inner_text()
